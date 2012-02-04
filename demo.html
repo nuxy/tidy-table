@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+
+	<!-- CSS include start -->
+
+	<link rel="stylesheet" type="text/css" href="jquery.tidy.table.css">
+
+	<!-- CSS include end -->
+
+
+	<!-- Javascript insert start -->
+
+	<script src="jquery.tidy.table.js"></script>
+	<script>
+	$(document).ready(function() {
+		$('#container').TidyTable({
+			enableCheckbox : true,
+			enableOptions  : true
+		},
+		{
+			columnTitles : ['Rank','Programming Language','Ratings Jan 2012','Delta Jan 2012','Status'],
+			columnValues : [
+				['1','Java','17.479%','-0.29%','A'],
+				['2','C','16.976%','+1.15%','A'],
+				['3','C#','8.781%','+2.55%','A'],
+				['4','C++','8.063%','-0.72%','A'],
+				['5','Objective-C','6.919%','+3.91%','A'],
+			]
+		},
+		function() {
+			alert('callback');
+		});
+
+		$('#container').TidyTable('generate');
+	});
+	</script>
+
+	<!-- Javascript insert end -->
+
+
+	<!-- CSS overrides start -->
+
+	<link rel="stylesheet" type="text/css" href="http://mbrooks.info/demo.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+
+	<!-- CSS overrides end -->
+
+
+	<title>Tidy Table</title>
+</head>
+<body>
+
+<p id="about">
+	This <strong>jQuery</strong> plugin is <a href="jquery.tidy.table.min.js" title="Only ? kb">lightweight</a>, easy to <a href="README.html#install" title="Installation">install</a> / <a href="demo.css" title="Stylesheet">customize</a>, and is compatible with <strong>Firefox 3.6+</strong>, <strong>Chrome</strong>, <strong>Safari 5+</strong>, <strong>Opera</strong>, and <strong>Internet Explorer 7+</strong> web browsers.
+</p>
+
+
+<!-- HTML example start -->
+
+<div id="container"></div>
+
+<!-- HTML example end -->
+
+
+</body>
