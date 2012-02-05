@@ -1,0 +1,7 @@
+= Tidy Table
+
+This project is currently in development with no set time of release.
+
+== Author
+
+{Marc S. Brooks}[https://github.com/nuxy]
