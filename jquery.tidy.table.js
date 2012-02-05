@@ -83,8 +83,12 @@
 
 		// .. <THEAD>
 		for (var i = 0; i < cols.length; i++) {
-			var col = $('<th></th>');
-			col.append(cols[i]);
+			var title = cols[i];
+
+			var col = $('<th></th>')
+				.append(title)
+				.attr('title', title);
+			
 			row.append(col);
 
 			var col_class;
@@ -127,7 +131,8 @@
 				var col_value = vals[j][k];
 
 				var col = $('<td></td>')
-					.append(col_value);
+					.append(col_value)
+					.attr('title', col_value);
 
 				row.append(col);
 
