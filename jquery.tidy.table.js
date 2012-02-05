@@ -123,8 +123,11 @@
 			var row = $('<tr></tr>');
 
 			for (var k = 0; k < vals[j].length; k++) {
+				var row_name  = vals[j][0];
+				var col_value = vals[j][k];
+
 				var col = $('<td></td>')
-					.append(vals[j][k]);
+					.append(col_value);
 
 				row.append(col);
 
@@ -132,10 +135,11 @@
 
 					// attach event to each column
 					col.bind('click', {
-						row_number : j,
+						row_name  : row_name,
+						col_value : col_value
 					},
 					function(event) {
-						data.callback(cols[event.data.row_number]);
+						data.callback(event.data.row_name, event.data.col_value);
 					});
 				}
 			}
