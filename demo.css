@@ -4,12 +4,16 @@
 	border: 4px double #BBBBBB;
 	font-family: Tienne, Sans-Serif;
 	margin: 10% auto 0px auto;
-	width: 870px;
+	width: 950px;
 }
 
 #container table.tidy_table {
 	border: 0px;
 	width: 100%;
+}
+
+#container table.tidy_table th {
+	white-space: nowrap;
 }
 
 #container table.tidy_table th:nth-child(2),
