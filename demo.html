@@ -30,8 +30,8 @@
 				['5','Objective-C','6.919%','+3.91%','A'],
 			]
 		},
-		function() {
-			alert('callback');
+		function(value) {
+			alert("callback '" + value + "'");
 		});
 
 		$('#container').TidyTable('generate');
