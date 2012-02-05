@@ -7,6 +7,8 @@
 	width: 950px;
 }
 
+/* customize */
+
 #container table.tidy_table {
 	border: 0px;
 	width: 100%;
@@ -19,4 +21,12 @@
 #container table.tidy_table th:nth-child(2),
 #container table.tidy_table td:nth-child(2) {
 	display: none;
+}
+
+#container table.tidy_table tr.check_on {
+	background-color: #FFFF00;
+}
+
+#container table.tidy_table tr.check_off {
+	background-color: #FFFFFF;
 }
