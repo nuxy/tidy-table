@@ -10,6 +10,8 @@
 /* customize */
 
 #container table.tidy_table {
+	background-color: #FFFFFF;
+	border-collapse: collapse;
 	border: 0px;
 	width: 100%;
 }
@@ -29,4 +31,20 @@
 
 #container table.tidy_table tr.check_off {
 	background-color: #FFFFFF;
+}
+
+table.tidy_table th {
+	background-color: #DDDDDD;
+}
+
+table.tidy_table th.sort_asc {
+	background: #EEEEEE url( images/arrow_asc.gif ) no-repeat right center;
+}
+
+table.tidy_table th.sort_desc {
+	background: #EEEEEE url( images/arrow_desc.gif ) no-repeat right center;
+}
+
+table.tidy_table td {
+	border-top: 1px solid #CCCCCC;
 }
