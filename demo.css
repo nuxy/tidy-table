@@ -1,12 +1,18 @@
 /* example */
 
 #container {
+	border: 4px double #BBBBBB;
 	font-family: Tienne, Sans-Serif;
 	margin: 10% auto 0px auto;
 	width: 850px;
 }
 
-#container th:nth-child(2),
-#container td:nth-child(2) {
+#container table.tidy_table {
+	border: 0px;
+	width: 100%;
+}
+
+#container table.tidy_table th:nth-child(2),
+#container table.tidy_table td:nth-child(2) {
 	display: none;
 }
