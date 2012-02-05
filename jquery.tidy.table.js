@@ -251,12 +251,15 @@
 
 		// sort the JSON object by bucket number
 		data.values.sort(function(a, b) {
-			if (isNaN(a[num]) ) {
-				return [reverse * cmpAny(a[num], b[num])] >
-				       [reverse * cmpAny(b[num], a[num])] ? -1 : 1;
+			var str1 = a[num].replace(/$|%|#/g, '');
+			var str2 = b[num].replace(/$|%|#/g, '');
+
+			if (isNaN(str1) ) {
+				return [reverse * cmpAny(str1, str2)] >
+				       [reverse * cmpAny(str2, str1)] ? -1 : 1;
 			}
 			else {
-				return [reverse * cmpInt(a[num], b[num])];
+				return [reverse * cmpInt(str1, str2)];
 			}
 		});
 
