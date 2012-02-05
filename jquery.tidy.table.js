@@ -29,7 +29,7 @@
 						headers   : values.columnTitles,
 						values    : values.columnValues,
 						callback  : callback,
-						options   : settings,
+						options   : settings
 					});
 				}
 			});
@@ -76,8 +76,8 @@
 		var row   = $('<tr></tr>');
 
 		// define table globals
-		table.mousedown(function() { return false });
-		table.mouseover(function() { return false });
+		table.mousedown(function() { return false; });
+		table.mouseover(function() { return false; });
 
 		var cols = data.headers;
 
@@ -176,7 +176,7 @@
 
 					// attach event to each checkbox
 					input.bind('click', {
-						box_number : index,
+						box_number : index
 					},
 					function(event) {
 						toggleSelRows(rows, event.data.box_number);
