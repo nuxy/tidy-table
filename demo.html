@@ -27,11 +27,11 @@
 				['2','2','C','16.976%','+1.15%','A'],
 				['3','3','C#','8.781%','+2.55%','A'],
 				['4','4','C++','8.063%','-0.72%','A'],
-				['5','5','Objective-C','6.919%','+3.91%','A'],
+				['5','5','Objective-C','6.919%','+3.91%','A']
 			]
 		},
 		function(name, value) {
-			alert('callback - ' + 'name=' + name + ', value=' + value);
+			alert("callback(name='" + name + "', value='" + value + "')");
 		});
 
 		$('#container').TidyTable('generate');
