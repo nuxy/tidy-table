@@ -5,3 +5,8 @@
 	margin: 10% auto 0px auto;
 	width: 850px;
 }
+
+#container th:nth-child(2),
+#container td:nth-child(2) {
+	display: none;
+}
