@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="http://mbrooks.info/readme.css">
+
+	<title>README</title>
+</head>
+<body>
+
+<h1>Tidy Table</h1>
+
+<p>Create a HTML table from JSON that can be sorted, selected, and post-processed using a simple callback.</p>
+
+<h2>Features</h2>
+
+<ul>
+	<li>Extensible HTML/CSS interface.</li>
+	<li>Compatible with Firefox 3.6+, Chrome, Safari 5+, Opera, and Internet Explorer 7+ web browsers.</li>
+	<li>Easy to set-up and customize.</li>
+	<li>Customizable callback function for post-processing row/column data.</li>
+	<li>Fast and lightweight (jQuery plug-in *only 3.5 kB)</li>
+</ul>
+
+<p>Check out the <a href="demo.html">demo</a> provided with this package.</p>
+
+<a name="install"></a>
+
+<h2>Installation</h2>
+
+<ol>
+	<li>Download the latest <a href="https://github.com/nuxy/Tidy-Table/zipball/master">sources</a> to your computer using a web browser.</li>
+	<li>Extract the contents of the <em>.zip</em> into a folder on your local computer.</li>
+	<li>Upload the folder with the <strong>following files</strong> to your web site.</li>
+</ol>
+
+<table border="1">
+	<tr>
+		<th>Filename</th>
+		<th>Role</th>
+	</tr>
+	<tr>
+		<td>jquery.tidy.table.min.js</td>
+		<td>The main script to be included from within your HTML document.</td>
+	</tr>
+	<tr>
+		<td>jquery.tidy.table.min.css</td>
+		<td>This style sheet that defines the "look & feel" of the HTML table.</td>
+	</tr>
+</table>
+
+<h2>Set-up</h2>
+
+<p>It's as simple as defining the target element <code>#container</code> using the <a href="http://api.jquery.com/category/selectors">jQuery selector</a> and passing tabular data as JSON.   An optional callback can also be defined for post-processing row/column data on mouse click events.</p>
+
+<pre>$(selector).TidyTable(options, data [columnTitles, columnValues], callback);</pre>
+
+<h2>Source Code</h2>
+
+<p>Add the following Javascript between the <code>&lt;head&gt;&lt;/head&gt;</code> tags of your HTML document.</p>
+
+<pre>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"&gt;&lt;/script&gt;
+
+&lt;link rel="stylesheet" type="text/css" href="/path/to/jquery.tidy.table.min.css"&gt;
+
+&lt;script src="/path/to/jquery.tidy.table.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+$(document).ready(function() {
+	$('#container').TidyTable({
+		enableCheckbox : true
+	},
+	{
+		columnTitles : ['Column A','Column B','Column C','Column D','Column E'],
+		columnValues : [
+			['1','1A','1B','1C','1D','1E'],
+			['2','2A','2B','2C','2D','2E'],
+			['3','3A','3B','3C','3D','3E'],
+			['4','4A','4B','4C','4D','4E'],
+			['5','5A','5B','5C','5D','5E']
+		]
+	},
+	function(name, value) {
+		// do something
+	});
+
+	$('#container').TidyTable('generate');
+});
+&lt;/script&gt;</pre>
+
+<a name="options"></a>
+
+<h2>Plug-in Settings</h2>
+
+<p>The following options can be passed to the plug-in main function as JSON</p>
+
+<table border="1">
+	<tr>
+		<th>Option</th>
+		<th>Description</th>
+		<th>Default Value</th>
+	</tr>
+	<tr>
+		<td>enableCheckbox</td>
+		<td>add checkbox functionality to table output</td>
+		<td>false</td>
+	</tr>
+</table>
+
+<h2>Releases</h2>
+
+<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (2.5 kB) and developers version (unpacked  5.7 kB)</p>
+
+<p>You can always find the latest updates within this projects repository.</p>
+
+<h2>Code Repository</h2>
+
+<p>This projects repository is currently hosted on <a href="https://github.com">Github</a></p>
+
+<pre>https://github.com/nuxy/Tidy-Table</pre>
+
+<h2>Maintainer</h2>
+
+<p>For feedback, bug reports, or other comments, feel free to contact me at: <strong>devel</strong> <em>at</em> <strong>mbrooks</strong> <em>dot</em> <strong>info</strong></p>
+
+<h2>License and Warranty</h2>
+
+<p>This package is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</p>
+
+<p>Tidy Table is provided under the terms of the <a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>.</p>
+
+<p>Tidy Table &#169;2012 <a href="http://mbrooks.info">Marc S. Brooks</a></p>
+
+</body>
+</html>
