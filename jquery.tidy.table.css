@@ -14,6 +14,8 @@ table.tidy_table {
 	background-color: #FFFFFF;
 	border-collapse: collapse;
 	border: 1px solid #CCCCCC;
+	font-family: Times New Roman;
+	font-size: 16px;
 	cursor: pointer;
 	white-space: nowrap;
 }
@@ -48,6 +50,7 @@ table.tidy_table td {
 }
 
 table.tidy_table td {
+	border-right: 1px solid #EEEEEE;
 	padding: 7px 20px 7px 20px;
 }
 
@@ -64,6 +67,10 @@ table.tidy_table th:nth-child(1) input,
 table.tidy_table td:nth-child(1) input {
 	display: block;
 	margin: 0px auto 0px auto;
+}
+
+table.tidy_table td:nth-last-child(1) {
+	border-right: none;
 }
 
 table.tidy_table td {

@@ -4,10 +4,24 @@
 	border: 4px double #BBBBBB;
 	font-family: Tienne, Sans-Serif;
 	margin: 10% auto 0px auto;
+	position: relative;
 	width: 950px;
 }
 
 /* customize */
+
+#container select {
+	position: absolute;
+	right: 10px;
+}
+
+#container select.menu1 {
+	top: -35px;
+}
+
+#container select.menu2 {
+	bottom: -35px;
+}
 
 #container table.tidy_table {
 	background-color: #FFFFFF;
@@ -26,25 +40,25 @@
 }
 
 #container table.tidy_table tr.check_on {
-	background-color: #FFFF00;
+	background-color: #F7F7F7;
 }
 
 #container table.tidy_table tr.check_off {
 	background-color: #FFFFFF;
 }
 
-table.tidy_table th {
+#container table.tidy_table th {
 	background-color: #DDDDDD;
 }
 
-table.tidy_table th.sort_asc {
+#container table.tidy_table th.sort_asc {
 	background: #EEEEEE url( images/arrow_asc.gif ) no-repeat right center;
 }
 
-table.tidy_table th.sort_desc {
+#container table.tidy_table th.sort_desc {
 	background: #EEEEEE url( images/arrow_desc.gif ) no-repeat right center;
 }
 
-table.tidy_table td {
+#container table.tidy_table td {
 	border-top: 1px solid #CCCCCC;
 }
