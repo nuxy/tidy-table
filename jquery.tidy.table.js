@@ -16,7 +16,8 @@
 
 			// default options
 			var settings = $.extend({
-				enableCheckbox : false
+				enableCheckbox : false,
+				enableOptions  : false
 			}, options);
 
 			return this.each(function() {
@@ -24,10 +25,11 @@
 					data  = $this.data();
 
 				if ( $.isEmptyObject(data) ) {
-					$(this).data({
+					$this.data({
 						container : $this,
 						headers   : values.columnTitles,
 						values    : values.columnValues,
+						menuOpts  : values.menuOptions,
 						callback  : callback,
 						options   : settings
 					});
@@ -70,14 +72,15 @@
 	function createTable(data, num, order) {
 
 		// create reusable elements
-		var table = $('<table></table>').addClass('tidy_table');
+		var table = $('<table></table>')
+			.addClass('tidy_table');
+
+		table.mousedown(function() { return false; });
+		table.mouseover(function() { return false; });
+
 		var thead = $('<thead></thead>');
 		var tbody = $('<tbody></tbody>');
 		var row   = $('<tr></tr>');
-
-		// define table globals
-		table.mousedown(function() { return false; });
-		table.mouseover(function() { return false; });
 
 		var cols = data.headers;
 
@@ -88,12 +91,12 @@
 			var col = $('<th></th>')
 				.append(title)
 				.attr('title', title);
-			
+
 			row.append(col);
 
 			var col_class;
 
-			// determine column the result order
+			// determine column result order
 			if (order == 'desc' || !order) {
 				col_class = 'sort_desc';
 				col.order = 'asc';
@@ -103,7 +106,7 @@
 				col.order = 'desc';
 			}
 
-			// highlight the selected column
+			// highlight selected column
 			if (num == i) {
 				col.addClass(col_class);
 			}
@@ -155,7 +158,7 @@
 		table.append(thead);
 		table.append(tbody);
 
-		// append check boxes to the beginning each row
+		// append check boxes to beginning each row
 		if (data.options.enableCheckbox) {
 			var rows = table.find('tr');
 
@@ -190,20 +193,80 @@
 
 				col.append(input);
 
-				// insert before the first cell
+				// insert before first cell
 				row.prepend(col);
 			});
 		}
 
-		// if table exists, replace it
+		// if table/menu elements exist, replace them
 		var elm = data.container;
 		if (elm) {
-			if (elm.children() ) {
+			if (elm.children()) {
 				elm.children().remove();
 			}
 
-			elm.append(table);
+			if (data.options.enableOptions) {
+				data.container.append( createMenu(data, 'menu1') );
+			}
+
+			data.container.append(table);
+
+			if (data.options.enableOptions) {
+				data.container.append( createMenu(data, 'menu2') );
+			}
 		}
+	}
+
+	/*
+	 * Create HTML select menu element
+	 */
+	function createMenu(data, name) {
+		var opts = data.menuOpts;
+
+		// create reusable elements
+		var select = $('<select></select>')
+			.addClass('menu_options ' + name);
+
+		// .. options
+		$.each(opts, function(index) {
+			var option = $('<option>' + opts[index][0] + '</option>')
+				.attr('value', opts[index][0]);
+
+			option.click(function() {
+				opts[index][1]( getCheckedAsObj(data) );
+			});
+
+			select.append(option);
+		});
+
+		return select;
+	}
+
+	/*
+	 *
+	 */
+	function getCheckedAsObj(data) {
+		var rows = data.container.find('tbody > tr');
+
+		var objs = [];
+
+		for (var i = 0; i < rows.length; i++) {
+			var cols = rows[i].childNodes;
+
+			// if the row checkbox is selected
+			if (cols[0].firstChild.checked) {
+				var data = [];
+
+				// simulate an associative array
+				for (var j = 1; j < cols.length; j++) {
+					data[j - 1] = cols[j].textContent;
+				}
+
+				objs.push(data);
+			}
+		}
+
+		return objs;
 	}
 
 	/*
@@ -249,12 +312,12 @@
 	}
 
 	/*
-	 * Display the results ordered by selected column
+	 * Display results ordered by selected column
 	 */
 	function sortByColumn(data, num, order) {
 		var reverse = (order == 'desc') ? -1 : 1;
 
-		// sort the JSON object by bucket number
+		// sort JSON object by bucket number
 		data.values.sort(function(a, b) {
 			var str1 = a[num].replace(/$|%|#/g, '');
 			var str2 = b[num].replace(/$|%|#/g, '');

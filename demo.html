@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="http://www.google.com/jsapi"></script>
+    <script>
+        google.load('jquery','1.7.1');
+    </script>	
 
 
 	<!-- CSS include start -->
@@ -17,7 +20,8 @@
 	<script>
 	$(document).ready(function() {
 		$('#container').TidyTable({
-			enableCheckbox : true
+			enableCheckbox : true,
+			enableOptions  : true
 		},
 		{
 			columnTitles : ['ID','Rank','Programming Language','Ratings Jan 2012','Delta Jan 2012','Status'],
@@ -27,14 +31,22 @@
 				['3','3','C#','8.781%','+2.55%','A'],
 				['4','4','C++','8.063%','-0.72%','A'],
 				['5','5','Objective-C','6.919%','+3.91%','A']
+			],
+			menuOptions : [
+				['Action', doSomething]
 			]
 		},
 		function(name, value) {
-			alert("callback(name='" + name + "', value='" + value + "')");
+			alert("callback(id='" + name + "', value='" + value + "')");
 		});
 
 		$('#container').TidyTable('generate');
 	});
+
+	// do something with selected results
+	function doSomething(rows) {
+		alert('rows=' + rows.length);
+	}
 	</script>
 
 	<!-- Javascript insert end -->
