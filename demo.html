@@ -4,7 +4,7 @@
 	<script src="http://www.google.com/jsapi"></script>
 	<script>
 		google.load('jquery','1.7.1');
-	</script>	
+	</script>
 
 
 	<!-- CSS include start -->
@@ -33,19 +33,26 @@
 				['5','5','Objective-C','6.919%','+3.91%','A']
 			],
 			menuOptions : [
-				['Action', doSomething]
+				['- Action -', null],
+				['Callback 1', doSomething1],
+				['Callback 2', doSomething2]
 			]
-		},
-		function(name, value) {
-			alert("callback(name='" + name + "', value='" + value + "')");
-		});
+		}, doSomething3);
 
 		$('#container').TidyTable('generate');
 	});
 
 	// do something with selected results
-	function doSomething(rows) {
-		alert('callback(rows=' + rows.length + "')");
+	function doSomething1(rows) {
+		alert('callback1(rows=' + rows.length + "')");
+	}
+
+	function doSomething2(rows) {
+		alert('callback2(rows=' + rows.length + "')");
+	}
+
+	function doSomething3(name, value) {
+		alert("callback(name='" + name + "', value='" + value + "')");
 	}
 	</script>
 
