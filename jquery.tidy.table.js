@@ -243,7 +243,7 @@
 	}
 
 	/*
-	 *
+	 * Return selected row values as an array
 	 */
 	function getCheckedAsObj(data) {
 		var rows = data.container.find('tbody > tr');

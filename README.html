@@ -17,7 +17,7 @@
 	<li>Extensible HTML/CSS interface.</li>
 	<li>Compatible with Firefox 3.6+, Chrome, Safari 5+, Opera, and Internet Explorer 7+ web browsers.</li>
 	<li>Easy to set-up and customize.</li>
-	<li>Customizable callback function for post-processing row/column data.</li>
+	<li>Customizable callback functions for post-processing row/column data.</li>
 	<li>Fast and lightweight (jQuery plug-in *only 3.5 kB)</li>
 </ul>
 
@@ -52,7 +52,7 @@
 
 <p>It's as simple as defining the target element <code>#container</code> using the <a href="http://api.jquery.com/category/selectors">jQuery selector</a> and passing tabular data as JSON.   An optional callback can also be defined for post-processing row/column data on mouse click events.</p>
 
-<pre>$(selector).TidyTable(options, data [columnTitles, columnValues], callback);</pre>
+<pre>$(selector).TidyTable(<em>options</em>, <em>data [columnTitles, columnValues]</em>, <em>callback</em>);</pre>
 
 <h2>Source Code</h2>
 
@@ -76,10 +76,16 @@ $(document).ready(function() {
 			['3','3A','3B','3C','3D','3E'],
 			['4','4A','4B','4C','4D','4E'],
 			['5','5A','5B','5C','5D','5E']
+		],
+
+		// do something with selected rows
+		menuOptions : [
+			['Option 1', doSomething1]
+			['Option 2', doSomething2]
 		]
 	},
 	function(name, value) {
-		// do something
+		// do something with column value
 	});
 
 	$('#container').TidyTable('generate');
