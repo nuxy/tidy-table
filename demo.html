@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="http://www.google.com/jsapi"></script>
-    <script>
-        google.load('jquery','1.7.1');
-    </script>	
+	<script src="http://www.google.com/jsapi"></script>
+	<script>
+		google.load('jquery','1.7.1');
+	</script>	
 
 
 	<!-- CSS include start -->
@@ -37,7 +37,7 @@
 			]
 		},
 		function(name, value) {
-			alert("callback(id='" + name + "', value='" + value + "')");
+			alert("callback(name='" + name + "', value='" + value + "')");
 		});
 
 		$('#container').TidyTable('generate');
@@ -45,7 +45,7 @@
 
 	// do something with selected results
 	function doSomething(rows) {
-		alert('rows=' + rows.length);
+		alert('callback(rows=' + rows.length + "')");
 	}
 	</script>
 
