@@ -83,8 +83,8 @@ $(document).ready(function() {
 
 		// do something with selected rows
 		menuOptions : [
-			['Option 1', doSomething1],
-			['Option 2', doSomething2]
+			['Option 1', {callback : doSomething1}]
+			['Option 2', {callback : doSomething2}]
 		]
 	},
 	function(name, value) {
