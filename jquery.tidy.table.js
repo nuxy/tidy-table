@@ -225,16 +225,17 @@
 
 		// create reusable elements
 		var select = $('<select></select>')
-			.addClass('menu_options ' + name);
+			.addClass('menu_options ' + name)
+			.change(function() {
+
+				// callback event
+				opts[ $(this).val() ][1]['callback']( getCheckedAsObj(data) );
+			});
 
 		// .. options
 		$.each(opts, function(index) {
 			var option = $('<option>' + opts[index][0] + '</option>')
-				.attr('value', opts[index][0]);
-
-			option.click(function() {
-				opts[index][1]( getCheckedAsObj(data) );
-			});
+				.attr('value', index);
 
 			select.append(option);
 		});
