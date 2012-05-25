@@ -19,27 +19,26 @@
 	<script src="jquery.tidy.table.min.js"></script>
 	<script>
 	$(document).ready(function() {
-		$('#container').TidyTable({
-			enableCheckbox : true,
-			enableOptions  : true
-		},
-		{
-			columnTitles : ['ID','Rank','Programming Language','Ratings Jan 2012','Delta Jan 2012','Status'],
-			columnValues : [
-				['1','1','Java','17.479%','-0.29%','A'],
-				['2','2','C','16.976%','+1.15%','A'],
-				['3','3','C#','8.781%','+2.55%','A'],
-				['4','4','C++','8.063%','-0.72%','A'],
-				['5','5','Objective-C','6.919%','+3.91%','A']
-			],
-			menuOptions : [
-				['- Action -', null],
-				['Callback 1', {callback : doSomething1}],
-				['Callback 2', {callback : doSomething2}]
-			]
-		}, doSomething3);
-
-		$('#container').TidyTable('generate');
+		$('#container')
+			.TidyTable({
+				enableCheckbox : true,
+				enableMenu     : true
+			})
+			.TidyTable('generate', {
+				columnTitles : ['ID','Rank','Programming Language','Ratings Jan 2012','Delta Jan 2012','Status'],
+				columnValues : [
+					['1','1','Java','17.479%','-0.29%','A'],
+					['2','2','C','16.976%','+1.15%','A'],
+					['3','3','C#','8.781%','+2.55%','A'],
+					['4','4','C++','8.063%','-0.72%','A'],
+					['5','5','Objective-C','6.919%','+3.91%','A']
+				],
+				menuOptions : [
+					['- Action -', null],
+					['Callback 1', { callback : doSomething1 }],
+					['Callback 2', { callback : doSomething2 }]
+				]
+			}, doSomething3);
 	});
 
 	// do something with selected results

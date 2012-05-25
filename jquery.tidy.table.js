@@ -12,12 +12,12 @@
 
 (function($) {
 	var methods = {
-		init : function(options, values, callback) {
+		init : function(options) {
 
 			// default options
 			var settings = $.extend({
 				enableCheckbox : false,
-				enableOptions  : false
+				enableMenu     : false
 			}, options);
 
 			return this.each(function() {
@@ -27,10 +27,6 @@
 				if ( $.isEmptyObject(data) ) {
 					$this.data({
 						container : $this,
-						headers   : values.columnTitles,
-						values    : values.columnValues,
-						menuOpts  : values.menuOptions,
-						callback  : callback,
 						options   : settings
 					});
 				}
@@ -43,12 +39,14 @@
 			});
 		},
 
-		generate : function() {
+		generate : function(values, callback) {
 			return this.each(function() {
 				var $this = $(this),
 					data  = $this.data();
 
-				createTable(data);
+				$.extend(values, data);
+
+				createTable(values, callback);
 			});
 		}
 	};
@@ -69,7 +67,7 @@
 	/*
 	 * Create HTML table elements
 	 */
-	function createTable(data, num, order) {
+	function createTable(data, callback, num, order) {
 
 		// create reusable elements
 		var table = $('<table></table>')
@@ -82,7 +80,7 @@
 		var tbody = $('<tbody></tbody>');
 		var row   = $('<tr></tr>');
 
-		var cols = data.headers;
+		var cols = data.columnTitles;
 
 		// .. <THEAD>
 		for (var i = 0; i < cols.length; i++) {
@@ -117,13 +115,13 @@
 				sort_order : col.order
 			},
 			function(event) {
-				sortByColumn(data, event.data.col_number, event.data.sort_order);
+				sortByColumn(data, callback, event.data.col_number, event.data.sort_order);
 			});
 		}
 
 		thead.append(row);
 
-		var vals = data.values;
+		var vals = data.columnValues;
 
 		// .. <TBODY>
 		for (var j = 0; j < vals.length; j++) {
@@ -139,7 +137,7 @@
 
 				row.append(col);
 
-				if (data.callback) {
+				if (callback) {
 
 					// attach event to each column
 					col.bind('click', {
@@ -147,7 +145,7 @@
 						col_value : col_value
 					},
 					function(event) {
-						data.callback(event.data.row_name, event.data.col_value);
+						callback(event.data.row_name, event.data.col_value);
 					});
 				}
 			}
@@ -205,13 +203,13 @@
 				elm.children().remove();
 			}
 
-			if (data.options.enableOptions) {
+			if (data.options.enableMenu) {
 				data.container.append( createMenu(data, 'menu1') );
 			}
 
 			data.container.append(table);
 
-			if (data.options.enableOptions) {
+			if (data.options.enableMenu) {
 				data.container.append( createMenu(data, 'menu2') );
 			}
 		}
@@ -315,11 +313,11 @@
 	/*
 	 * Display results ordered by selected column
 	 */
-	function sortByColumn(data, num, order) {
+	function sortByColumn(data, callback, num, order) {
 		var reverse = (order == 'desc') ? -1 : 1;
 
 		// sort JSON object by bucket number
-		data.values.sort(function(a, b) {
+		data.columnValues.sort(function(a, b) {
 			var str1 = a[num].replace(/$|%|#/g, '');
 			var str2 = b[num].replace(/$|%|#/g, '');
 
@@ -332,7 +330,7 @@
 			}
 		});
 
-		createTable(data, num, order);
+		createTable(data, callback, num, order);
 	}
 
 	/*
