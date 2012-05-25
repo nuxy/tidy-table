@@ -68,30 +68,29 @@
 &lt;script src="/path/to/jquery.tidy.table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(document).ready(function() {
-	$('#container').TidyTable({
-		enableCheckbox : true
-	},
-	{
-		columnTitles : ['Column A','Column B','Column C','Column D','Column E'],
-		columnValues : [
-			['1','1A','1B','1C','1D','1E'],
-			['2','2A','2B','2C','2D','2E'],
-			['3','3A','3B','3C','3D','3E'],
-			['4','4A','4B','4C','4D','4E'],
-			['5','5A','5B','5C','5D','5E']
-		],
+	$('#container')
+		.TidyTable({
+			enableCheckbox : true
+		})
+		.TidyTable('generate', {
+			columnTitles : ['Column A','Column B','Column C','Column D','Column E'],
+			columnValues : [
+				['1','1A','1B','1C','1D','1E'],
+				['2','2A','2B','2C','2D','2E'],
+				['3','3A','3B','3C','3D','3E'],
+				['4','4A','4B','4C','4D','4E'],
+				['5','5A','5B','5C','5D','5E']
+			],
 
-		// do something with selected rows
-		menuOptions : [
-			['Option 1', {callback : doSomething1}]
-			['Option 2', {callback : doSomething2}]
-		]
-	},
-	function(name, value) {
-		// do something with column value
-	});
-
-	$('#container').TidyTable('generate');
+			// do something with selected rows
+			menuOptions : [
+				['Option 1', { callback : doSomething1 }],
+				['Option 2', { callback : doSomething2 }]
+			]
+		},
+		function(name, value) {
+			// do something with column value
+		});
 });
 &lt;/script&gt;</pre>
 
