@@ -12,7 +12,7 @@
 
 (function($) {
 	var methods = {
-		init : function(options) {
+		init : function(options, config, callback) {
 
 			// default options
 			var settings = $.extend({
@@ -29,6 +29,8 @@
 						container : $this,
 						options   : settings
 					});
+
+					$this.TidyTable('generate', config, callback);
 				}
 			});
 		},
@@ -39,14 +41,15 @@
 			});
 		},
 
-		generate : function(values, callback) {
+		generate : function(config, callback) {
 			return this.each(function() {
 				var $this = $(this),
 					data  = $this.data();
 
-				$.extend(values, data);
+				data.container
+					= (data.container) ? data.container : $this;
 
-				createTable(values, callback);
+				createTable( $.extend(config, data), callback);
 			});
 		}
 	};
@@ -157,7 +160,7 @@
 		table.append(tbody);
 
 		// append check boxes to beginning each row
-		if (data.options.enableCheckbox) {
+		if (data.options && data.options.enableCheckbox) {
 			var rows = table.find('tr');
 
 			rows.each(function(index) {
@@ -203,13 +206,13 @@
 				elm.children().remove();
 			}
 
-			if (data.options.enableMenu) {
+			if (data.options && data.options.enableMenu) {
 				data.container.append( createMenu(data, 'menu1') );
 			}
 
 			elm.append(table);
 
-			if (data.options.enableMenu) {
+			if (data.options && data.options.enableMenu) {
 				data.container.append( createMenu(data, 'menu2') );
 			}
 		}
