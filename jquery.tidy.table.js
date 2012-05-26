@@ -207,7 +207,7 @@
 				data.container.append( createMenu(data, 'menu1') );
 			}
 
-			data.container.append(table);
+			elm.append(table);
 
 			if (data.options.enableMenu) {
 				data.container.append( createMenu(data, 'menu2') );
@@ -219,7 +219,7 @@
 	 * Create HTML select menu element
 	 */
 	function createMenu(data, name) {
-		var opts = data.menuOpts;
+		var opts = data.menuOptions;
 
 		// create reusable elements
 		var select = $('<select></select>')
