@@ -63,8 +63,8 @@ table.tidy_table td:nth-child(1) {
 	border-right: 1px solid #EEEEEE;
 }
 
-table.tidy_table th:nth-child(1) input,
-table.tidy_table td:nth-child(1) input {
+table.tidy_table input[type=checkbox],
+table.tidy_table input[type=checkbox] {
 	display: block;
 	margin: 0px auto 0px auto;
 }
