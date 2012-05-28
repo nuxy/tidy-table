@@ -14,7 +14,7 @@ http://github.com/nuxy/Tidy-Table/raw/master/preview.jpg
 
 == Installation
 
-Please refer to the {README.html}[http://nuxy.github.com/Tidy-Table/README.html] file for more information about this package.
+Please refer to the {README.html}[http://labs.mbrooks.info/demos/Tidy-Table] file for more information about this package.
 
 == To Do
 
