@@ -33,11 +33,6 @@
 	white-space: nowrap;
 }
 
-#container table.tidy_table th:nth-child(2),
-#container table.tidy_table td:nth-child(2) {
-	display: none;
-}
-
 #container table.tidy_table tr.check_on {
 	background-color: #F7F7F7;
 }
