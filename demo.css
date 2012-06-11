@@ -1,7 +1,7 @@
 /* example */
 
 #container {
-	border: 4px double #BBBBBB;
+	border: 1px double #BBBBBB;
 	margin: 10% auto 0px auto;
 	position: relative;
 	width: 760px;
