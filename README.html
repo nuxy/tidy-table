@@ -52,11 +52,13 @@
 
 <p>It's as simple as defining the target element <code>#container</code> using the <a href="http://api.jquery.com/category/selectors">jQuery selector</a> and passing tabular data as JSON.   An optional callback can also be defined for post-processing row/column data on mouse click events.</p>
 
-<pre>$(selector).TidyTable(<em>options</em>, <em>data [columnTitles, columnValues]</em>, <em>callback</em>);</pre>
+<pre>$(selector).TidyTable(<a href="#options"><em>options</em></a>, <em>data [columnTitles, columnValues]</em>, <a href="#callback"><em>callback</em></a>);</pre>
 
 <h2>Source Code</h2>
 
 <p>Add the following Javascript between the <code>&lt;head&gt;&lt;/head&gt;</code> tags of your HTML document.</p>
+
+<a name="examples"></a>
 
 <h4>Use Example 1 - Options defined</h4>
 
@@ -115,7 +117,7 @@ $(document).ready(function() {
 				['4','4A','4B','4C','4D','4E'],
 				['5','5A','5B','5C','5D','5E']
 			]
-		}, doSomething1);
+		}, doSomething);
 });
 &lt;/script&gt;</pre>
 
@@ -142,6 +144,28 @@ $(document).ready(function() {
 		<td>false</td>
 	</tr>
 </table>
+
+<a name="callback"></a>
+
+<h2>Callback Processing</h2>
+
+<p>When a callback function is defined a response is returned.  The following examples correspond to the <a href="#examples">examples</a> provided above.</p>
+
+<h3>Select Menu Event</h3>
+
+<pre>function doSomething1(rows) {
+	alert('callback1(rows=' + rows.length + "')");
+}
+
+function doSomething2(rows) {
+	alert('callback2(rows=' + rows.length + "')");
+}</pre>
+
+<h3>Row/column Events</h3>
+
+<pre>function doSomething3(name, value) {
+	alert("callback(name='" + name + "', value='" + value + "')");
+}</pre>
 
 <h2>Releases</h2>
 
