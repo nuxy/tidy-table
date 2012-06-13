@@ -8,6 +8,7 @@ http://github.com/nuxy/Tidy-Table/raw/master/preview.jpg
 
 - Extensible HTML/CSS interface.
 - Compatible with Firefox 3.6+, Chrome, Safari 5+, Opera, and Internet Explorer 7+ web browsers.
+- Compatible with iOS and Android mobile web browsers.
 - Easy to set-up and customize.
 - Customizable callback functions for post-processing row/column data.
 - Fast and lightweight (jQuery plug-in *only 4.5 kB)
