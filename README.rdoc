@@ -15,9 +15,7 @@ http://github.com/nuxy/Tidy-Table/raw/master/preview.jpg
 
 == Installation
 
-Download the latest {sources}[https://github.com/nuxy/Tidy-Table/downloads] to your computer using a web browser.
-
-Please refer to the {README.html}[http://labs.mbrooks.info/demos/Tidy-Table] file for more information about this package.
+Download the latest {sources}[https://github.com/nuxy/Tidy-Table/downloads] and refer to the {README}[http://labs.mbrooks.info/demos/Tidy-Table/README.html] for more information about this package.
 
 == Author
 
