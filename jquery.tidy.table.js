@@ -140,7 +140,7 @@
 
 				row.append(col);
 
-				if (callback) {
+				if (typeof callback === 'function') {
 
 					// attach event to each column
 					col.bind('click', {
@@ -228,9 +228,12 @@
 		var select = $('<select></select>')
 			.addClass('menu_options ' + name)
 			.change(function() {
+				var callback = opts[ $(this).val() ][1]['callback'];
 
 				// callback event
-				opts[ $(this).val() ][1]['callback']( getCheckedAsObj(data) );
+				if (typeof callback === 'function') {
+					opts[ $(this).val() ][1]['callback']( getCheckedAsObj(data) );
+				}
 			});
 
 		// .. options
