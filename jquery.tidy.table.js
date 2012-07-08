@@ -232,7 +232,7 @@
 
 				// callback event
 				if (typeof callback === 'function') {
-					opts[ $(this).val() ][1]['callback']( getCheckedAsObj(data) );
+					callback( getCheckedAsObj(data) );
 				}
 			});
 
