@@ -15,10 +15,17 @@
 		init : function(options, config, callback) {
 
 			// default options
-			var settings = $.extend({
+			var settings = {
 				enableCheckbox : false,
 				enableMenu     : false
-			}, options);
+			};
+
+			if (arguments.length > 1) {
+				$.extend(settings, options);
+			}
+			else {
+				config = options;
+			}
 
 			return this.each(function() {
 				var $this = $(this),
@@ -29,27 +36,15 @@
 						container : $this,
 						options   : settings
 					});
-
-					$this.TidyTable('generate', config, callback);
 				}
+
+				createTable(data, config, callback);
 			});
 		},
 
 		destroy : function() {
 			return this.each(function() {
 				$(this).removeData();
-			});
-		},
-
-		generate : function(config, callback) {
-			return this.each(function() {
-				var $this = $(this),
-					data  = $this.data();
-
-				data.container
-					= (data.container) ? data.container : $this;
-
-				createTable( $.extend(config, data), callback);
 			});
 		}
 	};
@@ -70,7 +65,7 @@
 	/*
 	 * Create HTML table elements
 	 */
-	function createTable(data, callback, num, order) {
+	function createTable(data, config, callback, num, order) {
 
 		// create reusable elements
 		var table = $('<table></table>')
@@ -83,7 +78,7 @@
 		var tbody = $('<tbody></tbody>');
 		var row   = $('<tr></tr>');
 
-		var cols = data.columnTitles;
+		var cols = config.columnTitles;
 
 		// .. <THEAD>
 		for (var i = 0; i < cols.length; i++) {
@@ -92,7 +87,6 @@
 			var col = $('<th></th>')
 				.append(title)
 				.attr('title', title);
-
 			row.append(col);
 
 			var col_class;
@@ -118,13 +112,13 @@
 				sort_order : col.order
 			},
 			function(event) {
-				sortByColumn(data, callback, event.data.col_number, event.data.sort_order);
+				sortByColumn(data, config, callback, event.data.col_number, event.data.sort_order);
 			});
 		}
 
 		thead.append(row);
 
-		var vals = data.columnValues;
+		var vals = config.columnValues;
 
 		// .. <TBODY>
 		for (var j = 0; j < vals.length; j++) {
@@ -137,7 +131,6 @@
 				var col = $('<td></td>')
 					.append(col_value)
 					.attr('title', col_value);
-
 				row.append(col);
 
 				if (typeof callback === 'function') {
@@ -207,13 +200,13 @@
 			}
 
 			if (data.options && data.options.enableMenu) {
-				data.container.append( createMenu(data, 'menu1') );
+				elm.append( createMenu(config, 'menu1') );
 			}
 
 			elm.append(table);
 
 			if (data.options && data.options.enableMenu) {
-				data.container.append( createMenu(data, 'menu2') );
+				elm.append( createMenu(config, 'menu2') );
 			}
 		}
 	}
@@ -221,8 +214,8 @@
 	/*
 	 * Create HTML select menu element
 	 */
-	function createMenu(data, name) {
-		var opts = data.menuOptions;
+	function createMenu(config, name) {
+		var opts = config.menuOptions;
 
 		// create reusable elements
 		var select = $('<select></select>')
@@ -232,7 +225,7 @@
 
 				// callback event
 				if (typeof callback === 'function') {
-					callback( getCheckedAsObj(data) );
+					callback(getCheckedAsObj);
 				}
 			});
 
@@ -319,11 +312,11 @@
 	/*
 	 * Display results ordered by selected column
 	 */
-	function sortByColumn(data, callback, num, order) {
+	function sortByColumn(data, config, callback, num, order) {
 		var reverse = (order == 'desc') ? -1 : 1;
 
 		// sort JSON object by bucket number
-		data.columnValues.sort(function(a, b) {
+		config.columnValues.sort(function(a, b) {
 			var str1 = a[num].replace(/$|%|#/g, '');
 			var str2 = b[num].replace(/$|%|#/g, '');
 
@@ -336,7 +329,7 @@
 			}
 		});
 
-		createTable(data, callback, num, order);
+		createTable(data, config, callback, num, order);
 	}
 
 	/*
