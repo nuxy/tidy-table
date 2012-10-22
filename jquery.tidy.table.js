@@ -130,7 +130,8 @@
 
 				var col = $('<td></td>')
 					.append(col_value)
-					.attr('title', col_value);
+					.attr('title', col_value)
+					.addClass('col_' + k);
 				row.append(col);
 
 				if (typeof callback === 'function') {
@@ -204,10 +205,6 @@
 			}
 
 			elm.append(table);
-
-			if (data.options && data.options.enableMenu) {
-				elm.append( createMenu(config, 'menu2') );
-			}
 		}
 	}
 
