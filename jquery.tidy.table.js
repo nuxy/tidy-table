@@ -204,10 +204,6 @@
 			}
 
 			elm.append(table);
-
-			if (data.options && data.options.enableMenu) {
-				elm.append( createMenu(config, 'menu2') );
-			}
 		}
 	}
 
