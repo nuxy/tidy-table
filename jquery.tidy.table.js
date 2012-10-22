@@ -130,7 +130,8 @@
 
 				var col = $('<td></td>')
 					.append(col_value)
-					.attr('title', col_value);
+					.attr('title', col_value)
+					.addClass('col_' + k);
 				row.append(col);
 
 				if (typeof callback === 'function') {
