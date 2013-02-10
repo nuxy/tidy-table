@@ -2,7 +2,7 @@
  *  Tidy Table
  *  Generate a sortable HTML table from JSON
  *
- *  Copyright 2012, Marc S. Brooks (http://mbrooks.info)
+ *  Copyright 2012-2013, Marc S. Brooks (http://mbrooks.info)
  *  Licensed under the MIT license:
  *  http://www.opensource.org/licenses/mit-license.php
  *
@@ -12,7 +12,7 @@
 
 (function($) {
 	var methods = {
-		init : function(options, config, callback) {
+		"init" : function(options, config, callback) {
 
 			// default options
 			var settings = {
@@ -42,7 +42,7 @@
 			});
 		},
 
-		destroy : function() {
+		"destroy" : function() {
 			return this.each(function() {
 				$(this).removeData();
 			});
@@ -51,10 +51,10 @@
 
 	$.fn.TidyTable = function(method) {
 		if (methods[method]) {
-			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1) );
+			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
 		}
 		else
-		if (typeof method === 'object' || ! method) {
+		if (typeof method === 'object' || !method) {
 			return methods.init.apply(this, arguments);
 		}
 		else {
