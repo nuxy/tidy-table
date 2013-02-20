@@ -74,9 +74,9 @@
 		table.mousedown(function() { return false; });
 		table.mouseover(function() { return false; });
 
-		var thead = $('<thead></thead>');
-		var tbody = $('<tbody></tbody>');
-		var row   = $('<tr></tr>');
+		var thead = $('<thead></thead>'),
+			tbody = $('<tbody></tbody>'),
+			row   = $('<tr></tr>');
 
 		var cols = config.columnTitles;
 
@@ -125,8 +125,8 @@
 			var row = $('<tr></tr>');
 
 			for (var k = 0; k < vals[j].length; k++) {
-				var row_name  = vals[j][0];
-				var col_value = vals[j][k];
+				var row_name  = vals[j][0],
+					col_value = vals[j][k];
 
 				var col = $('<td></td>')
 					.append(col_value)
@@ -200,13 +200,13 @@
 			}
 
 			if (data.options && data.options.enableMenu) {
-				elm.append( createMenu(config, 'menu1') );
+				elm.append( createMenu(elm, config, 'menu1') );
 			}
 
 			elm.append(table);
 
 			if (data.options && data.options.enableMenu) {
-				elm.append( createMenu(config, 'menu2') );
+				elm.append( createMenu(elm, config, 'menu2') );
 			}
 		}
 	}
@@ -214,7 +214,7 @@
 	/*
 	 * Create HTML select menu element
 	 */
-	function createMenu(config, name) {
+	function createMenu(table, config, name) {
 		var opts = config.menuOptions;
 
 		// create reusable elements
@@ -225,7 +225,7 @@
 
 				// callback event
 				if (typeof callback === 'function') {
-					callback(getCheckedAsObj);
+					callback(getCheckedAsObj(table));
 				}
 			});
 
@@ -243,24 +243,23 @@
 	/*
 	 * Return selected row values as an array
 	 */
-	function getCheckedAsObj(data) {
-		var rows = data.container.find('tbody > tr');
-
-		var objs = [];
+	function getCheckedAsObj(table) {
+		var rows = table.find('tbody > tr'),
+			objs = [];
 
 		for (var i = 0; i < rows.length; i++) {
 			var cols = rows[i].childNodes;
 
 			// if the row checkbox is selected
 			if (cols[0].firstChild.checked) {
-				var data = [];
+				var row = [];
 
 				// simulate an associative array
 				for (var j = 1; j < cols.length; j++) {
-					data[j - 1] = cols[j].textContent;
+					row[j - 1] = cols[j].textContent;
 				}
 
-				objs.push(data);
+				objs.push(row);
 			}
 		}
 
@@ -317,8 +316,8 @@
 
 		// sort JSON object by bucket number
 		config.columnValues.sort(function(a, b) {
-			var str1 = a[num].replace(/$|%|#/g, '');
-			var str2 = b[num].replace(/$|%|#/g, '');
+			var str1 = a[num].replace(/$|%|#/g, ''),
+				str2 = b[num].replace(/$|%|#/g, '');
 
 			if (isNaN(str1) ) {
 				return [reverse * cmpAny(str1, str2)] >
