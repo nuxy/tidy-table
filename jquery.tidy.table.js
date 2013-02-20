@@ -221,12 +221,16 @@
 		var select = $('<select></select>')
 			.addClass('menu_options ' + name)
 			.change(function() {
-				var callback = opts[ $(this).val() ][1]['callback'];
+				var $this = $(this);
+
+				var callback = opts[ $this.val() ][1]['callback'];
 
 				// callback event
 				if (typeof callback === 'function') {
 					callback(getCheckedAsObj(table));
 				}
+
+				$this.val(0)
 			});
 
 		// .. options
