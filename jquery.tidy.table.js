@@ -192,21 +192,24 @@
 			});
 		}
 
-		// if table/menu elements exist, replace them
-		var elm = data.container;
-		if (elm) {
-			if (elm.children()) {
-				elm.children().remove();
+		var $this = data.container,
+			block = $this.children('table.tidy_table');
+
+		// if table exists, perform an in-place update of the element
+		if (block[0]) {
+			block.replaceWith(table);
+		}
+
+		// generate table/menu elements
+		else {
+			if (data.options && data.options.enableMenu) {
+				$this.append( createMenu($this, config, 'menu1') );
 			}
 
-			if (data.options && data.options.enableMenu) {
-				elm.append( createMenu(elm, config, 'menu1') );
-			}
-
-			elm.append(table);
+			$this.append(table);
 
 			if (data.options && data.options.enableMenu) {
-				elm.append( createMenu(elm, config, 'menu2') );
+				$this.append( createMenu($this, config, 'menu2') );
 			}
 		}
 	}
@@ -320,8 +323,8 @@
 
 		// sort JSON object by bucket number
 		config.columnValues.sort(function(a, b) {
-			var str1 = a[num].replace(/$|%|#/g, ''),
-				str2 = b[num].replace(/$|%|#/g, '');
+			var str1 = String(a[num]).replace(/$|%|#/g, ''),
+				str2 = String(b[num]).replace(/$|%|#/g, '');
 
 			if (isNaN(str1) ) {
 				return [reverse * cmpAny(str1, str2)] >
