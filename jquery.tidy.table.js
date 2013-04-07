@@ -323,8 +323,8 @@
 
 		// sort JSON object by bucket number
 		config.columnValues.sort(function(a, b) {
-			var str1 = String(a[num]).replace(/$|%|#/g, ''),
-				str2 = String(b[num]).replace(/$|%|#/g, '');
+			var str1 = String(a[num]).replace(/$|%|#/g,''),
+				str2 = String(b[num]).replace(/$|%|#/g,'');
 
 			if (isNaN(str1) ) {
 				return [reverse * cmpAny(str1, str2)] >
