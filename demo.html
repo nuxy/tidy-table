@@ -37,8 +37,13 @@
 					['- Action -', null],
 					['Callback 1', { callback : doSomething1 }],
 					['Callback 2', { callback : doSomething2 }]
-				]
-			}, doSomething3);
+				],
+				postProcess : {
+					table  : doSomething3,
+					column : doSomething4,
+					menu   : doSomething5
+				}
+			});
 	});
 
 	// do something with selected results
@@ -50,8 +55,17 @@
 		alert('callback2(rows=' + rows.length + "')");
 	}
 
-	function doSomething3(name, value) {
-		alert("callback(name='" + name + "', value='" + value + "')");
+	// post-process DOM elements
+	function doSomething3(table) {
+		//alert(table[0]);
+	}
+
+	function doSomething4(col) {
+		//alert(col[0]);
+	}
+
+	function doSomething5(menu) {
+		//alert(menu[0]);
 	}
 	</script>
 
@@ -71,7 +85,7 @@
 <body>
 
 <p id="about">
-	This <strong>jQuery</strong> plugin is <a href="jquery.tidy.table.min.js" title="Only 4.2 kb">lightweight</a>, easy to <a href="README.html#install" title="Installation">install</a> / <a href="demo.css" title="Stylesheet">customize</a>, and works on all modern web browsers.
+	This <strong>jQuery</strong> plugin is <a href="jquery.tidy.table.min.js" title="Only 4.3 kb">lightweight</a>, easy to <a href="README.html#install" title="Installation">install</a> / <a href="demo.css" title="Stylesheet">customize</a>, and works on all modern web browsers.
 </p>
 
 
