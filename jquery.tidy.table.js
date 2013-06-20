@@ -12,7 +12,7 @@
 
 (function($) {
 	var methods = {
-		"init" : function(options, config, callback) {
+		"init" : function(options, config) {
 
 			// default options
 			var settings = {
@@ -38,7 +38,7 @@
 					});
 				}
 
-				createTable(data, config, callback);
+				return createTable(data, config);
 			});
 		},
 
@@ -65,7 +65,7 @@
 	/*
 	 * Create HTML table elements
 	 */
-	function createTable(data, config, callback, num, order) {
+	function createTable(data, config, num, order) {
 
 		// create reusable elements
 		var table = $('<table></table>')
@@ -112,7 +112,7 @@
 				sort_order : col.order
 			},
 			function(event) {
-				sortByColumn(data, config, callback, event.data.col_number, event.data.sort_order);
+				sortByColumn(data, config, event.data.col_number, event.data.sort_order);
 			});
 		}
 
@@ -125,24 +125,16 @@
 			var row = $('<tr></tr>');
 
 			for (var k = 0; k < vals[j].length; k++) {
-				var row_name  = vals[j][0],
-					col_value = vals[j][k];
+				var val = vals[j][k];
 
 				var col = $('<td></td>')
-					.append(col_value)
-					.attr('title', col_value);
+					.append(val)
+					.attr('title', val);
 				row.append(col);
 
-				if (typeof callback === 'function') {
-
-					// attach event to each column
-					col.bind('click', {
-						row_name  : row_name,
-						col_value : col_value
-					},
-					function(event) {
-						callback(event.data.row_name, event.data.col_value);
-					});
+				// post-process table column HTML object
+				if (config.postProcess && typeof config.postProcess.column === 'function') {
+					config.postProcess.column(col);
 				}
 			}
 
@@ -192,6 +184,11 @@
 			});
 		}
 
+		// post-process table results HTML object
+		if (config.postProcess && typeof config.postProcess.table === 'function') {
+			config.postProcess.table(table);
+		}
+
 		var $this = data.container,
 			block = $this.children('table.tidy_table');
 
@@ -212,6 +209,8 @@
 				$this.append( createMenu($this, config, 'menu2') );
 			}
 		}
+
+		return table;
 	}
 
 	/*
@@ -243,6 +242,11 @@
 
 			select.append(option);
 		});
+
+		// post-process select menu HTML object
+		if (config.postProcess && typeof config.postProcess.menu === 'function') {
+			config.postProcess.menu(select);
+		}
 
 		return select;
 	}
@@ -318,7 +322,7 @@
 	/*
 	 * Display results ordered by selected column
 	 */
-	function sortByColumn(data, config, callback, num, order) {
+	function sortByColumn(data, config, num, order) {
 		var reverse = (order == 'desc') ? -1 : 1;
 
 		// sort JSON object by bucket number
@@ -335,7 +339,7 @@
 			}
 		});
 
-		createTable(data, config, callback, num, order);
+		createTable(data, config, num, order);
 	}
 
 	/*
