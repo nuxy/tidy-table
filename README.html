@@ -18,8 +18,9 @@
 	<li>Compatible with Firefox 3.6+, Chrome, Safari 5+, Opera, and Internet Explorer 7+ web browsers.</li>
 	<li>Compatible with iOS and Android mobile web browsers.</li>
 	<li>Easy to set-up and customize.</li>
-	<li>Customizable callback functions for post-processing row/column data.</li>
-	<li>Fast and lightweight (jQuery plug-in *only 4.2 kB)</li>
+	<li>Customizable callback functions for post-processing selected results.</li>
+	<li>Post-process options for manipulating table/column/menu elements.</li>
+	<li>Fast and lightweight (jQuery plug-in *only 4.3 kB)</li>
 </ul>
 
 <p>Check out the <a href="demo.html">demo</a> provided with this package.</p>
@@ -51,9 +52,9 @@
 
 <h2>Set-up</h2>
 
-<p>It's as simple as defining the target element <code>#container</code> using the <a href="http://api.jquery.com/category/selectors">jQuery selector</a> and passing tabular data as JSON.   An optional callback can also be defined for post-processing row/column data on mouse click events.</p>
+<p>It's as simple as defining the target element <code>#container</code> using the <a href="http://api.jquery.com/category/selectors">jQuery selector</a> and passing tabular data as JSON.  There are options available for post-processing table/column/menu elements, if needed.</p>
 
-<pre>$(selector).TidyTable(<a href="#options"><em>options</em></a>, <em>data [columnTitles, columnValues]</em>, <a href="#callback"><em>callback</em></a>);</pre>
+<pre>$(selector).TidyTable(<a href="#options"><em>options</em></a>, <em>data [columnTitles, columnValues, menuOptions, postProcess]</em>);</pre>
 
 <h2>Source Code</h2>
 
@@ -88,12 +89,19 @@ $(document).ready(function() {
 				['5','5A','5B','5C','5D','5E']
 			],
 
-			// do something with selected rows
+			// do something with selected results
 			menuOptions : [
 				['Option 1', { callback : doSomething1 }],
 				['Option 2', { callback : doSomething2 }]
-			]
-		}, doSomething3);
+			],
+
+			// post-process DOM elements
+			postProcess : {
+				table  : doSomething3,
+				column : doSomething4,
+				menu   : doSomething5
+			}
+		});
 &lt;/script&gt;</pre>
 
 <h4>Use Example 2 - Quick and dirty</h4>
@@ -118,7 +126,7 @@ $(document).ready(function() {
 				['4','4A','4B','4C','4D','4E'],
 				['5','5A','5B','5C','5D','5E']
 			]
-		}, doSomething);
+		});
 });
 &lt;/script&gt;</pre>
 
@@ -148,11 +156,9 @@ $(document).ready(function() {
 
 <a name="callback"></a>
 
-<h2>Callback Processing</h2>
+<h2>Select Menu Events</h2>
 
 <p>When a callback function is defined a response is returned.  The following functions correspond to the <a href="#examples">examples</a> provided above.</p>
-
-<h3>Select Menu Event</h3>
 
 <pre>function doSomething1(rows) {
 	alert('callback1(rows=' + rows.length + "')");
@@ -162,15 +168,61 @@ function doSomething2(rows) {
 	alert('callback2(rows=' + rows.length + "')");
 }</pre>
 
-<h3>Row/column Events</h3>
+<a name="post-process"></a>
 
-<pre>function doSomething3(name, value) {
-	alert("callback(name='" + name + "', value='" + value + "')");
+<h2>Post-processing Elements</h2>
+
+<p>There are times where you may need to customize the table result behavior.  This can be easily achieved using optional <em>postProcess</em> hooks.  The following functions correspond to the <a href="#examples">examples</a> provided above.</p>
+
+<h4>Hide the second column of results</h4>
+
+<pre>function doSomething3(table) {
+	table.find('th:nth-child(2), td:nth-child(2)').css('display','none');
+}</pre>
+
+<h4>Create form element (for inline editing) on mouse event</h4>
+
+<pre>function doSomething4(col) {
+	col.bind('click', function() {
+		var $this = $(this);
+
+		if ($this.find('form')[0]) return;
+
+		var form = $('&lt;form&gt;&lt;/form&gt;')
+			.bind('submit', function() {
+				$.ajax({
+					type : 'POST',
+					url  : 'http://domain.com/path/to/script'
+				});
+			});
+
+		var field = $('&lt;input&gt;&lt;/input&gt;')
+			.attr({
+				type  : 'text',
+				value : $this.text()
+			});
+
+		var button = $('&lt;input&gt;&lt;/input&gt;')
+			.attr({
+				type  : 'submit',
+				value : 'Save'
+			});
+
+		$this.html( form.append(field, button) );
+	});
+}</pre>
+
+<h4>Hide menus when a session cookie doesn't exist</h4>
+
+<pre>function doSomething5(menu) {
+	if (!$.cookie('session')) {
+		menu.css('display','none');
+	}
 }</pre>
 
 <h2>Releases</h2>
 
-<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.2 kB) and developers version (unpacked  7 kB)</p>
+<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.2 kB) and developers version (unpacked  7.3 kB)</p>
 
 <p>You can always find the latest updates within this projects repository.</p>
 
