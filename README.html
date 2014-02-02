@@ -100,6 +100,13 @@ $(document).ready(function() {
 				table  : doSomething3,
 				column : doSomething4,
 				menu   : doSomething5
+			},
+
+			// pre-process column values before sort (optional)
+			sortByPattern : function(col_num, val) {
+				if (col_num != 1) return val;
+
+				return String(val).replace(/$|%|#/g,'');
 			}
 		});
 &lt;/script&gt;</pre>
