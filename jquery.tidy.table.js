@@ -27,6 +27,13 @@
 				config = options;
 			}
 
+			// config defaults
+			config = $.extend({
+				sortByPattern : function(col_num, val) {
+					return String(val).replace(/$|%|#/g,'');
+				}
+			}, config);
+
 			return this.each(function() {
 				var $this = $(this),
 					data  = $this.data();
@@ -327,8 +334,8 @@
 
 		// sort JSON object by bucket number
 		config.columnValues.sort(function(a, b) {
-			var str1 = String(a[num]).replace(/$|%|#/g,''),
-				str2 = String(b[num]).replace(/$|%|#/g,'');
+			var str1 = config.sortByPattern(num, a[num]),
+				str2 = config.sortByPattern(num, b[num]);
 
 			if (isNaN(str1) ) {
 				return [reverse * cmpAny(str1, str2)] >
