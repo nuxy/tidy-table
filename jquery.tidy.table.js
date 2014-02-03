@@ -330,21 +330,23 @@
 	 * Display results ordered by selected column
 	 */
 	function sortByColumn(data, config, num, order) {
-		var reverse = (order == 'desc') ? -1 : 1;
+		if (typeof config.sortByPattern === 'function') {
+			var reverse = (order == 'desc') ? -1 : 1;
 
-		// sort JSON object by bucket number
-		config.columnValues.sort(function(a, b) {
-			var str1 = config.sortByPattern(num, a[num]),
-				str2 = config.sortByPattern(num, b[num]);
+			// sort JSON object by bucket number
+			config.columnValues.sort(function(a, b) {
+				var str1 = config.sortByPattern(num, a[num]),
+					str2 = config.sortByPattern(num, b[num]);
 
-			if (isNaN(str1) ) {
-				return [reverse * cmpAny(str1, str2)] >
-				       [reverse * cmpAny(str2, str1)] ? -1 : 1;
-			}
-			else {
-				return [reverse * cmpInt(str1, str2)];
-			}
-		});
+				if (isNaN(str1) ) {
+					return [reverse * cmpAny(str1, str2)] >
+					       [reverse * cmpAny(str2, str1)] ? -1 : 1;
+				}
+				else {
+					return [reverse * cmpInt(str1, str2)];
+				}
+			});
+		}
 
 		createTable(data, config, num, order);
 	}
