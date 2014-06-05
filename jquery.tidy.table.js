@@ -1,4 +1,4 @@
-/*
+/**
  *  Tidy Table
  *  Generate a sortable HTML table from JSON
  *
@@ -65,12 +65,17 @@
 			return methods.init.apply(this, arguments);
 		}
 		else {
-			$.error('Method ' +  method + ' does not exist on jQuery.TidyTable');
+			$.error('Method ' +  method + ' does not exist in jQuery.TidyTable');
 		}
 	};
 
-	/*
+	/**
 	 * Create HTML table elements
+	 * @param Object data
+	 * @param Object config
+	 * @param String num
+	 * @param String order
+	 * @returns Object
 	 */
 	function createTable(data, config, num, order) {
 
@@ -220,8 +225,12 @@
 		return table;
 	}
 
-	/*
+	/**
 	 * Create HTML select menu element
+	 * @param Object table
+	 * @param Object config
+	 * @param String name
+	 * @returns Object
 	 */
 	function createMenu(table, config, name) {
 		var opts = config.menuOptions;
@@ -258,8 +267,10 @@
 		return select;
 	}
 
-	/*
+	/**
 	 * Return selected row values as an array
+	 * @param Object table
+	 * @returns Array
 	 */
 	function getCheckedAsObj(table) {
 		var rows = table.find('tbody > tr'),
@@ -284,8 +295,10 @@
 		return objs;
 	}
 
-	/*
+	/**
 	 * Select/Deselect (input checkbox and row highlight)
+	 * @param Object rows
+	 * @param Number num
 	 */
 	function toggleSelRows(rows, num) {
 		var checked = null;
@@ -326,8 +339,12 @@
 		});
 	}
 
-	/*
+	/**
 	 * Display results ordered by selected column
+	 * @param Object data
+	 * @param Object config
+	 * @param Number num
+	 * @param Number order
 	 */
 	function sortByColumn(data, config, num, order) {
 		if (typeof config.sortByPattern === 'function') {
@@ -338,7 +355,7 @@
 				var str1 = config.sortByPattern(num, a[num]),
 					str2 = config.sortByPattern(num, b[num]);
 
-				if (isNaN(str1) ) {
+				if (isNaN(str1)) {
 					return [reverse * cmpAny(str1, str2)] >
 					       [reverse * cmpAny(str2, str1)] ? -1 : 1;
 				}
@@ -351,8 +368,11 @@
 		createTable(data, config, num, order);
 	}
 
-	/*
+	/**
 	 * Generic string comparison functions
+	 * @param String a
+	 * @param String b
+	 * @returns Number
 	 */
 	function cmpAny(a, b) {
 		return (a > b) ? 1 : (a < b) ? -1 : 0;
