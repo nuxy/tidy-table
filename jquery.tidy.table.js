@@ -105,11 +105,11 @@
 
 			// determine column result order
 			if (order == 'desc' || !order) {
-				col_class = 'sort_desc';
+				col_class = 'sort_asc';
 				col.order = 'asc';
 			}
 			else {
-				col_class = 'sort_asc';
+				col_class = 'sort_desc';
 				col.order = 'desc';
 			}
 
