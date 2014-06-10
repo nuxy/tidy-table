@@ -121,7 +121,7 @@
 			// attach sorting event to each column
 			col.bind('click', {
 				col_number : i,
-				sort_order : col.order
+				sort_order : (num == i) ? col.order : 'asc'
 			},
 			function(event) {
 				sortByColumn(data, config, event.data.col_number, event.data.sort_order);
