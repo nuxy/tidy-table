@@ -10,7 +10,8 @@ module('Tidy-Table', {
 				columnValues : [
 					['Row 1A','Row 1B','Row 1C'],
 					['Row 2A','Row 2B','Row 2C'],
-					['Row 3A','Row 3B','Row 3C']
+					['Row 3A','Row 3B','Row 3C'],
+					['Row 4A','Row 4B','Row 4C']
 				],
 				menuOptions : [
 					['- Action -', null],
