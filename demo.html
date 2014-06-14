@@ -54,15 +54,21 @@
 
 	// post-process DOM elements
 	function doSomething3(table) {
-		//alert(table[0]);
+		table.on('hover', function() {
+			//alert('post-process(table)');
+		});
 	}
 
 	function doSomething4(col) {
-		//alert(col[0]);
+		col.on('click', function() {
+			alert('post-process(value=' + $(this).text() + ')');
+		});
 	}
 
 	function doSomething5(menu) {
-		//alert(menu[0]);
+		menu.on('change', function() {
+			//alert('post-process(menu)');
+		});
 	}
 	</script>
 
