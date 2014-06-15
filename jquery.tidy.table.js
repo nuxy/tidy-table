@@ -119,7 +119,7 @@
 			}
 
 			// attach sorting event to each column
-			col.bind('click', {
+			col.on('click', {
 				col_number : i,
 				sort_order : (num == i) ? col.order : 'asc'
 			},
@@ -181,7 +181,7 @@
 					col = $('<td></td>');
 
 					// attach event to each checkbox
-					input.bind('click', {
+					input.on('click', {
 						box_number : index
 					},
 					function(event) {
@@ -304,23 +304,23 @@
 		var checked = null;
 
 		rows.each(function(index) {
-			var row   = $(this);
+			var row   = $(this),
 				input = row.find(':checkbox').first();
 
 			// update all rows
 			if (num == null) {
 				if (index == 0) {
-					checked = (input.is(':checked') ) ? true : false;
+					checked = (input.is(':checked')) ? true : false;
 					return;
 				}
 
 				if (checked) {
 					row.removeClass('check_off').addClass('check_on');
-					input.attr('checked', true);
+					input.prop('checked', true);
 				}
 				else {
 					row.removeClass('check_on').addClass('check_off');
-					input.attr('checked', false);
+					input.prop('checked', false);
 				}
 			}
 
@@ -332,11 +332,11 @@
 
 				if (input.is(':checked')) {
 					row.removeClass('check_off').addClass('check_on');
-					input.attr('checked', true);
+					input.prop('checked', true);
 				}
 				else {
 					row.removeClass('check_on').addClass('check_off');
-					input.attr('checked', false);
+					input.prop('checked', false);
 				}
 			}
 		});
