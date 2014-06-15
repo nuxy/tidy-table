@@ -304,9 +304,8 @@
 		var checked = null;
 
 		rows.each(function(index) {
-			var row = $(this);
-
-			var input = row.children().find('input');
+			var row   = $(this);
+				input = row.find(':checkbox').first();
 
 			// update all rows
 			if (num == null) {
@@ -327,6 +326,10 @@
 
 			// update selected row
 			else {
+				if (index == 0) {
+					return;
+				}
+
 				if (input.is(':checked')) {
 					row.removeClass('check_off').addClass('check_on');
 					input.attr('checked', true);
