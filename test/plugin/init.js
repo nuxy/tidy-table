@@ -17,15 +17,48 @@ module('Tidy-Table', {
 					['- Action -', null],
 					['Callback 1', { callback : doSomething1 }],
 					['Callback 2', { callback : doSomething2 }]
-				]
+				],
+				postProcess : {
+					table  : doSomething3,
+					column : doSomething4,
+					menu   : doSomething5
+				}
 			});
 
 		function doSomething1(rows) {
-			alert('callback1(rows=' + rows.length + ')');
+			if (next['event1']) {
+				alert('callback1(rows=' + rows.length + ')');
+			}
 		}
 
 		function doSomething2(rows) {
-			alert('callback2(rows=' + rows.length + ')');
+			if (next['event2']) {
+				alert('callback2(rows=' + rows.length + ')');
+			}
+		}
+
+		function doSomething3(table) {
+			table.on('hover', function() {
+				if (next['event3']) {
+					alert('post-process(table)');
+				}
+			});
+		}
+
+		function doSomething4(col) {
+			col.on('click', function() {
+				if (next['event4']) {
+					alert('post-process(value=' + $(this).text() + ')');
+				}
+			});
+		}
+
+		function doSomething5(menu) {
+			menu.on('change', function() {
+				if (next['event5']) {
+					alert('post-process(menu)');
+				}
+			});
 		}
 	},
 	teardown : function() {
