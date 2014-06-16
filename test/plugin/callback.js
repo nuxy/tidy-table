@@ -82,9 +82,9 @@ test('Select Menu', function() {
 		}
 	});
 
-	var result1 = 'callback1(rows=' + count1 + ')';
-
 	ok(menu.val('1').change(), "Change menu 'Callback 1' option with " + count1 + " rows selected");
+
+	var result1 = 'callback1(rows=' + count1 + ')';
 
 	equal(window.alert.message, result1, "Window alert message expected is '" + result1 + "'");
 
@@ -121,9 +121,9 @@ test('Select Menu', function() {
 		}
 	});
 
-	var result2 = 'callback2(rows=' + count2 + ')';
-
 	ok(menu.val('2').change(), "Change menu 'Callback 2' option with " + count2 + " rows selected");
+
+	var result2 = 'callback2(rows=' + count2 + ')';
 
 	equal(window.alert.message, result2, "Window alert message expected is '" + result2 + "'");
 
@@ -132,4 +132,40 @@ test('Select Menu', function() {
 	});
 
 	next['event2'] = false;
+});
+
+test('Post-processing', function() {
+	next['event3'] = true;
+
+	ok($(table).trigger('mouseenter'), 'Trigger table hover event');
+
+	var result3 = 'post-process(table)';
+
+	equal(window.alert.message, result3, "Window alert message expected is '" + result3 + "'");
+
+	next['event3'] = false;
+
+	next['event4'] = true;
+
+	$(table).find('tbody td[title]').each(function(index) {
+		var col = $(this);
+
+		ok(col.trigger('click'), "Trigger column '" + col.text() + "' click event");
+
+		var result4 = 'post-process(value=' + col.text() + ')';
+
+		equal(window.alert.message, result4, "Window alert message expected is '" + result4 + "'");
+	});
+
+	next['event4'] = false;
+
+	next['event5'] = true;
+
+	ok($('select.menu1').val('1').change(), 'Trigger menu change event');
+
+	var result5 = 'post-process(menu)';
+
+	equal(window.alert.message, result5, "Window alert message expected is '" + result5 + "'");
+
+	next['event5'] = false;
 });
