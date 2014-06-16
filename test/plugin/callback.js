@@ -51,3 +51,85 @@ test('Single Checkbox', function() {
 		ok(row.hasClass('check_off'), "<tr> contains required class 'check_off'");
 	});
 });
+
+test('Select Menu', function() {
+	var menu = $('select.menu1');
+
+	next['event1'] = true;
+
+	ok(menu.val('1').change(), "Change menu 'Callback 1' option with no rows selected");
+
+	equal(window.alert.message, 'callback1(rows=0)', "Window alert message expected is 'callback1(rows=0)'");
+
+	var count1 = 0;
+
+	$(table).find('tbody tr').each(function(index) {
+		var row = $(this),
+			num = Math.floor((Math.random() * 4) + 1);
+
+		if (index == num) {
+			var checkbox = row.find(':checkbox');
+
+			ok(checkbox.prop('checked', true), 'Row ' + num + ' checkbox checked');
+
+			ok(checkbox.trigger('click'), 'Trigger checkbox event');
+
+			checkbox.prop('checked', true);
+
+			ok(row.hasClass('check_on'), "<tr> contains required class 'check_on'");
+
+			count1++;
+		}
+	});
+
+	var result1 = 'callback1(rows=' + count1 + ')';
+
+	ok(menu.val('1').change(), "Change menu 'Callback 1' option with " + count1 + " rows selected");
+
+	equal(window.alert.message, result1, "Window alert message expected is '" + result1 + "'");
+
+	$(table).find('tbody tr').each(function(index) {
+		$(this).find(':checkbox').prop('checked', false);
+	});
+
+	next['event1'] = false;
+
+	next['event2'] = true;
+
+	ok(menu.val('2').change(), "Change menu 'Callback 2' option with no rows selected");
+
+	equal(window.alert.message, 'callback2(rows=0)', "Window alert message expected is 'callback2(rows=0)'");
+
+	var count2 = 0;
+
+	$(table).find('tbody tr').each(function(index) {
+		var row = $(this),
+			num = Math.floor((Math.random() * 4) + 1);
+
+		if (index == num) {
+			var checkbox = row.find(':checkbox');
+
+			ok(checkbox.prop('checked', true), 'Row ' + num + ' checkbox checked');
+
+			ok(checkbox.trigger('click'), 'Trigger checkbox event');
+
+			checkbox.prop('checked', true);
+
+			ok(row.hasClass('check_on'), "<tr> contains required class 'check_on'");
+
+			count2++;
+		}
+	});
+
+	var result2 = 'callback2(rows=' + count2 + ')';
+
+	ok(menu.val('2').change(), "Change menu 'Callback 2' option with " + count2 + " rows selected");
+
+	equal(window.alert.message, result2, "Window alert message expected is '" + result2 + "'");
+
+	$(table).find('tbody tr').each(function(index) {
+		$(this).find(':checkbox').prop('checked', false);
+	});
+
+	next['event2'] = false;
+});
