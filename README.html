@@ -60,15 +60,13 @@
 
 <h2>Source Code</h2>
 
-<p>Add the following Javascript between the <code>&lt;head&gt;&lt;/head&gt;</code> tags of your HTML document.</p>
+<p>Add the following <em>JavaScript/CSS</em> between the <code>&lt;head&gt;&lt;/head&gt;</code> tags of your HTML document.</p>
 
 <a name="examples"></a>
 
 <h4>Use Example 1 - Options defined</h4>
 
 <pre>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;
-
-&lt;link rel="stylesheet" type="text/css" href="/path/to/jquery.tidy.table.min.css"&gt;
 
 &lt;script src="/path/to/jquery.tidy.table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
@@ -108,13 +106,13 @@ $(document).ready(function() {
 				return String(val).replace(/$|%|#/g,'');
 			}
 		});
-&lt;/script&gt;</pre>
+&lt;/script&gt;
+
+&lt;link rel="stylesheet" type="text/css" href="/path/to/jquery.tidy.table.min.css"&gt;</pre>
 
 <h4>Use Example 2 - Quick and dirty</h4>
 
 <pre>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;
-
-&lt;link rel="stylesheet" type="text/css" href="/path/to/jquery.tidy.table.min.css"&gt;
 
 &lt;script src="/path/to/jquery.tidy.table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
@@ -131,7 +129,9 @@ $(document).ready(function() {
 			]
 		});
 });
-&lt;/script&gt;</pre>
+&lt;/script&gt;
+
+&lt;link rel="stylesheet" type="text/css" href="/path/to/jquery.tidy.table.min.css"&gt;</pre>
 
 <a name="options"></a>
 
@@ -226,6 +226,10 @@ function doSomething2(rows) {
 <h2>jQuery Support</h2>
 
 <p>In order to support older web browsers, specifically Internet Explorer 7, this package requires <a href="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">jQuery 1.8.3</a>.  Furthermore, jQuery has recently dropped support for IE8 in version 2, so if there is no compelling reason to support these two web browsers, it is recommended that you upgrade to the latest version of jQuery.  If you still need to support IE8 please upgrade to <a href="http://blog.jquery.com/2012/06/28/jquery-core-version-1-9-and-beyond/">jQuery 1.9+</a>.</p>
+
+<h2>Functional Testing</h2>
+
+<p>This package has been preconfigured to support <a href="http://qunitjs.com">QUnit</a> headless testing using <a href="http://www.travis-ci.org">Travis-CI</a>.  If you plan on using another integration tool you will have to create a custom project that combines the use of <em>QUnit</em> and <a href="http://www.phantomjs.org">PhantomJS</a> plugins.  You can manually run these tests in your web browser by clicking <a href="test.html">here</a>.</p>
 
 <h2>Releases</h2>
 
