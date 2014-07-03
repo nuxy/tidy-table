@@ -12,7 +12,7 @@ http://github.com/nuxy/Tidy-Table/raw/master/preview.jpg
 - Easy to set-up and customize.
 - Customizable callback functions for post-processing selected results.
 - Post-process options for manipulating table/column/menu elements.
-- Fast and lightweight (jQuery plug-in *only 4.5 kB)
+- Fast and lightweight (jQuery plug-in *only 4.4 kB)
 
 == Installation
 
