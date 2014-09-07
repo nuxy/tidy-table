@@ -12,11 +12,11 @@ Create a HTML table from JSON that can be sorted, selected, and post-processed u
 - Easy to set-up and customize.
 - Customizable callback functions for post-processing selected results.
 - Post-process options for manipulating table/column/menu elements.
-- Fast and lightweight (jQuery plug-in *only 4.4 kB)
+- Fast and lightweight (jQuery plug-in *only 4.9 kB)
 
 == Installation
 
-This package can be easily installed using {Bower}[http://bower.io/].
+This package can be easily installed using {Bower}[http://bower.io].
 
     $ bower install tidy-table
 
