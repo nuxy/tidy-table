@@ -16,7 +16,7 @@ Create a HTML table from JSON that can be sorted, selected, and post-processed u
 
 == Installation
 
-This package can be easily installed using Bower.
+This package can be easily installed using {Bower}[http://bower.io/].
 
     $ bower install tidy-table
 
