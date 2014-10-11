@@ -1,0 +1,10 @@
+# ------------ rake task options ------------
+
+paths:
+  - *.js
+
+# ------------ jshint options ------------
+# visit http://jshint.com/ for complete documentation
+
+browser:  true
+loopfunc: true
