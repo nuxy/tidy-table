@@ -21,7 +21,8 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 			// default options
 			var settings = {
 				enableCheckbox : false,
-				enableMenu     : false
+				enableMenu     : false,
+				reverseSortDir : false
 			};
 
 			if (arguments.length > 1) {
@@ -110,14 +111,26 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 				var col_class;
 
-				// determine column result order
-				if (order == 'desc' || !order) {
-					col_class = 'sort_asc';
-					col.order = 'asc';
+				// determine column result ordet
+				if (data.options.reverseSortDir) {
+					if (order == 'asc' || !order) {
+						col_class = 'sort_asc';
+						col.order = 'desc';
+					}
+					else {
+						col_class = 'sort_desc';
+						col.order = 'asc';
+					}
 				}
 				else {
-					col_class = 'sort_desc';
-					col.order = 'desc';
+					if (order == 'desc' || !order) {
+						col_class = 'sort_asc';
+						col.order = 'asc';
+					}
+					else {
+						col_class = 'sort_desc';
+						col.order = 'desc';
+					}
 				}
 
 				// highlight selected column

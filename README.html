@@ -71,7 +71,7 @@
 &lt;script src="/path/to/jquery.tidy.table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(document).ready(function() {
-	$('#container')
+	var table = $('#container')
 		.TidyTable({
 			enableCheckbox : true,
 			enableMenu     : true
@@ -106,6 +106,9 @@ $(document).ready(function() {
 				return String(val).replace(/$|%|#/g,'');
 			}
 		});
+
+	// optional animation
+	table.slideDown('fast');
 &lt;/script&gt;
 
 &lt;link rel="stylesheet" type="text/css" href="/path/to/jquery.tidy.table.min.css"&gt;</pre>
@@ -153,6 +156,11 @@ $(document).ready(function() {
 	<tr>
 		<td>enableMenu</td>
 		<td>add select menu functionality to manipulate table output</td>
+		<td>false</td>
+	</tr>
+	<tr>
+		<td>reverseSortDir</td>
+		<td>change the sorting arrow image direction</td>
 		<td>false</td>
 	</tr>
 </table>
@@ -233,7 +241,7 @@ function doSomething2(rows) {
 
 <h2>Releases</h2>
 
-<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.6 kB) and developers version (unpacked  8 kB)</p>
+<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.7 kB) and developers version (unpacked  8.4 kB)</p>
 
 <p>You can always find the latest updates within this projects repository.</p>
 
