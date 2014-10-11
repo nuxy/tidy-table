@@ -1,0 +1,8 @@
+{
+	"globals": {
+		"console" : false,
+		"jQuery"  : true
+	},
+	"browser"  : true,
+	"loopfunc" : true
+}
