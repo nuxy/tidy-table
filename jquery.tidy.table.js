@@ -34,7 +34,9 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 			// config defaults
 			config = $.extend({
 				sortByPattern : function(col_num, val) {
-					return String(val).replace(/$|%|#/g,'');
+					if (col_num && val) {
+						return String(val).replace(/$|%|#/g,'');
+					}
 				}
 			}, config);
 
@@ -91,114 +93,116 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		table.mouseover(function() { return false; });
 
 		var thead = $('<thead></thead>'),
-			tbody = $('<tbody></tbody>'),
-			row   = $('<tr></tr>');
-
-		var cols = config.columnTitles;
+			tbody = $('<tbody></tbody>');
 
 		// .. <THEAD>
-		for (var i = 0; i < cols.length; i++) {
-			var title = cols[i];
-
-			var col = $('<th></th>')
-				.append(title)
-				.attr('title', title);
-			row.append(col);
-
-			var col_class;
-
-			// determine column result order
-			if (order == 'desc' || !order) {
-				col_class = 'sort_asc';
-				col.order = 'asc';
-			}
-			else {
-				col_class = 'sort_desc';
-				col.order = 'desc';
-			}
-
-			// highlight selected column
-			if (num == i) {
-				col.addClass(col_class);
-			}
-
-			// attach sorting event to each column
-			col.on('click', {
-				col_number : i,
-				sort_order : (num == i) ? col.order : 'asc'
-			},
-			function(event) {
-				sortByColumn(data, config, event.data.col_number, event.data.sort_order);
-			});
-		}
-
-		thead.append(row);
-
-		var vals = config.columnValues;
-
-		// .. <TBODY>
-		for (var j = 0; j < vals.length; j++) {
+		(function() {
 			var row = $('<tr></tr>');
 
-			for (var k = 0; k < vals[j].length; k++) {
-				var val = vals[j][k];
+			// .. <THEAD>
+			for (var i = 0; i < config.columnTitles.length; i++) {
+				var title = config.columnTitles[i];
 
-				var col = $('<td></td>')
-					.append(val)
-					.attr('title', val);
+				var col = $('<th></th>')
+					.append(title)
+					.attr('title', title);
 				row.append(col);
 
-				// post-process table column HTML object
-				if (config.postProcess && $.isFunction(config.postProcess.column) ) {
-					config.postProcess.column(col);
-				}
-			}
+				var col_class;
 
-			tbody.append(row);
-		}
-
-		table.append(thead);
-		table.append(tbody);
-
-		// append check boxes to beginning each row
-		if (data.options && data.options.enableCheckbox) {
-			var rows = table.find('tr');
-
-			rows.each(function(index) {
-				row = $(this);
-
-				var input = $('<input></input>')
-					.attr('type','checkbox');
-
-				var col;
-
-				// first row is always the header
-				if (index == 0) {
-					col = $('<th></th>');
-
-					// attach event to check all boxes
-					input.click(function() {
-						toggleSelRows(rows);
-					});
+				// determine column result order
+				if (order == 'desc' || !order) {
+					col_class = 'sort_asc';
+					col.order = 'asc';
 				}
 				else {
-					col = $('<td></td>');
-
-					// attach event to each checkbox
-					input.on('click', {
-						box_number : index
-					},
-					function(event) {
-						toggleSelRows(rows, event.data.box_number);
-					});
+					col_class = 'sort_desc';
+					col.order = 'desc';
 				}
 
-				col.append(input);
+				// highlight selected column
+				if (num == i) {
+					col.addClass(col_class);
+				}
 
-				// insert before first cell
-				row.prepend(col);
-			});
-		}
+				// attach sorting event to each column
+				col.on('click', {
+					col_number : i,
+					sort_order : (num == i) ? col.order : 'asc'
+				},
+				function(event) {
+					sortByColumn(data, config, event.data.col_number, event.data.sort_order);
+				});
+			}
+
+			thead.append(row);
+		})();
+
+		// .. <TBODY>
+		(function() {
+			var vals = config.columnValues;
+
+			for (var j = 0; j < vals.length; j++) {
+				var row = $('<tr></tr>');
+
+				for (var k = 0; k < vals[j].length; k++) {
+					var val = vals[j][k];
+
+					var col = $('<td></td>')
+						.append(val)
+						.attr('title', val);
+					row.append(col);
+
+					// post-process table column HTML object
+					if (config.postProcess && $.isFunction(config.postProcess.column) ) {
+						config.postProcess.column(col);
+					}
+				}
+
+				tbody.append(row);
+			}
+
+			table.append(thead);
+			table.append(tbody);
+
+			// append check boxes to beginning each row
+			if (data.options && data.options.enableCheckbox) {
+				var rows = table.find('tr');
+
+				rows.each(function(index) {
+					var input = $('<input></input>')
+						.attr('type','checkbox');
+
+					var col;
+
+					// first row is always the header
+					if (index === 0) {
+						col = $('<th></th>');
+
+						// attach event to check all boxes
+						input.click(function() {
+							toggleSelRows(rows);
+						});
+					}
+					else {
+						col = $('<td></td>');
+
+						// attach event to each checkbox
+						input.on('click', {
+							box_number : index
+						},
+						function(event) {
+							toggleSelRows(rows, event.data.box_number);
+						});
+					}
+
+					col.append(input);
+
+					// insert before first cell
+					$(this).prepend(col);
+				});
+			}
+		})();
 
 		// post-process table results HTML object
 		if (config.postProcess && $.isFunction(config.postProcess.table) ) {
@@ -252,7 +256,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 					callback(getCheckedAsObj(table));
 				}
 
-				$this.val(0)
+				$this.val(0);
 			});
 
 		// .. options
@@ -312,8 +316,8 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 				input = row.find(':checkbox').first();
 
 			// update all rows
-			if (num == null) {
-				if (index == 0) {
+			if (num === null) {
+				if (index === 0) {
 					checked = (input.is(':checked')) ? true : false;
 					return;
 				}
@@ -330,7 +334,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 			// update selected row
 			else {
-				if (index == 0) {
+				if (index === 0) {
 					return;
 				}
 
