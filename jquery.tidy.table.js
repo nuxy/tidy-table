@@ -11,7 +11,7 @@
  */
 
 if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
-	alert('Tidy-Table requires jQuery 1.8.3 or greater.');
+	throw new Error('Tidy-Table requires jQuery 1.8.3 or greater.');
 }
 
 (function($) {
@@ -75,11 +75,11 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 	/**
 	 * Create HTML table elements
-	 * @param Object data
-	 * @param Object config
-	 * @param String num
-	 * @param String order
-	 * @returns Object
+	 * @param {Object} data
+	 * @param {Object} config
+	 * @param {String} num
+	 * @param {String} order
+	 * @returns {Object}
 	 */
 	function createTable(data, config, num, order) {
 
@@ -149,7 +149,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 				row.append(col);
 
 				// post-process table column HTML object
-				if (config.postProcess && typeof config.postProcess.column === 'function') {
+				if (config.postProcess && $.isFunction(config.postProcess.column) ) {
 					config.postProcess.column(col);
 				}
 			}
@@ -201,7 +201,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		}
 
 		// post-process table results HTML object
-		if (config.postProcess && typeof config.postProcess.table === 'function') {
+		if (config.postProcess && $.isFunction(config.postProcess.table) ) {
 			config.postProcess.table(table);
 		}
 
@@ -231,10 +231,10 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 	/**
 	 * Create HTML select menu element
-	 * @param Object table
-	 * @param Object config
-	 * @param String name
-	 * @returns Object
+	 * @param {Object} table
+	 * @param {Object} config
+	 * @param {String} name
+	 * @returns {Object}
 	 */
 	function createMenu(table, config, name) {
 		var opts = config.menuOptions;
@@ -248,7 +248,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 				var callback = opts[ $this.val() ][1]['callback'];
 
 				// callback event
-				if (typeof callback === 'function') {
+				if ( $.isFunction(callback) ) {
 					callback(getCheckedAsObj(table));
 				}
 
@@ -264,7 +264,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		});
 
 		// post-process select menu HTML object
-		if (config.postProcess && typeof config.postProcess.menu === 'function') {
+		if (config.postProcess && $.isFunction(config.postProcess.menu) ) {
 			config.postProcess.menu(select);
 		}
 
@@ -273,8 +273,8 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 	/**
 	 * Return selected row values as an array
-	 * @param Object table
-	 * @returns Array
+	 * @param {Object} table
+	 * @returns {Array}
 	 */
 	function getCheckedAsObj(table) {
 		var rows = table.find('tbody > tr'),
@@ -301,8 +301,8 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 	/**
 	 * Select/Deselect (input checkbox and row highlight)
-	 * @param Object rows
-	 * @param Number num
+	 * @param {Object} rows
+	 * @param {Number} num
 	 */
 	function toggleSelRows(rows, num) {
 		var checked = null;
@@ -348,13 +348,13 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 	/**
 	 * Display results ordered by selected column
-	 * @param Object data
-	 * @param Object config
-	 * @param Number num
-	 * @param Number order
+	 * @param {Object} data
+	 * @param {Object} config
+	 * @param {Number} num
+	 * @param {Number} order
 	 */
 	function sortByColumn(data, config, num, order) {
-		if (typeof config.sortByPattern === 'function') {
+		if ( $.isFunction(config.sortByPattern) ) {
 			var reverse = (order == 'desc') ? -1 : 1;
 
 			// sort JSON object by bucket number
@@ -377,9 +377,9 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 	/**
 	 * Generic string comparison functions
-	 * @param String a
-	 * @param String b
-	 * @returns Number
+	 * @param {String} a
+	 * @param {String} b
+	 * @returns {Number}
 	 */
 	function cmpAny(a, b) {
 		return (a > b) ? 1 : (a < b) ? -1 : 0;
