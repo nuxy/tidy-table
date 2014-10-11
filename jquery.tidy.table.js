@@ -35,7 +35,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 			// config defaults
 			config = $.extend({
 				sortByPattern : function(col_num, val) {
-					if (col_num && val) {
+					if ( $.trim(col_num) ) {
 						return String(val).replace(/$|%|#/g,'');
 					}
 				}
