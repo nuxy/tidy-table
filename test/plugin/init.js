@@ -3,7 +3,8 @@ module('Tidy-Table', {
 		$('#qunit-fixture')
 			.TidyTable({
 				enableCheckbox : true,
-				enableMenu     : true
+				enableMenu     : true,
+				reverseSortDir : false
 			},
 			{
 				columnTitles : ['Column A','Column B','Column C'],
