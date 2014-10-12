@@ -4,7 +4,7 @@ module('Tidy-Table', {
 			.TidyTable({
 				enableCheckbox : true,
 				enableMenu     : true,
-				reverseSortDir : false
+				reverseSortDir : true
 			},
 			{
 				columnTitles : ['Column A','Column B','Column C'],
