@@ -112,7 +112,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 				var col_class;
 
 				// determine column result ordet
-				if (data.options.reverseSortDir) {
+				if (!data.options.reverseSortDir) {
 					if (order == 'asc' || !order) {
 						col_class = 'sort_asc';
 						col.order = 'desc';
@@ -193,7 +193,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 						col = $('<th></th>');
 
 						// attach event to check all boxes
-						input.click(function() {
+						input.on('click', function() {
 							toggleSelRows(rows);
 						});
 					}
@@ -329,7 +329,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 				input = row.find(':checkbox').first();
 
 			// update all rows
-			if (num === null) {
+			if (!num) {
 				if (index === 0) {
 					checked = (input.is(':checked')) ? true : false;
 					return;
