@@ -1,7 +1,6 @@
 {
 	"globals": {
-		"console" : false,
-		"jQuery"  : true
+		"jQuery" : true
 	},
 	"browser"  : true,
 	"loopfunc" : true
