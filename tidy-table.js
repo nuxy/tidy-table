@@ -233,14 +233,10 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		// generate table/menu elements
 		else {
 			if (data.options && data.options.enableMenu) {
-				$this.append( createMenu($this, config, 'menu1') );
+				$this.append( createMenu($this, config, 'options') );
 			}
 
 			$this.append(table);
-
-			if (data.options && data.options.enableMenu) {
-				$this.append( createMenu($this, config, 'menu2') );
-			}
 		}
 
 		return table;
@@ -258,7 +254,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 		// create reusable elements
 		var select = $('<select></select>')
-			.addClass('menu_options ' + name)
+			.addClass('tidy_table ' + name)
 			.change(function() {
 				var $this = $(this);
 

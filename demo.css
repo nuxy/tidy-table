@@ -7,16 +7,9 @@
 
 /* customize */
 
-#container select {
+select.tidy_table {
 	float: right;
-}
-
-#container select.menu1 {
-	margin-bottom: 10px;
-}
-
-#container select.menu2 {
-	margin-top: 10px;
+	margin: 10px 0px 10px 0px;
 }
 
 table.tidy_table {

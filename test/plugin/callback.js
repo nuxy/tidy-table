@@ -53,7 +53,7 @@ test('Single Checkbox', function() {
 });
 
 test('Select Menu', function() {
-	var menu = $('select.menu1');
+	var menu = $('select.options');
 
 	next['event1'] = true;
 
@@ -161,7 +161,7 @@ test('Post-processing', function() {
 
 	next['event5'] = true;
 
-	ok($('select.menu1').val('1').change(), 'Trigger menu change event');
+	ok($('select.options').val('1').change(), 'Trigger menu change event');
 
 	var result5 = 'post-process(menu)';
 
