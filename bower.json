@@ -1,6 +1,6 @@
 {
   "name": "tidy-table",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "homepage": "https://github.com/nuxy/Tidy-Table",
   "description": "Generate a sortable HTML table from JSON",
   "main": "tidy-table.js",
