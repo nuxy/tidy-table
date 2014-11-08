@@ -31,6 +31,13 @@
 
 <h2>Installation</h2>
 
+<p>This package can be easily installed using <a href="http://bower.io">Bower</a>.</p>
+
+<pre>$ bower install tidy-table#~1.8 (legacy)
+$ bower install tidy-table#~1.9 (latest)</pre>
+
+<p>Manual install:</p>
+
 <ol>
 	<li>Download the latest <a href="https://github.com/nuxy/Tidy-Table/tags">sources</a> to your computer using a web browser.</li>
 	<li>Extract the contents of the <em>.zip</em> into a folder on your local computer.</li>
@@ -73,37 +80,37 @@
 $(document).ready(function() {
 	var table = $('#container')
 		.TidyTable({
-			enableCheckbox : true,
-			enableMenu     : true
+			enableCheckbox: true,
+			enableMenu:     true
 		},
 		{
-			columnTitles : ['Column A','Column B','Column C','Column D','Column E'],
-			columnValues : [
-				['1','1A','1B','1C','1D','1E'],
-				['2','2A','2B','2C','2D','2E'],
-				['3','3A','3B','3C','3D','3E'],
-				['4','4A','4B','4C','4D','4E'],
-				['5','5A','5B','5C','5D','5E']
+			columnTitles: ['Column A', 'Column B', 'Column C', 'Column D', 'Column E'],
+			columnValues: [
+				['1', '1A', '1B', '1C', '1D', '1E'],
+				['2', '2A', '2B', '2C', '2D', '2E'],
+				['3', '3A', '3B', '3C', '3D', '3E'],
+				['4', '4A', '4B', '4C', '4D', '4E'],
+				['5', '5A', '5B', '5C', '5D', '5E']
 			],
 
 			// do something with selected results
 			menuOptions : [
-				['Option 1', { callback : doSomething1 }],
-				['Option 2', { callback : doSomething2 }]
+				['Option 1', { callback: doSomething1 }],
+				['Option 2', { callback: doSomething2 }]
 			],
 
 			// post-process DOM elements
-			postProcess : {
-				table  : doSomething3,
-				column : doSomething4,
-				menu   : doSomething5
+			postProcess: {
+				table:  doSomething3,
+				column: doSomething4,
+				menu:   doSomething5
 			},
 
 			// pre-process column values before sort (optional)
-			sortByPattern : function(col_num, val) {
+			sortByPattern: function(col_num, val) {
 				if (col_num != 1) return val;
 
-				return String(val).replace(/$|%|#/g,'');
+				return String(val).replace(/$|%|#/g, '');
 			}
 		});
 
@@ -122,13 +129,13 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$('#container')
 		.TidyTable({
-			columnTitles : ['Column A','Column B','Column C','Column D','Column E'],
-			columnValues : [
-				['1','1A','1B','1C','1D','1E'],
-				['2','2A','2B','2C','2D','2E'],
-				['3','3A','3B','3C','3D','3E'],
-				['4','4A','4B','4C','4D','4E'],
-				['5','5A','5B','5C','5D','5E']
+			columnTitles: ['Column A', 'Column B', 'Column C', 'Column D', 'Column E'],
+			columnValues: [
+				['1', '1A', '1B', '1C', '1D', '1E'],
+				['2', '2A', '2B', '2C', '2D', '2E'],
+				['3', '3A', '3B', '3C', '3D', '3E'],
+				['4', '4A', '4B', '4C', '4D', '4E'],
+				['5', '5A', '5B', '5C', '5D', '5E']
 			]
 		});
 });
@@ -202,24 +209,24 @@ function doSomething2(rows) {
 		var form = $('&lt;form&gt;&lt;/form&gt;')
 			.bind('submit', function() {
 				$.ajax({
-					type : 'POST',
-					url  : 'http://domain.com/path/to/script'
+					type: 'POST',
+					url:  'http://domain.com/path/to/script'
 				});
 			});
 
 		var field = $('&lt;input&gt;&lt;/input&gt;')
 			.attr({
-				type  : 'text',
-				value : $this.text()
+				type:  'text',
+				value: $this.text()
 			});
 
 		var button = $('&lt;input&gt;&lt;/input&gt;')
 			.attr({
-				type  : 'submit',
-				value : 'Save'
+				type:  'submit',
+				value: 'Save'
 			});
 
-		$this.html( form.append(field, button) );
+		$this.html(form.append(field, button));
 	});
 }</pre>
 
@@ -241,7 +248,7 @@ function doSomething2(rows) {
 
 <h2>Releases</h2>
 
-<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.7 kB) and developers version (unpacked  8.4 kB)</p>
+<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.7 kB) and developers version (unpacked  8.5 kB)</p>
 
 <p>You can always find the latest updates within this projects repository.</p>
 
