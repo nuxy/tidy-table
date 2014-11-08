@@ -11,28 +11,28 @@
 	$(document).ready(function() {
 		$('#container')
 			.TidyTable({
-				enableCheckbox : true,
-				enableMenu     : true,
-				reverseSortDir : true
+				enableCheckbox: true,
+				enableMenu:     true,
+				reverseSortDir: true
 			},
 			{
-				columnTitles : ['Rank','Programming Language','Ratings Jan 2012','Delta Jan 2012','Status'],
-				columnValues : [
-					['1','Java','17.479%','-0.29%','A'],
-					['2','C','16.976%','+1.15%','A'],
-					['3','C#','8.781%','+2.55%','A'],
-					['4','C++','8.063%','-0.72%','A'],
-					['5','Objective-C','6.919%','+3.91%','A']
+				columnTitles: ['Rank', 'Programming Language', 'Ratings Jan 2012', 'Delta Jan 2012', 'Status'],
+				columnValues: [
+					['1', 'Java', '17.479%', '-0.29%', 'A'],
+					['2', 'C', '16.976%', '+1.15%', 'A'],
+					['3', 'C#', '8.781%', '+2.55%', 'A'],
+					['4', 'C++', '8.063%', '-0.72%', 'A'],
+					['5', 'Objective-C', '6.919%', '+3.91%','A']
 				],
-				menuOptions : [
+				menuOptions: [
 					['- Action -', null],
-					['Callback 1', { callback : doSomething1 }],
-					['Callback 2', { callback : doSomething2 }]
+					['Callback 1', { callback: doSomething1 }],
+					['Callback 2', { callback: doSomething2 }]
 				],
-				postProcess : {
-					table  : doSomething3,
-					column : doSomething4,
-					menu   : doSomething5
+				postProcess: {
+					table:  doSomething3,
+					column: doSomething4,
+					menu:   doSomething5
 				}
 			});
 	});

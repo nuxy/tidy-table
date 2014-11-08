@@ -1,28 +1,28 @@
 module('Tidy-Table', {
-	setup : function() {
+	setup: function() {
 		$('#qunit-fixture')
 			.TidyTable({
-				enableCheckbox : true,
-				enableMenu     : true,
-				reverseSortDir : true
+				enableCheckbox: true,
+				enableMenu:     true,
+				reverseSortDir: true
 			},
 			{
-				columnTitles : ['Column A','Column B','Column C'],
-				columnValues : [
-					['Row 1A','Row 1B','Row 1C'],
-					['Row 2A','Row 2B','Row 2C'],
-					['Row 3A','Row 3B','Row 3C'],
-					['Row 4A','Row 4B','Row 4C']
+				columnTitles: ['Column A', 'Column B', 'Column C'],
+				columnValues: [
+					['Row 1A', 'Row 1B', 'Row 1C'],
+					['Row 2A', 'Row 2B', 'Row 2C'],
+					['Row 3A', 'Row 3B', 'Row 3C'],
+					['Row 4A', 'Row 4B', 'Row 4C']
 				],
-				menuOptions : [
+				menuOptions: [
 					['- Action -', null],
-					['Callback 1', { callback : doSomething1 }],
-					['Callback 2', { callback : doSomething2 }]
+					['Callback 1', { callback: doSomething1 }],
+					['Callback 2', { callback: doSomething2 }]
 				],
-				postProcess : {
-					table  : doSomething3,
-					column : doSomething4,
-					menu   : doSomething5
+				postProcess: {
+					table:  doSomething3,
+					column: doSomething4,
+					menu:   doSomething5
 				}
 			});
 
@@ -62,7 +62,7 @@ module('Tidy-Table', {
 			});
 		}
 	},
-	teardown : function() {
+	teardown: function() {
 		// do nothing - preserve element structure
 	}
 });

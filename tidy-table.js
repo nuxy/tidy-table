@@ -16,13 +16,13 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 (function($) {
 	var methods = {
-		"init" : function(options, config) {
+		"init": function(options, config) {
 
 			// default options
 			var settings = {
-				enableCheckbox : false,
-				enableMenu     : false,
-				reverseSortDir : false
+				enableCheckbox: false,
+				enableMenu:     false,
+				reverseSortDir: false
 			};
 
 			if (arguments.length > 1) {
@@ -34,9 +34,9 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 			// config defaults
 			config = $.extend({
-				sortByPattern : function(col_num, val) {
+				sortByPattern: function(col_num, val) {
 					if ( $.trim(col_num) ) {
-						return String(val).replace(/$|%|#/g,'');
+						return String(val).replace(/$|%|#/g, '');
 					}
 				}
 			}, config);
@@ -47,8 +47,8 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 				if ( $.isEmptyObject(data) ) {
 					$this.data({
-						container : $this,
-						options   : settings
+						container: $this,
+						options:   settings
 					});
 				}
 
@@ -56,7 +56,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 			});
 		},
 
-		"destroy" : function() {
+		"destroy": function() {
 			return this.each(function() {
 				$(this).removeData();
 			});
@@ -140,8 +140,8 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 				// attach sorting event to each column
 				col.on('click', {
-					col_number : i,
-					sort_order : (num == i) ? col.order : 'asc'
+					col_number: i,
+					sort_order: (num == i) ? col.order : 'asc'
 				},
 				function(event) {
 					sortByColumn(data, config, event.data.col_number, event.data.sort_order);
@@ -167,7 +167,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 					row.append(col);
 
 					// post-process table column HTML object
-					if (config.postProcess && $.isFunction(config.postProcess.column) ) {
+					if (config.postProcess && $.isFunction(config.postProcess.column)) {
 						config.postProcess.column(col);
 					}
 				}
@@ -184,7 +184,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 				rows.each(function(index) {
 					var input = $('<input></input>')
-						.attr('type','checkbox');
+						.attr('type', 'checkbox');
 
 					var col;
 
@@ -202,7 +202,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 						// attach event to each checkbox
 						input.on('click', {
-							box_number : index
+							box_number: index
 						},
 						function(event) {
 							toggleSelRows(rows, event.data.box_number);
@@ -218,7 +218,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		})();
 
 		// post-process table results HTML object
-		if (config.postProcess && $.isFunction(config.postProcess.table) ) {
+		if (config.postProcess && $.isFunction(config.postProcess.table)) {
 			config.postProcess.table(table);
 		}
 
@@ -233,7 +233,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		// generate table/menu elements
 		else {
 			if (data.options && data.options.enableMenu) {
-				$this.append( createMenu($this, config, 'options') );
+				$this.append(createMenu($this, config, 'options'));
 			}
 
 			$this.append(table);
@@ -277,7 +277,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		});
 
 		// post-process select menu HTML object
-		if (config.postProcess && $.isFunction(config.postProcess.menu) ) {
+		if (config.postProcess && $.isFunction(config.postProcess.menu)) {
 			config.postProcess.menu(select);
 		}
 
