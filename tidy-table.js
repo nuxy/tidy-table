@@ -100,7 +100,6 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		(function() {
 			var row = $('<tr></tr>');
 
-			// .. <THEAD>
 			for (var i = 0; i < config.columnTitles.length; i++) {
 				var title = config.columnTitles[i];
 
