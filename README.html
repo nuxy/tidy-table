@@ -78,7 +78,7 @@ $ bower install tidy-table#~1.9 (latest)</pre>
 &lt;script src="/path/to/tidy-table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(document).ready(function() {
-	var table = $('#container')
+	var block = $('#container')
 		.TidyTable({
 			enableCheckbox: true,
 			enableMenu:     true
@@ -114,8 +114,13 @@ $(document).ready(function() {
 			}
 		});
 
+	// copy the table options menu
+	var menu = $('select.tidy_table', block).clone(true);
+	block.append(menu);
+
 	// optional animation
-	table.slideDown('fast');
+	block.slideDown('fast');
+
 &lt;/script&gt;
 
 &lt;link rel="stylesheet" type="text/css" href="/path/to/tidy-table.min.css"&gt;</pre>
