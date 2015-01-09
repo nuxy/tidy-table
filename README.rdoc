@@ -27,6 +27,12 @@ Please refer to the {README}[https://labs.mbrooks.info/demos/Tidy-Table/README.h
 
 This package can be used in conjunction with {Poppy-Pagination}[https://github.com/nuxy/Poppy-Pagination] to create a seamless per-page result experience.
 
+== License and Warranty
+
+This package is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.
+
+_Tidy-Table_ is provided under the terms of the {MIT license}[http://www.opensource.org/licenses/mit-license.php]
+
 == Author
 
 {Marc S. Brooks}[https://github.com/nuxy]
