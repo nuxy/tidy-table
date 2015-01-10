@@ -17,7 +17,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 (function($) {
 
 	/**
-	 * @namespace EZMenu
+	 * @namespace TidyTable
 	 */
 	var methods = {
 
