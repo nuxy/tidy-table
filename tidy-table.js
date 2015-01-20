@@ -10,7 +10,7 @@
  *    jquery.js
  */
 
-if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
+if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.split('.').join('')) < parseInt('1.8.3'.split('.').join('')))) {
 	throw new Error('Tidy-Table requires jQuery 1.8.3 or greater.');
 }
 
