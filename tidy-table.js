@@ -234,7 +234,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 			else {
 				if (data.settings && data.settings.enableMenu) {
 					$this.append(
-						$this.TidyTable('_createMenu', block, 'options')
+						$this.TidyTable('_createMenu', table, 'options')
 					);
 				}
 
