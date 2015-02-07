@@ -7,7 +7,7 @@ Create a HTML table from JSON that can be sorted, selected, and post-processed u
 ## Features
 
 - Extensible HTML/CSS interface.
-- Compatible with Firefox 3.6`, Chrome, Safari 5`, Opera, and Internet Explorer 7+ web browsers.
+- Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.
 - Compatible with iOS and Android mobile web browsers.
 - Easy to set-up and customize.
 - Customizable callback functions for post-processing selected results.
@@ -18,7 +18,7 @@ Create a HTML table from JSON that can be sorted, selected, and post-processed u
 
 This package can be easily installed using [Bower](http://bower.io).
 
- $ bower install tidy-table
+    $ bower install tidy-table
 
 Please refer to the [README](https://labs.mbrooks.info/demos/Tidy-Table/README.html) for more information about this package.
 
