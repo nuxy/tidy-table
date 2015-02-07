@@ -65,12 +65,12 @@ test('Select Menu', function() {
 
 	$(table).find('tbody tr').each(function(index) {
 		var row = $(this),
-			num = Math.floor((Math.random() * 4) + 1);
+			sel = Math.random() >= 0.5;
 
-		if (index == num) {
+		if (sel) {
 			var checkbox = row.find(':checkbox');
 
-			ok(checkbox.prop('checked', true), 'Row ' + num + ' checkbox checked');
+			ok(checkbox.prop('checked', true), 'Row ' + index + ' checkbox checked');
 
 			ok(checkbox.trigger('click'), 'Trigger checkbox event');
 
@@ -104,12 +104,12 @@ test('Select Menu', function() {
 
 	$(table).find('tbody tr').each(function(index) {
 		var row = $(this),
-			num = Math.floor((Math.random() * 4) + 1);
+			sel = Math.random() >= 0.5;
 
-		if (index == num) {
+		if (sel) {
 			var checkbox = row.find(':checkbox');
 
-			ok(checkbox.prop('checked', true), 'Row ' + num + ' checkbox checked');
+			ok(checkbox.prop('checked', true), 'Row ' + index + ' checkbox checked');
 
 			ok(checkbox.trigger('click'), 'Trigger checkbox event');
 
