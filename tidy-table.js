@@ -81,7 +81,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 		 * @method _createTable
 		 * @param {String} num
 		 * @param {String} order
-		 * @returns {Object}
+		 * @returns {Object} jQuery object
 		 * @private
 		 */
 		"_createTable": function(num, order) {
@@ -248,9 +248,9 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 		 * Create HTML select menu element
 		 * @memberof TidyTable
 		 * @method _createMenu
-		 * @param {Object} table
+		 * @param {Object} table jQuery object
 		 * @param {String} name
-		 * @returns {Object}
+		 * @returns {Object} jQuery object
 		 * @private
 		 */
 		"_createMenu": function(table, name) {
@@ -293,7 +293,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 		 * Return selected row values as an array
 		 * @memberof TidyTable
 		 * @method _getCheckedAsObj
-		 * @param {Object} table
+		 * @param {Object} table jQuery object
 		 * @returns {Array}
 		 * @private
 		 */
@@ -324,7 +324,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 		 * Select/Deselect (input checkbox and row highlight)
 		 * @memberof TidyTable
 		 * @method _toggleSelRows
-		 * @param {Object} rows
+		 * @param {Object} rows jQuery object
 		 * @param {Number} num
 		 * @private
 		 */
