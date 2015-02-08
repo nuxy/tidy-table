@@ -47,3 +47,37 @@ table.tidy_table th.sort_desc {
 table.tidy_table td {
 	border-top: 1px solid #CCCCCC;
 }
+
+/* responsive (mobile devices) */
+
+@media only screen and (min-device-width: 0px) and (max-device-width: 480px) {
+	#about {
+		box-shadow: none;
+	}
+
+	#container {
+		background-color: #F7F7F7;
+		float: left;
+		padding-bottom: 30px;
+		width: 100% !important;
+	}
+
+	#footer {
+		clear: both;
+		float: left;
+		padding: 0px;
+		padding-bottom: 10px;
+		position: fixed;
+		text-align: center;
+		width: 100%;
+	}
+
+	#footer span.copy {
+		float: none;
+		right: 0px;
+	}
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+
+}

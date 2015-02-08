@@ -37,7 +37,8 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 			var defaults = {
 				enableCheckbox: false,
 				enableMenu:     false,
-				reverseSortDir: false
+				reverseSortDir: false,
+				responsive:     false
 			};
 
 			if (arguments.length > 1) {
@@ -61,6 +62,11 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 					settings: defaults,
 					config:   config
 				});
+			}
+
+			// responsive layout?
+			if (defaults.responsive) {
+				$this.addClass('tidy_table media');
 			}
 
 			return $this.TidyTable('_createTable');
@@ -92,18 +98,22 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 			var table = $('<table></table>')
 				.addClass('tidy_table');
 
+			// disable IE7/8 text selection
 			table.mousedown(function() { return false; });
 			table.mouseover(function() { return false; });
 
-			var thead = $('<thead></thead>'),
-				tbody = $('<tbody></tbody>');
+			var thead  = $('<thead></thead>'),
+				tbody  = $('<tbody></tbody>'),
+				titles = null;
 
 			// .. <THEAD>
 			(function() {
+				titles = data.config.columnTitles;
+
 				var row = $('<tr></tr>');
 
-				for (var i = 0; i < data.config.columnTitles.length; i++) {
-					var title = data.config.columnTitles[i];
+				for (var i = 0; i < titles.length; i++) {
+					var title = titles[i];
 
 					var col = $('<th></th>')
 						.append(title)
