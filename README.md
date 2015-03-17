@@ -9,6 +9,7 @@ Create a HTML table from JSON that can be sorted, selected, and post-processed u
 - Extensible HTML/CSS interface.
 - Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.
 - Compatible with iOS and Android mobile web browsers.
+- Fully responsive layout with touch event support.
 - Easy to set-up and customize.
 - Customizable callback functions for post-processing selected results.
 - Post-process options for manipulating table/column/menu elements.
