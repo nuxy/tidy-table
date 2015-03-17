@@ -78,7 +78,7 @@ table.tidy_table td span.label {
 
 /* responsive (mobile devices) */
 
-@media only screen and (min-device-width: 0px) and (max-device-width: 480px) {
+@media only screen and (min-device-width: 0px) and (max-device-width: 768px) {
 	.tidy_table.media {
 		margin: 0px !important;
 		width: auto !important;
@@ -136,9 +136,4 @@ table.tidy_table td span.label {
 	.tidy_table.media table td {
 		background-color: transparent;
 	}
-}
-
-@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
-
-
 }

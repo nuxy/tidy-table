@@ -50,7 +50,7 @@ table.tidy_table td {
 
 /* responsive (mobile devices) */
 
-@media only screen and (min-device-width: 0px) and (max-device-width: 480px) {
+@media only screen and (min-device-width: 0px) and (max-device-width: 768px) {
 	#about {
 		box-shadow: none;
 	}
@@ -76,8 +76,4 @@ table.tidy_table td {
 		float: none;
 		right: 0px;
 	}
-}
-
-@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
-
 }
