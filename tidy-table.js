@@ -23,8 +23,12 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
 		/**
 		 * Create new instance of Tidy-Table
+		 *
 		 * @memberof TidyTable
 		 * @method init
+		 * @example
+		 * $('#container').TidyTable(settings, config);
+		 *
 		 * @param {Object} settings
 		 * @param {Object} config
 		 * @returns {Object} jQuery object
@@ -74,8 +78,11 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
 		/**
 		 * Perform cleanup
+		 *
 		 * @memberof TidyTable
 		 * @method destroy
+		 * @example
+		 * $('#container').TidyTable('destroy');
 		 */
 		"destroy": function() {
 			$(this).removeData();
@@ -83,8 +90,10 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
 		/**
 		 * Create HTML table elements
+		 *
 		 * @memberof TidyTable
 		 * @method _createTable
+		 *
 		 * @param {String} num
 		 * @param {String} order
 		 * @returns {Object} jQuery object
@@ -256,8 +265,10 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
 		/**
 		 * Create HTML select menu element
+		 *
 		 * @memberof TidyTable
 		 * @method _createMenu
+		 *
 		 * @param {Object} table jQuery object
 		 * @param {String} name
 		 * @returns {Object} jQuery object
@@ -301,8 +312,10 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
 		/**
 		 * Return selected row values as an array
+		 *
 		 * @memberof TidyTable
 		 * @method _getCheckedAsObj
+		 *
 		 * @param {Object} table jQuery object
 		 * @returns {Array}
 		 * @private
@@ -332,8 +345,10 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
 		/**
 		 * Select/Deselect (input checkbox and row highlight)
+		 *
 		 * @memberof TidyTable
 		 * @method _toggleSelRows
+		 *
 		 * @param {Object} rows jQuery object
 		 * @param {Number} num
 		 * @private
@@ -382,8 +397,10 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
 		/**
 		 * Display results ordered by selected column
+		 *
 		 * @memberof TidyTable
 		 * @method _sortByColumn
+		 *
 		 * @param {Number} num
 		 * @param {Number} order
 		 * @private
@@ -429,6 +446,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
 	/**
 	 * Generic string comparison functions
+	 *
 	 * @param {String} a
 	 * @param {String} b
 	 * @returns {Number}
