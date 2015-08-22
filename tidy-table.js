@@ -15,6 +15,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 }
 
 (function($) {
+	var table = null;
 
 	/**
 	 * @namespace TidyTable
@@ -93,9 +94,8 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 		 *
 		 * @memberof TidyTable
 		 * @method _createTable
-		 *
-		 * @param {String} num
-		 * @param {String} order
+		 * @param {String|undefined} num
+		 * @param {String|undefined} order
 		 * @returns {Object} jQuery object
 		 * @private
 		 */
@@ -104,7 +104,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 				data  = $this.data();
 
 			// create reusable elements
-			var table = $('<table></table>')
+			table = $('<table></table>')
 				.addClass('tidy_table');
 
 			// disable IE7/8 text selection
@@ -253,7 +253,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 			else {
 				if (data.settings && data.settings.enableMenu) {
 					$this.append(
-						$this.TidyTable('_createMenu', table, 'options')
+						$this.TidyTable('_createMenu', 'options')
 					);
 				}
 
@@ -268,13 +268,11 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 		 *
 		 * @memberof TidyTable
 		 * @method _createMenu
-		 *
-		 * @param {Object} table jQuery object
 		 * @param {String} name
 		 * @returns {Object} jQuery object
 		 * @private
 		 */
-		"_createMenu": function(table, name) {
+		"_createMenu": function(name) {
 			var $this = $(this),
 				data  = $this.data();
 
@@ -288,7 +286,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
 					// callback event
 					if ( $.isFunction(callback) ) {
-						callback( $this.TidyTable('_getCheckedAsObj', table) );
+						callback( $this.TidyTable('_getCheckedAsObj') );
 					}
 
 					elm.val(0);
@@ -315,12 +313,10 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 		 *
 		 * @memberof TidyTable
 		 * @method _getCheckedAsObj
-		 *
-		 * @param {Object} table jQuery object
 		 * @returns {Array}
 		 * @private
 		 */
-		"_getCheckedAsObj": function(table) {
+		"_getCheckedAsObj": function() {
 			var rows = table.find('tbody > tr'),
 				objs = [];
 
