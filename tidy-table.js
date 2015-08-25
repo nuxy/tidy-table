@@ -317,8 +317,9 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 		 * @private
 		 */
 		"_getCheckedAsObj": function() {
-			var rows = table.find('tbody > tr'),
-				objs = [];
+			var $this = $(this),
+				rows  = $this.find('tbody > tr'),
+				objs  = [];
 
 			for (var i = 0; i < rows.length; i++) {
 				var cols = rows[i].childNodes;
