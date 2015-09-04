@@ -13,7 +13,7 @@ Create a HTML table from JSON that can be sorted, selected, and post-processed u
 - Easy to set-up and customize.
 - Customizable callback functions for post-processing selected results.
 - Post-process options for manipulating table/column/menu elements.
-- Fast and lightweight (jQuery plug-in *only 5.1 kB)
+- Fast and lightweight (jQuery plug-in *only 5.9 kB)
 
 ## Installation
 
