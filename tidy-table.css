@@ -44,13 +44,13 @@ table.tidy_table {
 
 .tidy_table th,
 .tidy_table td {
-  padding: 6px 20px 6px 20px;
+  padding: 6px 20px;
 }
 
 .tidy_table td {
   border-right: 1px solid #EEEEEE;
   border-top: 1px solid #CCCCCC;
-  padding: 7px 20px 7px 20px;
+  padding: 7px 20px;
 }
 
 .tidy_table th:nth-child(1),
@@ -65,7 +65,7 @@ table.tidy_table {
 .tidy_table input[type=checkbox],
 .tidy_table input[type=checkbox] {
   display: block;
-  margin: 0px auto 0px auto;
+  margin: 0px auto;
 }
 
 .tidy_table td:nth-last-child(1) {
