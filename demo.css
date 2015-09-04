@@ -1,0 +1,82 @@
+/**
+ * Demo example
+ */
+#container {
+  margin: 10% auto 0px auto;
+  width: 800px;
+}
+
+/**
+ * Customize
+ */
+select.tidy_table {
+  float: right;
+  margin: 10px 0px 10px 0px;
+}
+
+table.tidy_table {
+  background-color: #FFFFFF;
+  border: 1px solid #BBBBBB;
+  border-collapse: collapse;
+  clear: both;
+  width: 100%;
+}
+
+.tidy_table th {
+  white-space: nowrap;
+}
+
+.tidy_table .check_on {
+  background-color: #F7F7F7;
+}
+
+.tidy_table .check_off {
+  background-color: #FFFFFF;
+}
+
+.tidy_table th {
+  background-color: #DDDDDD;
+}
+
+.tidy_table .sort_asc {
+  background: #EEEEEE url( images/arrow_asc.gif ) no-repeat right center;
+}
+
+.tidy_table .sort_desc {
+  background: #EEEEEE url( images/arrow_desc.gif ) no-repeat right center;
+}
+
+.tidy_table td {
+  border-top: 1px solid #CCCCCC;
+}
+
+/**
+ * Responsive (mobile devices)
+ */
+@media only screen and (min-device-width: 0px) and (max-device-width: 768px) {
+  #about {
+    box-shadow: none;
+  }
+
+  #container {
+    background-color: #F7F7F7;
+    float: left;
+    padding-bottom: 30px;
+    width: 100% !important;
+  }
+
+  #footer {
+    clear: both;
+    float: left;
+    padding: 0px;
+    padding-bottom: 10px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+  }
+
+  #footer .copy {
+    float: none;
+    right: 0px;
+  }
+}
