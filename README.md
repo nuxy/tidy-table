@@ -21,7 +21,7 @@ This package can be easily installed using [Bower](http://bower.io).
 
     $ bower install tidy-table
 
-Please refer to the [README](https://labs.mbrooks.info/demos/Tidy-Table/README.html) for more information about this package.
+Please refer to the [README](https://nuxy.github.io/Tidy-Table) for more information about this package.
 
 ## See Also
 
