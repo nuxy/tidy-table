@@ -10,7 +10,7 @@
  *    jquery.js
  */
 
-table.tidy_table {
+tidy_table {
   background-color: #FFFFFF;
   border-collapse: collapse;
   border: 1px solid #CCCCCC;
@@ -18,61 +18,61 @@ table.tidy_table {
   white-space: nowrap;
 }
 
-table.tidy_table thead {
+tidy_table thead {
   border: none;
 }
 
-table.tidy_table tr.check_on {
+tidy_table .check_on {
   background-color: #F5F5F5;
 }
 
-table.tidy_table tr.check_off {
+tidy_table .check_off {
   background-color: #FFFFFF;
 }
 
-table.tidy_table th {
+tidy_table th {
   background-color: #DDDDDD;
 }
 
-table.tidy_table th.sort_asc {
+tidy_table .sort_asc {
   background: #EEEEEE url( images/arrow_asc.gif ) no-repeat right center;
 }
 
-table.tidy_table th.sort_desc {
+tidy_table .sort_desc {
   background: #EEEEEE url( images/arrow_desc.gif ) no-repeat right center;
 }
 
-table.tidy_table th,
-table.tidy_table td {
+tidy_table th,
+tidy_table td {
   padding: 6px 20px 6px 20px;
 }
 
-table.tidy_table td {
+tidy_table td {
   border-right: 1px solid #EEEEEE;
   border-top: 1px solid #CCCCCC;
   padding: 7px 20px 7px 20px;
 }
 
-table.tidy_table th:nth-child(1),
-table.tidy_table td:nth-child(1) {
+tidy_table th:nth-child(1),
+tidy_table td:nth-child(1) {
   width: 10px;
 }
 
-table.tidy_table td:nth-child(1) {
+tidy_table td:nth-child(1) {
   border-right: 1px solid #EEEEEE;
 }
 
-table.tidy_table input[type=checkbox],
-table.tidy_table input[type=checkbox] {
+tidy_table input[type=checkbox],
+tidy_table input[type=checkbox] {
   display: block;
   margin: 0px auto 0px auto;
 }
 
-table.tidy_table td:nth-last-child(1) {
+tidy_table td:nth-last-child(1) {
   border-right: none;
 }
 
-table.tidy_table td span.label {
+tidy_table td .label {
   display: none;
 }
 
@@ -80,34 +80,34 @@ table.tidy_table td span.label {
  * Responsive (mobile devices)
  */
 @media only screen and (min-device-width: 0px) and (max-device-width: 768px) {
-  .tidy_table.media {
+  .tidy_media {
     margin: 0px !important;
     width: auto !important;
     overflow: none;
   }
 
-  .tidy_table.media select {
+  .tidy_media select {
     position: relative;
     right: 30px;
   }
 
-  .tidy_table.media table {
+  .tidy_media table {
     border: 0px;
     border-top: 1px solid #DDDDDD;
     width: 100%;
-  }  
+  }
 
-  .tidy_table.media table tr {
+  .tidy_media table tr {
     border-bottom: 1px solid #CCCCCC;
     position: relative;
   }
 
-  .tidy_table.media table tbody tr:last-child {
+  .tidy_media table tbody tr:last-child {
     border: none;
   }
 
-  .tidy_table.media table th,
-  .tidy_table.media table td {
+  .tidy_media table th,
+  .tidy_media table td {
     box-sizing: border-box;
     border: 0px;
     clear: both;
@@ -115,8 +115,8 @@ table.tidy_table td span.label {
     padding-left: 10px;
   }
 
-  .tidy_table.media table th:first-child,
-  .tidy_table.media table td:first-child {
+  .tidy_media table th:first-child,
+  .tidy_media table td:first-child {
     background-color: transparent;
     padding: 10px;
     position: absolute;
@@ -125,16 +125,16 @@ table.tidy_table td span.label {
     width: auto;
   }
 
-  .tidy_table.media table th {
+  .tidy_media table th {
     text-align: left;
     width: 100%;
   }
 
-  .tidy_table.media table th:first-child {
+  .tidy_media table th:first-child {
     top: -40px;
   }
 
-  .tidy_table.media table td {
+  .tidy_media table td {
     background-color: transparent;
   }
 }

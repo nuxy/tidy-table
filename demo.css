@@ -9,12 +9,12 @@
 /**
  * Customize
  */
-select.tidy_table {
+.tidy_table {
   float: right;
   margin: 10px 0px 10px 0px;
 }
 
-table.tidy_table {
+.tidy_table {
   background-color: #FFFFFF;
   border: 1px solid #BBBBBB;
   border-collapse: collapse;
@@ -22,31 +22,31 @@ table.tidy_table {
   width: 100%;
 }
 
-table.tidy_table th {
+.tidy_table th {
   white-space: nowrap;
 }
 
-table.tidy_table tr.check_on {
+.tidy_table .check_on {
   background-color: #F7F7F7;
 }
 
-table.tidy_table tr.check_off {
+.tidy_table .check_off {
   background-color: #FFFFFF;
 }
 
-table.tidy_table th {
+.tidy_table th {
   background-color: #DDDDDD;
 }
 
-table.tidy_table th.sort_asc {
+.tidy_table .sort_asc {
   background: #EEEEEE url( images/arrow_asc.gif ) no-repeat right center;
 }
 
-table.tidy_table th.sort_desc {
+.tidy_table .sort_desc {
   background: #EEEEEE url( images/arrow_desc.gif ) no-repeat right center;
 }
 
-table.tidy_table td {
+.tidy_table td {
   border-top: 1px solid #CCCCCC;
 }
 
@@ -75,7 +75,7 @@ table.tidy_table td {
     width: 100%;
   }
 
-  #footer span.copy {
+  #footer .copy {
     float: none;
     right: 0px;
   }
