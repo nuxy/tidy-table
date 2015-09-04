@@ -36,7 +36,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      */
     "init": function(settings, config) {
       var $this = $(this),
-        data  = $this.data();
+           data  = $this.data();
 
       // default settings
       var defaults = {
@@ -101,7 +101,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      */
     "_createTable": function(num, order) {
       var $this = $(this),
-        data  = $this.data();
+          data  = $this.data();
 
       // create reusable elements
       table = $('<table></table>')
@@ -112,8 +112,8 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
       table.mouseover(function() { return false; });
 
       var thead  = $('<thead></thead>'),
-        tbody  = $('<tbody></tbody>'),
-        titles = null;
+          tbody  = $('<tbody></tbody>'),
+          titles = null;
 
       // .. <THEAD>
       (function() {
@@ -274,7 +274,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      */
     "_createMenu": function(name) {
       var $this = $(this),
-        data  = $this.data();
+          data  = $this.data();
 
       // create reusable elements
       var select = $('<select></select>')
@@ -318,8 +318,8 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      */
     "_getCheckedAsObj": function() {
       var $this = $(this),
-        rows  = $this.find('tbody > tr'),
-        objs  = [];
+          rows  = $this.find('tbody > tr'),
+          objs  = [];
 
       for (var i = 0; i < rows.length; i++) {
         var cols = rows[i].childNodes;
@@ -355,7 +355,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
       rows.each(function(index) {
         var row   = $(this),
-          input = row.find(':checkbox').first();
+            input = row.find(':checkbox').first();
 
         // update all rows
         if (!num) {
@@ -404,7 +404,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      */
     "_sortByColumn": function(num, order) {
       var $this = $(this),
-        data  = $this.data();
+          data  = $this.data();
 
       if ( $.isFunction(data.config.sortByPattern) ) {
         var reverse = (order == 'desc') ? -1 : 1;
@@ -412,7 +412,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
         // sort JSON object by bucket number
         data.config.columnValues.sort(function(a, b) {
           var str1 = data.config.sortByPattern(num, a[num]),
-            str2 = data.config.sortByPattern(num, b[num]);
+              str2 = data.config.sortByPattern(num, b[num]);
 
           if (isNaN(str1)) {
             return [reverse * cmpAny(str1, str2)] >
