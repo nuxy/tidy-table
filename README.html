@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="https://mbrooks.info/readme.min.css">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="https://mbrooks.info/readme.min.css">
 
-	<title>README</title>
+  <title>README</title>
 </head>
 <body>
 
@@ -18,14 +18,14 @@
 <h2>Features</h2>
 
 <ul>
-	<li>Extensible HTML/CSS interface.</li>
-	<li>Compatible with Firefox 3.6+, Chrome, Safari 5+, Opera, and Internet Explorer 7+ web browsers.</li>
-	<li>Compatible with iOS and Android mobile web browsers.</li>
-	<li>Fully responsive layout with touch event support.</li>
-	<li>Easy to set-up and customize.</li>
-	<li>Customizable callback functions for post-processing selected results.</li>
-	<li>Post-process options for manipulating table/column/menu elements.</li>
-	<li>Fast and lightweight (jQuery plug-in *only 6.1 kB)</li>
+  <li>Extensible HTML/CSS interface.</li>
+  <li>Compatible with Firefox 3.6+, Chrome, Safari 5+, Opera, and Internet Explorer 7+ web browsers.</li>
+  <li>Compatible with iOS and Android mobile web browsers.</li>
+  <li>Fully responsive layout with touch event support.</li>
+  <li>Easy to set-up and customize.</li>
+  <li>Customizable callback functions for post-processing selected results.</li>
+  <li>Post-process options for manipulating table/column/menu elements.</li>
+  <li>Fast and lightweight (jQuery plug-in *only 6.1 kB)</li>
 </ul>
 
 <p>Check out the <a href="demo.html">demo</a> provided with this package.</p>
@@ -41,24 +41,24 @@
 <p>Manual install:</p>
 
 <ol>
-	<li>Download the latest <a href="https://github.com/nuxy/Tidy-Table/tags">sources</a> to your computer using a web browser.</li>
-	<li>Extract the contents of the <em>.zip</em> into a folder on your local computer.</li>
-	<li>Upload the folder with the <strong>following files</strong> to your web site.</li>
+  <li>Download the latest <a href="https://github.com/nuxy/Tidy-Table/tags">sources</a> to your computer using a web browser.</li>
+  <li>Extract the contents of the <em>.zip</em> into a folder on your local computer.</li>
+  <li>Upload the folder with the <strong>following files</strong> to your web site.</li>
 </ol>
 
 <table border="1">
-	<tr>
-		<th>Filename</th>
-		<th>Role</th>
-	</tr>
-	<tr>
-		<td>tidy-table.min.js</td>
-		<td>The main script to be included from within your HTML document.</td>
-	</tr>
-	<tr>
-		<td>tidy-table.min.css</td>
-		<td>This style sheet that defines the "look & feel" of the HTML table.</td>
-	</tr>
+  <tr>
+    <th>Filename</th>
+    <th>Role</th>
+  </tr>
+  <tr>
+    <td>tidy-table.min.js</td>
+    <td>The main script to be included from within your HTML document.</td>
+  </tr>
+  <tr>
+    <td>tidy-table.min.css</td>
+    <td>This style sheet that defines the "look & feel" of the HTML table.</td>
+  </tr>
 </table>
 
 <h2>Set-up</h2>
@@ -80,51 +80,51 @@
 &lt;script src="/path/to/tidy-table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(document).ready(function() {
-	var block = $('#container')
-		.TidyTable({
-			enableCheckbox: true,
-			enableMenu:     true
-		},
-		{
-			columnTitles: ['Column A', 'Column B', 'Column C', 'Column D', 'Column E'],
-			columnValues: [
-				['1', '1A', '1B', '1C', '1D', '1E'],
-				['2', '2A', '2B', '2C', '2D', '2E'],
-				['3', '3A', '3B', '3C', '3D', '3E'],
-				['4', '4A', '4B', '4C', '4D', '4E'],
-				['5', '5A', '5B', '5C', '5D', '5E']
-			],
+  var block = $('#container')
+    .TidyTable({
+      enableCheckbox: true,
+      enableMenu:     true
+    },
+    {
+      columnTitles: ['Column A', 'Column B', 'Column C', 'Column D', 'Column E'],
+      columnValues: [
+        ['1', '1A', '1B', '1C', '1D', '1E'],
+        ['2', '2A', '2B', '2C', '2D', '2E'],
+        ['3', '3A', '3B', '3C', '3D', '3E'],
+        ['4', '4A', '4B', '4C', '4D', '4E'],
+        ['5', '5A', '5B', '5C', '5D', '5E']
+      ],
 
-			// do something with selected results
-			menuOptions : [
-				['Option 1', { callback: doSomething1 }],
-				['Option 2', { callback: doSomething2 }]
-			],
+      // do something with selected results
+      menuOptions : [
+        ['Option 1', { callback: doSomething1 }],
+        ['Option 2', { callback: doSomething2 }]
+      ],
 
-			// post-process DOM elements
-			postProcess: {
-				table:  doSomething3,
-				column: doSomething4,
-				menu:   doSomething5
-			},
+      // post-process DOM elements
+      postProcess: {
+        table:  doSomething3,
+        column: doSomething4,
+        menu:   doSomething5
+      },
 
-			// pre-process column values before sort (optional)
-			sortByPattern: function(col_num, val) {
-				if (col_num != 1) return val;
+      // pre-process column values before sort (optional)
+      sortByPattern: function(col_num, val) {
+        if (col_num != 1) return val;
 
-				return String(val).replace(/$|%|#/g, '');
-			}
-		});
+        return String(val).replace(/$|%|#/g, '');
+      }
+    });
 
-	// copy the table options menu
-	var menu = $('select.tidy_table', block).clone(true);
-	block.append(menu);
+  // copy the table options menu
+  var menu = $('select.tidy_table', block).clone(true);
+  block.append(menu);
 
-	// optional animation
-	block.slideDown('fast');
+  // optional animation
+  block.slideDown('fast');
 
-	// remove stored data
-	block.TidyTable('destroy');
+  // remove stored data
+  block.TidyTable('destroy');
 
 &lt;/script&gt;
 
@@ -137,17 +137,17 @@ $(document).ready(function() {
 &lt;script src="/path/to/tidy-table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(document).ready(function() {
-	$('#container')
-		.TidyTable({
-			columnTitles: ['Column A', 'Column B', 'Column C', 'Column D', 'Column E'],
-			columnValues: [
-				['1', '1A', '1B', '1C', '1D', '1E'],
-				['2', '2A', '2B', '2C', '2D', '2E'],
-				['3', '3A', '3B', '3C', '3D', '3E'],
-				['4', '4A', '4B', '4C', '4D', '4E'],
-				['5', '5A', '5B', '5C', '5D', '5E']
-			]
-		});
+  $('#container')
+    .TidyTable({
+      columnTitles: ['Column A', 'Column B', 'Column C', 'Column D', 'Column E'],
+      columnValues: [
+        ['1', '1A', '1B', '1C', '1D', '1E'],
+        ['2', '2A', '2B', '2C', '2D', '2E'],
+        ['3', '3A', '3B', '3C', '3D', '3E'],
+        ['4', '4A', '4B', '4C', '4D', '4E'],
+        ['5', '5A', '5B', '5C', '5D', '5E']
+      ]
+    });
 });
 &lt;/script&gt;
 
@@ -160,31 +160,31 @@ $(document).ready(function() {
 <p>The following options can be passed to the plug-in main function as JSON</p>
 
 <table border="1">
-	<tr>
-		<th>Option</th>
-		<th>Description</th>
-		<th>Default Value</th>
-	</tr>
-	<tr>
-		<td>enableCheckbox</td>
-		<td>add checkbox functionality to table output</td>
-		<td>false</td>
-	</tr>
-	<tr>
-		<td>enableMenu</td>
-		<td>add select menu functionality to manipulate table output</td>
-		<td>false</td>
-	</tr>
-	<tr>
-		<td>reverseSortDir</td>
-		<td>change the sorting arrow image direction</td>
-		<td>false</td>
-	</tr>
-	<tr>
-		<td>responsive</td>
-		<td>enabled responsive layout on supported mobile devices</td>
-		<td>false</td>
-	</tr>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>enableCheckbox</td>
+    <td>add checkbox functionality to table output</td>
+    <td>false</td>
+  </tr>
+  <tr>
+    <td>enableMenu</td>
+    <td>add select menu functionality to manipulate table output</td>
+    <td>false</td>
+  </tr>
+  <tr>
+    <td>reverseSortDir</td>
+    <td>change the sorting arrow image direction</td>
+    <td>false</td>
+  </tr>
+  <tr>
+    <td>responsive</td>
+    <td>enabled responsive layout on supported mobile devices</td>
+    <td>false</td>
+  </tr>
 </table>
 
 <a name="callback"></a>
@@ -194,11 +194,11 @@ $(document).ready(function() {
 <p>When a callback function is defined a response is returned.  The following functions correspond to the <a href="#examples">examples</a> provided above.</p>
 
 <pre>function doSomething1(rows) {
-	alert('callback1(rows=' + rows.length + ')');
+  alert('callback1(rows=' + rows.length + ')');
 }
 
 function doSomething2(rows) {
-	alert('callback2(rows=' + rows.length + ')');
+  alert('callback2(rows=' + rows.length + ')');
 }</pre>
 
 <a name="post-process"></a>
@@ -210,47 +210,47 @@ function doSomething2(rows) {
 <h4>Hide the second column of results</h4>
 
 <pre>function doSomething3(table) {
-	table.find('th:nth-child(2), td:nth-child(2)').css('display','none');
+  table.find('th:nth-child(2), td:nth-child(2)').css('display','none');
 }</pre>
 
 <h4>Create form element (for inline editing) on mouse event</h4>
 
 <pre>function doSomething4(col) {
-	col.bind('click', function() {
-		var $this = $(this);
+  col.bind('click', function() {
+    var $this = $(this);
 
-		if ($this.find('form')[0]) return;
+    if ($this.find('form')[0]) return;
 
-		var form = $('&lt;form&gt;&lt;/form&gt;')
-			.bind('submit', function() {
-				$.ajax({
-					type: 'POST',
-					url:  'http://domain.com/path/to/script'
-				});
-			});
+    var form = $('&lt;form&gt;&lt;/form&gt;')
+      .bind('submit', function() {
+        $.ajax({
+          type: 'POST',
+          url:  'http://domain.com/path/to/script'
+        });
+      });
 
-		var field = $('&lt;input&gt;&lt;/input&gt;')
-			.attr({
-				type:  'text',
-				value: $this.text()
-			});
+    var field = $('&lt;input&gt;&lt;/input&gt;')
+      .attr({
+        type:  'text',
+        value: $this.text()
+      });
 
-		var button = $('&lt;input&gt;&lt;/input&gt;')
-			.attr({
-				type:  'submit',
-				value: 'Save'
-			});
+    var button = $('&lt;input&gt;&lt;/input&gt;')
+      .attr({
+        type:  'submit',
+        value: 'Save'
+      });
 
-		$this.html(form.append(field, button));
-	});
+    $this.html(form.append(field, button));
+  });
 }</pre>
 
 <h4>Hide menus when a session cookie doesn't exist</h4>
 
 <pre>function doSomething5(menu) {
-	if (!$.cookie('session')) {
-		menu.css('display','none');
-	}
+  if (!$.cookie('session')) {
+    menu.css('display','none');
+  }
 }</pre>
 
 <h2>jQuery Support</h2>

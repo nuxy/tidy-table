@@ -1,79 +1,79 @@
 /* example */
 
 #container {
-	margin: 10% auto 0px auto;
-	width: 800px;
+  margin: 10% auto 0px auto;
+  width: 800px;
 }
 
 /* customize */
 
 select.tidy_table {
-	float: right;
-	margin: 10px 0px 10px 0px;
+  float: right;
+  margin: 10px 0px 10px 0px;
 }
 
 table.tidy_table {
-	background-color: #FFFFFF;
-	border: 1px solid #BBBBBB;
-	border-collapse: collapse;
-	clear: both;
-	width: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid #BBBBBB;
+  border-collapse: collapse;
+  clear: both;
+  width: 100%;
 }
 
 table.tidy_table th {
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 table.tidy_table tr.check_on {
-	background-color: #F7F7F7;
+  background-color: #F7F7F7;
 }
 
 table.tidy_table tr.check_off {
-	background-color: #FFFFFF;
+  background-color: #FFFFFF;
 }
 
 table.tidy_table th {
-	background-color: #DDDDDD;
+  background-color: #DDDDDD;
 }
 
 table.tidy_table th.sort_asc {
-	background: #EEEEEE url( images/arrow_asc.gif ) no-repeat right center;
+  background: #EEEEEE url( images/arrow_asc.gif ) no-repeat right center;
 }
 
 table.tidy_table th.sort_desc {
-	background: #EEEEEE url( images/arrow_desc.gif ) no-repeat right center;
+  background: #EEEEEE url( images/arrow_desc.gif ) no-repeat right center;
 }
 
 table.tidy_table td {
-	border-top: 1px solid #CCCCCC;
+  border-top: 1px solid #CCCCCC;
 }
 
 /* responsive (mobile devices) */
 
 @media only screen and (min-device-width: 0px) and (max-device-width: 768px) {
-	#about {
-		box-shadow: none;
-	}
+  #about {
+    box-shadow: none;
+  }
 
-	#container {
-		background-color: #F7F7F7;
-		float: left;
-		padding-bottom: 30px;
-		width: 100% !important;
-	}
+  #container {
+    background-color: #F7F7F7;
+    float: left;
+    padding-bottom: 30px;
+    width: 100% !important;
+  }
 
-	#footer {
-		clear: both;
-		float: left;
-		padding: 0px;
-		padding-bottom: 10px;
-		position: fixed;
-		text-align: center;
-		width: 100%;
-	}
+  #footer {
+    clear: both;
+    float: left;
+    padding: 0px;
+    padding-bottom: 10px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+  }
 
-	#footer span.copy {
-		float: none;
-		right: 0px;
-	}
+  #footer span.copy {
+    float: none;
+    right: 0px;
+  }
 }
