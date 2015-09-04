@@ -2,7 +2,7 @@
  * Demo example
  */
 #container {
-  margin: 10% auto 0px auto;
+  margin: 10% auto;
   width: 800px;
 }
 
@@ -11,7 +11,7 @@
  */
 select.tidy_table {
   float: right;
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0px;
 }
 
 table.tidy_table {
