@@ -1,12 +1,14 @@
-/* example */
-
+/**
+ * Demo example
+ */
 #container {
   margin: 10% auto 0px auto;
   width: 800px;
 }
 
-/* customize */
-
+/**
+ * Customize
+ */
 select.tidy_table {
   float: right;
   margin: 10px 0px 10px 0px;
@@ -48,8 +50,9 @@ table.tidy_table td {
   border-top: 1px solid #CCCCCC;
 }
 
-/* responsive (mobile devices) */
-
+/**
+ * Responsive (mobile devices)
+ */
 @media only screen and (min-device-width: 0px) and (max-device-width: 768px) {
   #about {
     box-shadow: none;

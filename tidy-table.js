@@ -27,18 +27,20 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      *
      * @memberof TidyTable
      * @method init
+     *
      * @example
      * $('#container').TidyTable(settings, config);
      *
      * @param {Object} settings
      * @param {Object} config
+     *
      * @returns {Object} jQuery object
      */
     "init": function(settings, config) {
       var $this = $(this),
-           data  = $this.data();
+          data  = $this.data();
 
-      // default settings
+      // Default settings
       var defaults = {
         enableCheckbox: false,
         enableMenu:     false,
@@ -53,7 +55,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
         config = settings;
       }
 
-      // config defaults
+      // Config defaults
       config = $.extend({
         sortByPattern: function(col_num, val) {
           if ( $.trim(col_num) ) {
@@ -69,7 +71,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
         });
       }
 
-      // responsive layout?
+      // Responsive layout?
       if (defaults.responsive) {
         $this.addClass('tidy_table media');
       }
@@ -82,6 +84,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      *
      * @memberof TidyTable
      * @method destroy
+     *
      * @example
      * $('#container').TidyTable('destroy');
      */
@@ -90,24 +93,26 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
     },
 
     /**
-     * Create HTML table elements
+     * Create HTML table elements.
      *
      * @memberof TidyTable
      * @method _createTable
+     * @private
+     *
      * @param {String|undefined} num
      * @param {String|undefined} order
+     *
      * @returns {Object} jQuery object
-     * @private
      */
     "_createTable": function(num, order) {
       var $this = $(this),
           data  = $this.data();
 
-      // create reusable elements
+      // Create reusable elements.
       table = $('<table></table>')
         .addClass('tidy_table');
 
-      // disable IE7/8 text selection
+      // Disable IE7/8 text selection.
       table.mousedown(function() { return false; });
       table.mouseover(function() { return false; });
 
@@ -131,7 +136,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
           var col_class;
 
-          // determine column result ordet
+          // Determine column result order.
           if (!data.settings.reverseSortDir) {
             if (order == 'asc' || !order) {
               col_class = 'sort_asc';
@@ -153,12 +158,12 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
             }
           }
 
-          // highlight selected column
+          // Highlight selected column.
           if (num == i) {
             col.addClass(col_class);
           }
 
-          // attach sorting event to each column
+          // Attach sorting event to each column.
           col.on('click', {
             col_number: i,
             sort_order: (num == i) ? col.order : 'asc'
@@ -186,7 +191,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
               .attr('title', val);
             row.append(col);
 
-            // post-process table column HTML object
+            // Post-process table column HTML object.
             if (data.config.postProcess && $.isFunction(data.config.postProcess.column)) {
               data.config.postProcess.column(col);
             }
@@ -198,7 +203,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
         table.append(thead);
         table.append(tbody);
 
-        // append check boxes to beginning each row
+        // Append check boxes to beginning each row.
         if (data.settings && data.settings.enableCheckbox) {
           var rows = table.find('tr');
 
@@ -208,11 +213,11 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
             var col;
 
-            // first row is always the header
+            // First row is always the header.
             if (index === 0) {
               col = $('<th></th>');
 
-              // attach event to check all boxes
+              // Attach event to check all boxes.
               input.on('click', function() {
                 $this.TidyTable('_toggleSelRows', rows);
               });
@@ -220,7 +225,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
             else {
               col = $('<td></td>');
 
-              // attach event to each checkbox
+              // Attach event to each checkbox.
               input.on('click', {
                 box_number: index
               },
@@ -231,25 +236,25 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
             col.append(input);
 
-            // insert before first cell
+            // Insert before first cell.
             $(this).prepend(col);
           });
         }
       })();
 
-      // post-process table results HTML object
+      // Post-process table results HTML object.
       if (data.config.postProcess && $.isFunction(data.config.postProcess.table)) {
         data.config.postProcess.table(table);
       }
 
       var block = $this.children('table.tidy_table');
 
-      // if table exists, perform an in-place update of the element
+      // If table exists, perform an in-place update of the element.
       if (block[0]) {
         block.replaceWith(table);
       }
 
-      // generate table/menu elements
+      // Generate table/menu elements.
       else {
         if (data.settings && data.settings.enableMenu) {
           $this.append(
@@ -268,15 +273,17 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      *
      * @memberof TidyTable
      * @method _createMenu
-     * @param {String} name
-     * @returns {Object} jQuery object
      * @private
+     *
+     * @param {String} name
+     *
+     * @returns {Object} jQuery object
      */
     "_createMenu": function(name) {
       var $this = $(this),
           data  = $this.data();
 
-      // create reusable elements
+      // Create reusable elements.
       var select = $('<select></select>')
         .addClass('tidy_table ' + name)
         .change(function() {
@@ -284,7 +291,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
           var callback = data.config.menuOptions[ elm.val() ][1]['callback'];
 
-          // callback event
+          // Callback event
           if ( $.isFunction(callback) ) {
             callback( $this.TidyTable('_getCheckedAsObj') );
           }
@@ -292,7 +299,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
           elm.val(0);
         });
 
-      // .. options
+      // .. Options
       $.each(data.config.menuOptions, function(index) {
         var option = $('<option>' + data.config.menuOptions[index][0] + '</option>')
           .attr('value', index);
@@ -300,7 +307,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
         select.append(option);
       });
 
-      // post-process select menu HTML object
+      // Post-process select menu HTML object.
       if (data.config.postProcess && $.isFunction(data.config.postProcess.menu)) {
         data.config.postProcess.menu(select);
       }
@@ -309,12 +316,13 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
     },
 
     /**
-     * Return selected row values as an array
+     * Return selected row values as an array.
      *
      * @memberof TidyTable
      * @method _getCheckedAsObj
-     * @returns {Array}
      * @private
+     *
+     * @returns {Array}
      */
     "_getCheckedAsObj": function() {
       var $this = $(this),
@@ -324,11 +332,11 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
       for (var i = 0; i < rows.length; i++) {
         var cols = rows[i].childNodes;
 
-        // if the row checkbox is selected
+        // If the row checkbox is selected.
         if (cols[0].firstChild.checked) {
           var row = [];
 
-          // simulate an associative array
+          // Simulate an associative array.
           for (var j = 1; j < cols.length; j++) {
             row[j - 1] = cols[j].textContent;
           }
@@ -341,14 +349,14 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
     },
 
     /**
-     * Select/Deselect (input checkbox and row highlight)
+     * Select/Deselect (input checkbox and row highlight).
      *
      * @memberof TidyTable
      * @method _toggleSelRows
+     * @private
      *
      * @param {Object} rows jQuery object
      * @param {Number} num
-     * @private
      */
     "_toggleSelRows": function(rows, num) {
       var checked = null;
@@ -357,7 +365,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
         var row   = $(this),
             input = row.find(':checkbox').first();
 
-        // update all rows
+        // Update all rows.
         if (!num) {
           if (index === 0) {
             checked = (input.is(':checked')) ? true : false;
@@ -374,7 +382,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
           }
         }
 
-        // update selected row
+        // Update selected row.
         else {
           if (index === 0) {
             return;
@@ -393,14 +401,14 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
     },
 
     /**
-     * Display results ordered by selected column
+     * Display results ordered by selected column.
      *
      * @memberof TidyTable
      * @method _sortByColumn
+     * @private
      *
      * @param {Number} num
      * @param {Number} order
-     * @private
      */
     "_sortByColumn": function(num, order) {
       var $this = $(this),
@@ -409,7 +417,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
       if ( $.isFunction(data.config.sortByPattern) ) {
         var reverse = (order == 'desc') ? -1 : 1;
 
-        // sort JSON object by bucket number
+        // Sort JSON object by bucket number.
         data.config.columnValues.sort(function(a, b) {
           var str1 = data.config.sortByPattern(num, a[num]),
               str2 = data.config.sortByPattern(num, b[num]);
@@ -442,12 +450,14 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
   };
 
   /**
-   * Generic string comparison functions
+   * Generic string comparison functions.
+   *
+   * @protected
    *
    * @param {String} a
    * @param {String} b
+   *
    * @returns {Number}
-   * @protected
    */
   function cmpAny(a, b) {
     return (a > b) ? 1 : (a < b) ? -1 : 0;

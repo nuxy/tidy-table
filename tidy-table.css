@@ -76,8 +76,9 @@ table.tidy_table td span.label {
   display: none;
 }
 
-/* responsive (mobile devices) */
-
+/**
+ * Responsive (mobile devices)
+ */
 @media only screen and (min-device-width: 0px) and (max-device-width: 768px) {
   .tidy_table.media {
     margin: 0px !important;
