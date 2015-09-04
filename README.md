@@ -2,7 +2,7 @@
 
 Create a HTML table from JSON that can be sorted, selected, and post-processed using a simple callback.
 
-[<img src="https://github.com/nuxy/Tidy-Table/raw/master/preview.gif" alt="Tidy-Table" />](https://nuxy.github.io/Tidy-Table)
+[<img src="https://nuxy.github.io/Tidy-Table/preview.gif" alt="Tidy-Table" />](https://nuxy.github.io/Tidy-Table)
 
 ## Features
 
