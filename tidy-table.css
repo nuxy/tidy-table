@@ -10,7 +10,7 @@
  *    jquery.js
  */
 
-tidy_table {
+table.tidy_table {
   background-color: #FFFFFF;
   border-collapse: collapse;
   border: 1px solid #CCCCCC;
@@ -18,61 +18,61 @@ tidy_table {
   white-space: nowrap;
 }
 
-tidy_table thead {
+.tidy_table thead {
   border: none;
 }
 
-tidy_table .check_on {
+.tidy_table .check_on {
   background-color: #F5F5F5;
 }
 
-tidy_table .check_off {
+.tidy_table .check_off {
   background-color: #FFFFFF;
 }
 
-tidy_table th {
+.tidy_table th {
   background-color: #DDDDDD;
 }
 
-tidy_table .sort_asc {
+.tidy_table .sort_asc {
   background: #EEEEEE url( images/arrow_asc.gif ) no-repeat right center;
 }
 
-tidy_table .sort_desc {
+.tidy_table .sort_desc {
   background: #EEEEEE url( images/arrow_desc.gif ) no-repeat right center;
 }
 
-tidy_table th,
-tidy_table td {
+.tidy_table th,
+.tidy_table td {
   padding: 6px 20px 6px 20px;
 }
 
-tidy_table td {
+.tidy_table td {
   border-right: 1px solid #EEEEEE;
   border-top: 1px solid #CCCCCC;
   padding: 7px 20px 7px 20px;
 }
 
-tidy_table th:nth-child(1),
-tidy_table td:nth-child(1) {
+.tidy_table th:nth-child(1),
+.tidy_table td:nth-child(1) {
   width: 10px;
 }
 
-tidy_table td:nth-child(1) {
+.tidy_table td:nth-child(1) {
   border-right: 1px solid #EEEEEE;
 }
 
-tidy_table input[type=checkbox],
-tidy_table input[type=checkbox] {
+.tidy_table input[type=checkbox],
+.tidy_table input[type=checkbox] {
   display: block;
   margin: 0px auto 0px auto;
 }
 
-tidy_table td:nth-last-child(1) {
+.tidy_table td:nth-last-child(1) {
   border-right: none;
 }
 
-tidy_table td .label {
+.tidy_table td .label {
   display: none;
 }
 

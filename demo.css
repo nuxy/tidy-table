@@ -9,12 +9,12 @@
 /**
  * Customize
  */
-.tidy_table {
+select.tidy_table {
   float: right;
   margin: 10px 0px 10px 0px;
 }
 
-.tidy_table {
+table.tidy_table {
   background-color: #FFFFFF;
   border: 1px solid #BBBBBB;
   border-collapse: collapse;
