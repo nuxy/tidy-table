@@ -1,6 +1,7 @@
 /**
  *  Tidy Table
- *  Generate a sortable HTML table from JSON
+ *  Create a HTML table from JSON that can be sorted, selected
+ *  and post-processed using a simple callback.
  *
  *  Copyright 2012-2015, Marc S. Brooks (http://mbrooks.info)
  *  Licensed under the MIT license:
