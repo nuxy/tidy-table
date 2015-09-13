@@ -1,6 +1,6 @@
 {
   "name": "tidy-table",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "homepage": "https://github.com/nuxy/Tidy-Table",
   "description": "Create a HTML table from JSON that can be sorted, selected, and post-processed using a simple callback.",
   "main": "tidy-table.js",
