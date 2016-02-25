@@ -3,19 +3,14 @@
  *  Create a HTML table from JSON that can be sorted, selected
  *  and post-processed using a simple callback.
  *
- *  Copyright 2012-2015, Marc S. Brooks (https://mbrooks.info)
+ *  Copyright 2012-2016, Marc S. Brooks (https://mbrooks.info)
  *  Licensed under the MIT license:
  *  http://www.opensource.org/licenses/mit-license.php
- *
- *  Dependencies:
- *    jquery.js
  */
 
-if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace('.', '')) < parseInt('1.8.3'.replace('.', '')))) {
-  throw new Error('Tidy-Table requires jQuery 1.8.3 or greater.');
-}
+(function() {
+  "use strict";
 
-(function($) {
   var table = null;
 
   /**
@@ -30,16 +25,16 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      * @method init
      *
      * @example
-     * $('#container').TidyTable(settings, config);
+     * document.querySelector('#container').TidyTable(settings, config);
      *
      * @param {Object} settings
      * @param {Object} config
      *
-     * @returns {Object} jQuery object
+     * @returns {Object} DOM element
      */
     "init": function(settings, config) {
-      var $this = $(this),
-          data  = $this.data();
+      var _self = this,
+          data  = _self.data;
 
       // Default settings
       var defaults = {
@@ -50,34 +45,34 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
       };
 
       if (arguments.length > 1) {
-        $.extend(defaults, settings);
+        Object.assign(defaults, settings);
       }
       else {
         config = settings;
       }
 
       // Config defaults
-      config = $.extend({
+      config = Object.assign({
         sortByPattern: function(col_num, val) {
-          if ( $.trim(col_num) ) {
+          if (col_num && val) {
             return String(val).replace(/$|%|#/g, '');
           }
         }
       }, config);
 
-      if ( $.isEmptyObject(data) ) {
-        $this.data({
+      if (typeof data === 'undefined') {
+        this.data = {
           settings: defaults,
           config:   config
-        });
+        };
       }
 
       // Responsive layout?
       if (defaults.responsive) {
-        $this.addClass('tidy_table media');
+        _self.className = 'tidy_table media';
       }
 
-      return $this.TidyTable('_createTable');
+      return _self.TidyTable('_createTable');
     },
 
     /**
@@ -87,10 +82,10 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      * @method destroy
      *
      * @example
-     * $('#container').TidyTable('destroy');
+     * document.querySelector('#container').TidyTable('destroy');
      */
     "destroy": function() {
-      $(this).removeData();
+      this.remove();
     },
 
     /**
@@ -103,37 +98,34 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      * @param {String|undefined} num
      * @param {String|undefined} order
      *
-     * @returns {Object} jQuery object
+     * @returns {Object} DOM element
      */
     "_createTable": function(num, order) {
-      var $this = $(this),
-          data  = $this.data();
+      var _self = this,
+          data  = _self.data;
 
       // Create reusable elements.
-      table = $('<table></table>')
-        .addClass('tidy_table');
+      table = document.createElement('table');
+      table.className = 'tidy_table';
 
-      // Disable IE7/8 text selection.
-      table.mousedown(function() { return false; });
-      table.mouseover(function() { return false; });
-
-      var thead  = $('<thead></thead>'),
-          tbody  = $('<tbody></tbody>'),
+      var thead  = document.createElement('thead'),
+          tbody  = document.createElement('tbody'),
           titles = null;
 
       // .. <THEAD>
       (function() {
         titles = data.config.columnTitles;
 
-        var row = $('<tr></tr>');
+        var row = document.createElement('tr');
 
         for (var i = 0; i < titles.length; i++) {
           var title = titles[i];
 
-          var col = $('<th></th>')
-            .append(title)
-            .attr('title', title);
-          row.append(col);
+          var col = document.createElement('th');
+
+          col.appendChild(document.createTextNode(title));
+          col.setAttribute('title', title);
+          row.appendChild(col);
 
           var col_class;
 
@@ -161,109 +153,102 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
 
           // Highlight selected column.
           if (num == i) {
-            col.addClass(col_class);
+            col.className = col_class;
           }
 
           // Attach sorting event to each column.
-          col.on('click', {
-            col_number: i,
-            sort_order: (num == i) ? col.order : 'asc'
-          },
-          function(event) {
-            $this.TidyTable('_sortByColumn', event.data.col_number, event.data.sort_order);
+          col.addEventListener('click', function() {
+            _self.TidyTable('_sortByColumn', i, (num == i) ? col.order : 'asc');
           });
         }
 
-        thead.append(row);
+        thead.appendChild(row);
       })();
 
       // .. <TBODY>
       (function() {
-        var vals = data.config.columnValues;
+        var vals = data.config.columnValues,
+            col  = null;
 
         for (var j = 0; j < vals.length; j++) {
-          var row = $('<tr></tr>');
+
+          // Create the row.
+          var row = document.createElement('tr');
 
           for (var k = 0; k < vals[j].length; k++) {
             var val = vals[j][k];
 
-            var col = $('<td></td>')
-              .append(val)
-              .attr('title', val);
-            row.append(col);
+            // Create the column.
+            col = document.createElement('td');
+            col.appendChild(document.createTextNode(val));
+            col.setAttribute('title', val);
+            row.appendChild(col);
 
             // Post-process table column HTML object.
-            if (data.config.postProcess && $.isFunction(data.config.postProcess.column)) {
+            if (data.config.postProcess && typeof data.config.postProcess.column === "function") {
               data.config.postProcess.column(col);
             }
           }
 
-          tbody.append(row);
+          tbody.appendChild(row);
         }
 
-        table.append(thead);
-        table.append(tbody);
+        table.appendChild(thead);
+        table.appendChild(tbody);
 
         // Append check boxes to beginning each row.
         if (data.settings && data.settings.enableCheckbox) {
-          var rows = table.find('tr');
+          var rows = table.querySelectorAll('tr');
 
-          rows.each(function(index) {
-            var input = $('<input></input>')
-              .attr('type', 'checkbox');
-
-            var col;
+          for (var i = 0; i < rows.length; i++) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'checkbox');
 
             // First row is always the header.
-            if (index === 0) {
-              col = $('<th></th>');
+            if (i === 0) {
+              col = document.createElement('th');
 
               // Attach event to check all boxes.
-              input.on('click', function() {
-                $this.TidyTable('_toggleSelRows', rows);
+              input.addEventListener('click', function() {
+                _self.TidyTable('_toggleSelRows', rows);
               });
             }
             else {
-              col = $('<td></td>');
+              col = document.createElement('td');
 
               // Attach event to each checkbox.
-              input.on('click', {
-                box_number: index
-              },
-              function(event) {
-                $this.TidyTable('_toggleSelRows', rows, event.data.box_number);
+              input.addEventListener('click', function() {
+                _self.TidyTable('_toggleSelRows', rows, i);
               });
             }
 
-            col.append(input);
+            col.appendChild(input);
 
             // Insert before first cell.
-            $(this).prepend(col);
-          });
+            rows[i].insertBefore(col, rows[i].firstChild);
+          }
         }
       })();
 
       // Post-process table results HTML object.
-      if (data.config.postProcess && $.isFunction(data.config.postProcess.table)) {
+      if (data.config.postProcess && typeof data.config.postProcess.table === "function") {
         data.config.postProcess.table(table);
       }
 
-      var block = $this.children('table.tidy_table');
+      var block = _self.querySelector('table.tidy_table');
 
       // If table exists, perform an in-place update of the element.
-      if (block[0]) {
-        block.replaceWith(table);
+      if (block) {
+        block.parentNode.replaceChild(table, block);
       }
 
       // Generate table/menu elements.
       else {
         if (data.settings && data.settings.enableMenu) {
-          $this.append(
-            $this.TidyTable('_createMenu', 'options')
-          );
+          _self.appendChild( _self.TidyTable('_createMenu', 'options') );
         }
 
-        $this.append(table);
+        _self.appendChild(table);
       }
 
       return table;
@@ -278,38 +263,41 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      *
      * @param {String} name
      *
-     * @returns {Object} jQuery object
+     * @returns {Object} DOM element
      */
     "_createMenu": function(name) {
-      var $this = $(this),
-          data  = $this.data();
+      var _self = this,
+          data  = _self.data;
 
       // Create reusable elements.
-      var select = $('<select></select>')
-        .addClass('tidy_table ' + name)
-        .change(function() {
-          var elm = $(this);
+      var select = document.createElement('select');
+      select.className = 'tidy_table ' + name;
 
-          var callback = data.config.menuOptions[ elm.val() ][1]['callback'];
+      // Listen for select menu events.
+      select.addEventListener('change', function() {
+        var elm = this;
 
-          // Callback event
-          if ( $.isFunction(callback) ) {
-            callback( $this.TidyTable('_getCheckedAsObj') );
-          }
+        // Execute callback.
+        var callback = data.config.menuOptions[elm.value][1].callback;
 
-          elm.val(0);
-        });
+        if (typeof callback === 'function') {
+          callback( _self.TidyTable('_getCheckedAsObj') );
+        }
 
-      // .. Options
-      $.each(data.config.menuOptions, function(index) {
-        var option = $('<option>' + data.config.menuOptions[index][0] + '</option>')
-          .attr('value', index);
-
-        select.append(option);
+        elm.value = 0;
       });
 
+      // .. Options
+      for (var i = 0; i < data.config.menuOptions.length; i++) {
+        var option = document.createElement('option');
+        option.text  = data.config.menuOptions[i][0];
+        option.value = i;
+
+        select.appendChild(option);
+      }
+
       // Post-process select menu HTML object.
-      if (data.config.postProcess && $.isFunction(data.config.postProcess.menu)) {
+      if (data.config.postProcess && typeof data.config.postProcess.menu === 'function') {
         data.config.postProcess.menu(select);
       }
 
@@ -326,8 +314,8 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      * @returns {Array}
      */
     "_getCheckedAsObj": function() {
-      var $this = $(this),
-          rows  = $this.find('tbody > tr'),
+      var _self = this,
+          rows  = _self.querySelector('tbody > tr'),
           objs  = [];
 
       for (var i = 0; i < rows.length; i++) {
@@ -356,49 +344,49 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      * @method _toggleSelRows
      * @private
      *
-     * @param {Object} rows jQuery object
+     * @param {Object} rows DOM element
      * @param {Number} num
      */
     "_toggleSelRows": function(rows, num) {
       var checked = null;
 
-      rows.each(function(index) {
-        var row   = $(this),
-            input = row.find(':checkbox').first();
+      for (var i = 0; i < rows.length; i++) {
+        var row   = rows[i],
+            input = row.querySelector('input[type=checkbox]');
 
         // Update all rows.
         if (!num) {
-          if (index === 0) {
-            checked = (input.is(':checked')) ? true : false;
-            return;
+          if (i === 0) {
+            checked = input.checked;
+            continue;
           }
 
           if (checked) {
-            row.removeClass('check_off').addClass('check_on');
-            input.prop('checked', true);
+            row.className = row.className.replace(/\bcheck_off\b/, 'check_on');
+            input.checked = true;
           }
           else {
-            row.removeClass('check_on').addClass('check_off');
-            input.prop('checked', false);
+            row.className = row.className.replace(/\bcheck_on\b/, 'check_off');
+            input.checked = false;
           }
         }
 
         // Update selected row.
         else {
-          if (index === 0) {
+          if (i === 0) {
             return;
           }
 
-          if (input.is(':checked')) {
-            row.removeClass('check_off').addClass('check_on');
-            input.prop('checked', true);
+          if (input.checked === true) {
+            row.className = row.className.replace(/\bcheck_off\b/, 'check_on');
+            input.checked = true;
           }
           else {
-            row.removeClass('check_on').addClass('check_off');
-            input.prop('checked', false);
+            row.className = row.className.replace(/\bcheck_on\b/, 'check_off');
+            input.checked = false;
           }
         }
-      });
+      }
     },
 
     /**
@@ -412,10 +400,10 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
      * @param {Number} order
      */
     "_sortByColumn": function(num, order) {
-      var $this = $(this),
-          data  = $this.data();
+      var _self = this,
+          data  = _self.data;
 
-      if ( $.isFunction(data.config.sortByPattern) ) {
+      if (typeof data.config.sortByPattern === 'function') {
         var reverse = (order == 'desc') ? -1 : 1;
 
         // Sort JSON object by bucket number.
@@ -433,11 +421,11 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
         });
       }
 
-      $this.TidyTable('_createTable', num, order);
+      _self.TidyTable('_createTable', num, order);
     }
   };
 
-  $.fn.TidyTable = function(method) {
+  Element.prototype.TidyTable = function(method) {
     if (methods[method]) {
       return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
     }
@@ -446,7 +434,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
       return methods.init.apply(this, arguments);
     }
     else {
-      $.error('Method ' +  method + ' does not exist in jQuery.TidyTable');
+      throw new Error('Method ' +  method + ' does not exist in TidyTable');
     }
   };
 
@@ -467,4 +455,4 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
   function cmpInt(a, b) {
     return b - a;
   }
-})(jQuery);
+})();
