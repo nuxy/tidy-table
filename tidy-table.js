@@ -25,7 +25,7 @@
      * @method init
      *
      * @example
-     * document.querySelector('#container').TidyTable(settings, config);
+     * document.getElementById('#container').TidyTable(settings, config);
      *
      * @param {Object} settings
      * @param {Object} config
@@ -61,7 +61,7 @@
       }, config);
 
       if (typeof data === 'undefined') {
-        this.data = {
+        _self.data = {
           settings: defaults,
           config:   config
         };
@@ -82,7 +82,7 @@
      * @method destroy
      *
      * @example
-     * document.querySelector('#container').TidyTable('destroy');
+     * document.getElementById('#container').TidyTable('destroy');
      */
     "destroy": function() {
       this.remove();
@@ -122,9 +122,9 @@
           var title = titles[i];
 
           var col = document.createElement('th');
-
           col.appendChild(document.createTextNode(title));
           col.setAttribute('title', title);
+
           row.appendChild(col);
 
           var col_class;
@@ -156,10 +156,12 @@
             col.className = col_class;
           }
 
+          col.index = i;
+
           // Attach sorting event to each column.
           col.addEventListener('click', function() {
-            _self.TidyTable('_sortByColumn', i, (num == i) ? col.order : 'asc');
-          });
+            _self.TidyTable('_sortByColumn', this.index, ((num == this.index) ? this.order : 'asc'));
+          }, false);
         }
 
         thead.appendChild(row);
@@ -182,10 +184,11 @@
             col = document.createElement('td');
             col.appendChild(document.createTextNode(val));
             col.setAttribute('title', val);
+
             row.appendChild(col);
 
             // Post-process table column HTML object.
-            if (data.config.postProcess && typeof data.config.postProcess.column === "function") {
+            if (data.config.postProcess && (typeof data.config.postProcess.column === "function")) {
               data.config.postProcess.column(col);
             }
           }
@@ -203,6 +206,7 @@
           for (var i = 0; i < rows.length; i++) {
             var input = document.createElement('input');
             input.setAttribute('type', 'checkbox');
+            input.index = i;
 
             // First row is always the header.
             if (i === 0) {
@@ -218,7 +222,7 @@
 
               // Attach event to each checkbox.
               input.addEventListener('click', function() {
-                _self.TidyTable('_toggleSelRows', rows, i);
+                _self.TidyTable('_toggleSelRows', rows, this.index);
               });
             }
 
@@ -231,7 +235,7 @@
       })();
 
       // Post-process table results HTML object.
-      if (data.config.postProcess && typeof data.config.postProcess.table === "function") {
+      if (data.config.postProcess && (typeof data.config.postProcess.table === "function")) {
         data.config.postProcess.table(table);
       }
 
@@ -297,7 +301,7 @@
       }
 
       // Post-process select menu HTML object.
-      if (data.config.postProcess && typeof data.config.postProcess.menu === 'function') {
+      if (data.config.postProcess && (typeof data.config.postProcess.menu === 'function')) {
         data.config.postProcess.menu(select);
       }
 
@@ -315,7 +319,7 @@
      */
     "_getCheckedAsObj": function() {
       var _self = this,
-          rows  = _self.querySelector('tbody > tr'),
+          rows  = _self.querySelectorAll('tbody > tr'),
           objs  = [];
 
       for (var i = 0; i < rows.length; i++) {
@@ -362,11 +366,11 @@
           }
 
           if (checked) {
-            row.className = row.className.replace(/\bcheck_off\b/, 'check_on');
+            row.className = (row.className) ? row.className.replace(/check_off/, 'check_on') : 'check_on';
             input.checked = true;
           }
           else {
-            row.className = row.className.replace(/\bcheck_on\b/, 'check_off');
+            row.className = row.className.replace(/check_on/, 'check_off');
             input.checked = false;
           }
         }
@@ -374,15 +378,15 @@
         // Update selected row.
         else {
           if (i === 0) {
-            return;
+            continue;
           }
 
           if (input.checked === true) {
-            row.className = row.className.replace(/\bcheck_off\b/, 'check_on');
+            row.className = (row.className) ? row.className.replace(/check_off/, 'check_on') : 'check_on';
             input.checked = true;
           }
           else {
-            row.className = row.className.replace(/\bcheck_on\b/, 'check_off');
+            row.className = row.className.replace(/check_on/, 'check_off');
             input.checked = false;
           }
         }
