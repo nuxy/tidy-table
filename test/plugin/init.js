@@ -1,6 +1,6 @@
 module('Tidy-Table', {
   setup: function() {
-    $('#qunit-fixture')
+    document.getElementById('qunit-fixture')
       .TidyTable({
         enableCheckbox: true,
         enableMenu:     true,
@@ -39,7 +39,7 @@ module('Tidy-Table', {
     }
 
     function doSomething3(table) {
-      table.on('hover', function() {
+      table.addEventListener('hover', function() {
         if (next['event3']) {
           alert('post-process(table)');
         }
@@ -47,15 +47,15 @@ module('Tidy-Table', {
     }
 
     function doSomething4(col) {
-      col.on('click', function() {
+      col.addEventListener('click', function() {
         if (next['event4']) {
-          alert('post-process(value=' + $(this).text() + ')');
+          alert('post-process(value=' + this.textContent + ')');
         }
       });
     }
 
     function doSomething5(menu) {
-      menu.on('change', function() {
+      menu.addEventListener('change', function() {
         if (next['event5']) {
           alert('post-process(menu)');
         }
@@ -68,5 +68,5 @@ module('Tidy-Table', {
 });
 
 test('Generate HTML', function() {
-  ok($('#qunit-fixture').find(table), 'Table elements created');
+  ok(document.getElementById('qunit-fixture').querySelector(table), 'Table elements created');
 });
