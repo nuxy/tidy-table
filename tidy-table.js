@@ -25,7 +25,7 @@
      * @method init
      *
      * @example
-     * document.getElementById('#container').TidyTable(settings, config);
+     * document.getElementById('container').TidyTable(settings, config);
      *
      * @param {Object} settings
      * @param {Object} config
@@ -82,7 +82,7 @@
      * @method destroy
      *
      * @example
-     * document.getElementById('#container').TidyTable('destroy');
+     * document.getElementById('container').TidyTable('destroy');
      */
     "destroy": function() {
       this.remove();
