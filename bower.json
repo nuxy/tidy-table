@@ -4,6 +4,10 @@
   "homepage": "https://github.com/nuxy/Tidy-Table",
   "description": "Create a HTML table from JSON that can be sorted, selected, and post-processed using a simple callback.",
   "main": "tidy-table.js",
+  "dependencies": {
+    "tidy-table-legacy": "tidy-table#^2",
+    "tidy-table-modern": "tidy-table#^3"
+  },
   "keywords": [
     "javascript",
     "library"
