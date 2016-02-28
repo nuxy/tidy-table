@@ -11,7 +11,7 @@ test('Global Checkbox', function() {
 
   ok(checkbox.dispatchEvent(event), 'Trigger checkbox click event');
 
-  var rows = document.querySelector(table).querySelectorAll('tbody tr');
+  var rows = document.querySelector(table).querySelector('tbody tr');
 
   for (var i = 0; i < rows.length; i++) {
     var row = rows[i];
@@ -39,6 +39,8 @@ test('Global Checkbox', function() {
 test('Single Checkbox', function() {
   var rows = document.querySelector(table).querySelectorAll('tbody tr');
 
+  var event = document.createEvent('Event');
+
   for (var i = 0; i < rows.length; i++) {
     var row = rows[i];
 
@@ -48,16 +50,12 @@ test('Single Checkbox', function() {
 
     ok('Row ' + i + ' checkbox checked');
 
-    var event = document.createEvent('Event');
-
     event.initEvent('click', false, true);
 
     ok(checkbox.dispatchEvent(event), 'Trigger checkbox click event');
 
     ok(row.classList.contains('check_on'), "<tr> contains required class 'check_on'");
   }
-
-  var rows = document.querySelector(table).querySelector('tbody tr');
 
   for (var i = 0; i < rows.length; i++) {
     var row = rows[i];
@@ -213,7 +211,7 @@ test('Select Menu Sort', function() {
 
   var count1 = 0;
 
-  var rows = document.querySelector(table).querySelectorAll('tbody tr');
+  var rows = document.querySelector(table).querySelector('tbody tr');
 
   for (var i = 0; i < rows.length; i++) {
     var row = rows[i],
@@ -266,7 +264,7 @@ test('Select Menu Sort', function() {
 
   next['event1'] = false;
 
-  var rows = document.querySelector(table).querySelectorAll('tbody tr');
+  var rows = document.querySelector(table).querySelector('tbody tr');
 
   for (var i = 0; i < rows.length; i++) {
     rows[i].querySelector('input[type=checkbox]').checked = false;
@@ -286,7 +284,7 @@ test('Select Menu Sort', function() {
 
   var count2 = 0;
 
-  var rows = document.querySelector(table).querySelectorAll('tbody tr');
+  var rows = document.querySelector(table).querySelector('tbody tr');
 
   for (var i = 0; i < rows.length; i++) {
     var row = rows[i],
@@ -352,6 +350,7 @@ test('Post-processing', function() {
   next['event3'] = true;
 
   var event = document.createEvent('Event');
+
   event.initEvent('hover', false, true);
 
   ok(document.querySelector(table).dispatchEvent(event), 'Trigger table hover event');
@@ -363,16 +362,18 @@ test('Post-processing', function() {
   next['event3'] = false;
   next['event4'] = true;
 
-  var cols = document.querySelector(table).querySelector('tbody td[title]');
+  var cols = document.querySelector(table).querySelectorAll('tbody td[title]');
 
   for (var i = 0; i < cols.length; i++) {
     var col = cols[i];
 
+    var event = document.createEvent('Event');
+
     event.initEvent('click', false, true);
 
-    ok(col.dispatchEvent(event), "Trigger column '" + col.text() + "' click event");
+    ok(col.dispatchEvent(event), "Trigger column '" + col.textContent + "' click event");
 
-    var result4 = 'post-process(value=' + col.text() + ')';
+    var result4 = 'post-process(value=' + col.textContent + ')';
 
     equal(window.alert.message, result4, "Window alert message expected is '" + result4 + "'");
   }
@@ -383,6 +384,8 @@ test('Post-processing', function() {
   var menu = document.querySelector('select.options');
 
   menu.value = 1;
+
+  var event = document.createEvent('Event');
 
   event.initEvent('change', false, true);
 
