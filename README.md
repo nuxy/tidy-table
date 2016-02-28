@@ -7,19 +7,24 @@ Create a HTML table from JSON that can be sorted, selected, and post-processed u
 ## Features
 
 - Extensible HTML/CSS interface.
-- Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.
-- Compatible with iOS and Android mobile web browsers.
+- Compatible with all modern desktop and mobile web browsers.
 - Fully responsive layout with touch event support.
 - Easy to set-up and customize.
 - Customizable callback functions for post-processing selected results.
 - Post-process options for manipulating table/column/menu elements.
-- Fast and lightweight (jQuery plug-in *only 5.9 kB)
+- Fast and lightweight (JavaScript plug-in *only 5 kB)
 
 ## Installation
 
 This package can be easily installed using [Bower](http://bower.io).
 
-    $ bower install tidy-table
+### Modern v3 (No dependencies)
+
+    $ bower install tidy-table-modern
+
+### Legacy v2 (Requires [jQuery 1.8.3](http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js). Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.)
+
+    $ bower install tidy-table-legacy
 
 Please refer to the [README](https://nuxy.github.io/Tidy-Table) for more information about this package.
 
