@@ -18,11 +18,13 @@ Create a HTML table from JSON that can be sorted, selected, and post-processed u
 
 This package can be easily installed using [Bower](http://bower.io).
 
-### Modern v3 (No dependencies)
+### Modern v3.x (No dependencies)
 
     $ bower install tidy-table-modern
 
-### Legacy v2 (Requires [jQuery 1.8.3](http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js). Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.)
+### Legacy v2.x (Requires [jQuery 1.8.3](http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js))
+
+Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.
 
     $ bower install tidy-table-legacy
 
