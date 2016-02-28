@@ -1,7 +1,4 @@
 {
-  "globals": {
-    "jQuery": true
-  },
   "browser": true,
   "loopfunc": true
 }
