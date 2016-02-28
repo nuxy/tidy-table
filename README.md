@@ -12,17 +12,17 @@ Create a HTML table from JSON that can be sorted, selected, and post-processed u
 - Easy to set-up and customize.
 - Customizable callback functions for post-processing selected results.
 - Post-process options for manipulating table/column/menu elements.
-- Fast and lightweight (JavaScript plug-in *only 5 kB)
+- Fast and lightweight (JavaScript plug-in *only 3 kB)
 
 ## Installation
 
 This package can be easily installed using [Bower](http://bower.io).
 
-### Modern v3.x (No dependencies)
+### Modern v3 (no dependencies)
 
     $ bower install tidy-table-modern
 
-### Legacy v2.x (Requires [jQuery 1.8.3](http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js))
+### Legacy v2 (requires [jQuery 1.8.3](http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js))
 
 Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.
 
