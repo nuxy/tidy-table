@@ -20,13 +20,13 @@ This package can be easily installed using [Bower](http://bower.io).
 
 ### Modern v3 (no dependencies)
 
-    $ bower install tidy-table-modern
+    $ bower install tidy-table#3
 
 ### Legacy v2 (requires [jQuery 1.8.3](http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js))
 
 Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.
 
-    $ bower install tidy-table-legacy
+    $ bower install tidy-table#2
 
 Please refer to the [README](https://nuxy.github.io/Tidy-Table) for more information about this package.
 
