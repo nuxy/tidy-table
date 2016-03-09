@@ -21,13 +21,12 @@
 
 <ul>
   <li>Extensible HTML/CSS interface.</li>
-  <li>Compatible with Firefox 3.6+, Chrome, Safari 5+, Opera, and Internet Explorer 7+ web browsers.</li>
-  <li>Compatible with iOS and Android mobile web browsers.</li>
+  <li>Compatible with all modern desktop and mobile web browsers.</li>
   <li>Fully responsive layout with touch event support.</li>
   <li>Easy to set-up and customize.</li>
   <li>Customizable callback functions for post-processing selected results.</li>
   <li>Post-process options for manipulating table/column/menu elements.</li>
-  <li>Fast and lightweight (jQuery plug-in *only 6.1 kB)</li>
+  <li>Fast and lightweight (JavaScript plug-in *only 3 kB)</li>
 </ul>
 
 <p>Check out the <a href="demo.html">demo</a> provided with this package.</p>
@@ -38,7 +37,15 @@
 
 <p>This package can be easily installed using <a href="http://bower.io">Bower</a>.</p>
 
-<pre>$ bower install tidy-table</pre>
+<h4>Modern v3 (no dependencies)</h4>
+
+<pre>$ bower install tidy-table#3</pre>
+
+<h4>Legacy v2 (requires <a href="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">jQuery 1.8.3</a>)</h4>
+
+<p>Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.</p>
+
+<pre>$ bower install tidy-table#2</pre>
 
 <p>Manual install:</p>
 
@@ -65,9 +72,11 @@
 
 <h2>Set-up</h2>
 
-<p>It's as simple as defining the target element <code>#container</code> using the <a href="http://api.jquery.com/category/selectors">jQuery selector</a> and passing tabular data as JSON.  There are options available for post-processing table/column/menu elements, if needed.</p>
+<p>It's as simple as defining a node <code>container</code> using a JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById">selector</a> and passing tabular data as JSON.  There are options available for post-processing table/column/menu elements, if needed.</p>
 
-<pre>$(selector).TidyTable(<a href="#settings"><em>settings</em></a>, <em>data [columnTitles, columnValues, menuOptions, postProcess]</em>);</pre>
+<pre>document.getElementById('container').TidyTable(
+  <a href="#settings"><em>settings</em></a>, <em>data [columnTitles, columnValues, menuOptions, postProcess]</em>
+);</pre>
 
 <h2>Source Code</h2>
 
@@ -77,12 +86,10 @@
 
 <h4>Use Example 1 - Options defined</h4>
 
-<pre>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;
-
-&lt;script src="/path/to/tidy-table.min.js"&gt;&lt;/script&gt;
+<pre>&lt;script src="/path/to/tidy-table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-$(document).ready(function() {
-  var block = $('#container')
+window.addEventListener('load', function() {
+  var block = document.getElementById('container')
     .TidyTable({
       enableCheckbox: true,
       enableMenu:     true
@@ -119,27 +126,21 @@ $(document).ready(function() {
     });
 
   // copy the table options menu
-  var menu = $('select.tidy_table', block).clone(true);
-  block.append(menu);
-
-  // optional animation
-  block.slideDown('fast');
+  var menu = block.querySelector('select.tidy_table').cloneNode(true);
+  block.appendChild(menu);
 
   // remove stored data
   block.TidyTable('destroy');
-
 &lt;/script&gt;
 
 &lt;link rel="stylesheet" type="text/css" href="/path/to/tidy-table.min.css"&gt;</pre>
 
 <h4>Use Example 2 - Quick and dirty</h4>
 
-<pre>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;
-
-&lt;script src="/path/to/tidy-table.min.js"&gt;&lt;/script&gt;
+<pre>&lt;script src="/path/to/tidy-table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-$(document).ready(function() {
-  $('#container')
+window.addEventListener('load', function() {
+  document.getElementById('container')
     .TidyTable({
       columnTitles: ['Column A', 'Column B', 'Column C', 'Column D', 'Column E'],
       columnValues: [
@@ -212,52 +213,52 @@ function doSomething2(rows) {
 <h4>Hide the second column of results</h4>
 
 <pre>function doSomething3(table) {
-  table.find('th:nth-child(2), td:nth-child(2)').css('display','none');
+  var cols = table.querySelectorAll('th:nth-child(2), td:nth-child(2)');
+
+  for (var i = 0; i &lt; cols.length; i++) {
+    cols[i].style.display = 'none';
+  }
 }</pre>
 
 <h4>Create form element (for inline editing) on mouse event</h4>
 
 <pre>function doSomething4(col) {
-  col.bind('click', function() {
-    var $this = $(this);
+  col.addEventListener('click', function() {
+    if (this.querySelector('form')) return;
 
-    if ($this.find('form')[0]) return;
+    var form = document.createElement('form');
 
-    var form = $('&lt;form&gt;&lt;/form&gt;')
-      .bind('submit', function() {
-        $.ajax({
-          type: 'POST',
-          url:  'http://domain.com/path/to/script'
-        });
-      });
+    form.addEventListener('submit', function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'http://domain.com/path/to/script');
+      xhr.send(null);
+    });
 
-    var field = $('&lt;input&gt;&lt;/input&gt;')
-      .attr({
-        type:  'text',
-        value: $this.text()
-      });
+    var field = document.createElement('input');
+    field.setAttribute('type', 'text');
+    field.setAttribute('value', this.textContent);
 
-    var button = $('&lt;input&gt;&lt;/input&gt;')
-      .attr({
-        type:  'submit',
-        value: 'Save'
-      });
+    var button = document.createElement('input');
+    button.setAttribute('type', 'submit');
 
-    $this.html(form.append(field, button));
+    form.appendChild(field).appendChild(button);
+
+    this.removeChild(this.firstChild);
+    this.appendChild(form);
   });
 }</pre>
 
 <h4>Hide menus when a session cookie doesn't exist</h4>
 
 <pre>function doSomething5(menu) {
-  if (!$.cookie('session')) {
-    menu.css('display','none');
+  if (!getCookie('session')) {
+    menu.style.display = 'none';
   }
 }</pre>
 
-<h2>jQuery Support</h2>
+<h2>v2 Support</h2>
 
-<p>In order to support older web browsers, specifically Internet Explorer 7, this package requires <a href="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">jQuery 1.8.3</a>.  Furthermore, jQuery has recently dropped support for IE8 in version 2, so if there is no compelling reason to support these two web browsers it is recommended that you upgrade to the latest version of jQuery.  If you still need to support IE8 please upgrade to <a href="http://blog.jquery.com/2012/06/28/jquery-core-version-1-9-and-beyond/">jQuery 1.9+</a>.</p>
+<p>There will be limited support for this version going forward.  It's recommended that you upgrade to the <a href="https://github.com/nuxy/Tidy-Table/releases">latest release</a> to take advantage of the new features and bug fixes.</p>
 
 <h2>Functional Testing</h2>
 
@@ -269,7 +270,7 @@ function doSomething2(rows) {
 
 <h2>Releases</h2>
 
-<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.9 kB) and developers version (unpacked  12 kB)</p>
+<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.8 kB) and developers version (unpacked  12 kB)</p>
 
 <p>You can always find the latest updates within this projects repository.</p>
 
@@ -289,7 +290,7 @@ function doSomething2(rows) {
 
 <p>Tidy Table is provided under the terms of the <a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>.</p>
 
-<p>Tidy Table &#169;2012-2015 <a href="https://mbrooks.info">Marc S. Brooks</a></p>
+<p>Tidy Table &#169;2012-2016 <a href="https://mbrooks.info">Marc S. Brooks</a></p>
 
 </body>
 </html>
