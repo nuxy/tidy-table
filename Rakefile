@@ -1,7 +1,6 @@
 desc "Check code quality"
 task :jshint do
-  test_file = File.expand_path('tidy-table.js')
-  system("jshint file://#{test_file}")
+  system("jshint")
 end
 
 desc "Run test suite"
