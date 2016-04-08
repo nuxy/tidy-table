@@ -54,7 +54,7 @@
       // Config defaults
       config = Object.assign({
         sortByPattern: function(col_num, val) {
-          if (col_num && val) {
+          if (typeof col_num !== 'undefined' && typeof val !== 'undefined') {
             return String(val).replace(/$|%|#/g, '');
           }
         }
