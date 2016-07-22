@@ -25,6 +25,15 @@
       return output;
     };
   }
+
+  // Event interface fix for QtWebKit dependent browsers
+  if (typeof Event != 'function') {
+    Event = function(name) {
+      var event = document.createEvent('Event');
+      event.initEvent(name, false, true);
+      return event;
+    };
+  }
   </script>
 
   <script src="test/unit/qunit-1.14.0.js"></script>
