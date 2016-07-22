@@ -5,11 +5,9 @@ test('Global Checkbox', function() {
 
   ok('Select all rows checkbox checked');
 
-  var event = document.createEvent('Event');
+  var click = new Event('click');
 
-  event.initEvent('click', false, true);
-
-  ok(checkbox.dispatchEvent(event), 'Trigger checkbox click event');
+  ok(checkbox.dispatchEvent(click), 'Trigger checkbox click event');
 
   var rows = document.querySelector(table).querySelector('tbody tr');
 
@@ -25,7 +23,7 @@ test('Global Checkbox', function() {
 
   ok('Deselect all rows checkbox checked');
 
-  ok(checkbox.dispatchEvent(event), 'Trigger checkbox event');
+  ok(checkbox.dispatchEvent(click), 'Trigger checkbox event');
 
   for (var i = 0; i < rows.length; i++) {
     var row = rows[i];
@@ -39,7 +37,7 @@ test('Global Checkbox', function() {
 test('Single Checkbox', function() {
   var rows = document.querySelector(table).querySelectorAll('tbody tr');
 
-  var event = document.createEvent('Event');
+  var click = new Event('click');
 
   for (var i = 0; i < rows.length; i++) {
     var row = rows[i];
@@ -50,9 +48,7 @@ test('Single Checkbox', function() {
 
     ok('Row ' + i + ' checkbox checked');
 
-    event.initEvent('click', false, true);
-
-    ok(checkbox.dispatchEvent(event), 'Trigger checkbox click event');
+    ok(checkbox.dispatchEvent(click), 'Trigger checkbox click event');
 
     ok(row.classList.contains('check_on'), "<tr> contains required class 'check_on'");
   }
@@ -66,9 +62,7 @@ test('Single Checkbox', function() {
 
     ok('Row ' + i + ' checkbox unchecked');
 
-    event.initEvent('click', false, true);
-
-    ok(checkbox.dispatchEvent(event), 'Trigger checkbox click event');
+    ok(checkbox.dispatchEvent(click), 'Trigger checkbox click event');
 
     ok(row.classList.contains('check_off'), "<tr> contains required class 'check_off'");
   }
@@ -83,11 +77,10 @@ test('Select Menu', function() {
 
   ok("Change menu 'Callback 1' option with no rows selected");
 
-  var event = document.createEvent('Event');
+  var change = new Event('change'),
+      click  = new Event('click');
 
-  event.initEvent('change', false, true);
-
-  ok(menu.dispatchEvent(event), 'Trigger menu change event');
+  ok(menu.dispatchEvent(change), 'Trigger menu change event');
 
   equal(window.alert.message, 'callback1(rows=0)', "Window alert message expected is 'callback1(rows=0)'");
 
@@ -106,9 +99,7 @@ test('Select Menu', function() {
 
       ok('Row ' + i + ' checkbox checked');
 
-      event.initEvent('click', false, true);
-
-      ok(checkbox.dispatchEvent(event), 'Trigger checkbox click event');
+      ok(checkbox.dispatchEvent(click), 'Trigger checkbox click event');
 
       ok(row.classList.contains('check_on'), "<tr> contains required class 'check_on'");
 
@@ -138,9 +129,7 @@ test('Select Menu', function() {
 
   ok("Change menu 'Callback 2' option with no rows selected");
 
-  event.initEvent('change', false, true);
-
-  ok(menu.dispatchEvent(event), 'Trigger menu change event');
+  ok(menu.dispatchEvent(change), 'Trigger menu change event');
 
   equal(window.alert.message, 'callback2(rows=0)', "Window alert message expected is 'callback2(rows=0)'");
 
@@ -159,9 +148,7 @@ test('Select Menu', function() {
 
       ok('Row ' + i + ' checkbox checked');
 
-      event.initEvent('click', false, true);
-
-      ok(checkbox.dispatchEvent(event), 'Trigger checkbox click event');
+      ok(checkbox.dispatchEvent(click), 'Trigger checkbox click event');
 
       checkbox.checked = true;
 
@@ -177,9 +164,7 @@ test('Select Menu', function() {
 
   var result2 = 'callback2(rows=' + count2 + ')';
 
-  event.initEvent('change', false, true);
-
-  ok(menu.dispatchEvent(event), 'Trigger menu change event');
+  ok(menu.dispatchEvent(change), 'Trigger menu change event');
 
   equal(window.alert.message, result2, "Window alert message expected is '" + result2 + "'");
 
@@ -201,11 +186,10 @@ test('Select Menu Sort', function() {
 
   ok("Change menu 'Callback 1' option with no rows selected");
 
-  var event = document.createEvent('Event');
+  var change = new Event('change'),
+      click  = new Event('click');
 
-  event.initEvent('change', false, true);
-
-  ok(menu.dispatchEvent(event), 'Trigger menu change event');
+  ok(menu.dispatchEvent(change), 'Trigger menu change event');
 
   equal(window.alert.message, 'callback1(rows=0)', "Window alert message expected is 'callback1(rows=0)'");
 
@@ -224,9 +208,7 @@ test('Select Menu Sort', function() {
 
       ok('Row ' + i + ' checkbox checked');
 
-      event.initEvent('click', false, true);
-
-      ok(checkbox.dispatchEvent(event), 'Trigger checkbox click event');
+      ok(checkbox.dispatchEvent(click), 'Trigger checkbox click event');
 
       checkbox.checked = true;
 
@@ -242,15 +224,11 @@ test('Select Menu Sort', function() {
 
   var result1 = 'callback1(rows=' + count1 + ')';
 
-  event.initEvent('change', false, true);
-
-  ok(menu.dispatchEvent(event), 'Trigger menu change event');
+  ok(menu.dispatchEvent(change), 'Trigger menu change event');
 
   var title = document.querySelector(table).querySelector('th[title="Column A"]');
 
-  event.initEvent('click', false, true);
-
-  ok(title.dispatchEvent(event), "Click sort event 'descending'");
+  ok(title.dispatchEvent(click), "Click sort event 'descending'");
 
   menu.value = 1;
 
@@ -258,9 +236,7 @@ test('Select Menu Sort', function() {
 
   var result2 = 'callback1(rows=0)';
 
-  event.initEvent('change', false, true);
-
-  ok(menu.dispatchEvent(event), 'Trigger menu change event');
+  ok(menu.dispatchEvent(change), 'Trigger menu change event');
 
   next['event1'] = false;
 
@@ -276,9 +252,7 @@ test('Select Menu Sort', function() {
 
   ok("Change menu 'Callback 2' option with no rows selected");
 
-  event.initEvent('change', false, true);
-
-  ok(menu.dispatchEvent(event), 'Trigger menu change event');
+  ok(menu.dispatchEvent(change), 'Trigger menu change event');
 
   equal(window.alert.message, 'callback2(rows=0)', "Window alert message expected is 'callback2(rows=0)'");
 
@@ -297,9 +271,7 @@ test('Select Menu Sort', function() {
 
       ok('Row ' + i + ' checkbox checked');
 
-      event.initEvent('click', false, true);
-
-      ok(checkbox.dispatchEvent(event), 'Trigger checkbox click event');
+      ok(checkbox.dispatchEvent(click), 'Trigger checkbox click event');
 
       ok(row.classList.contains('check_on'), "<tr> contains required class 'check_on'");
 
@@ -313,17 +285,13 @@ test('Select Menu Sort', function() {
 
   var result3 = 'callback2(rows=' + count2 + ')';
 
-  event.initEvent('change', false, true);
-
-  ok(menu.dispatchEvent(event), 'Trigger menu change event');
+  ok(menu.dispatchEvent(change), 'Trigger menu change event');
 
   equal(window.alert.message, result3, "Window alert message expected is '" + result3 + "'");
 
-  event.initEvent('click', false, true);
-
   var title = document.querySelector(table).querySelector('th[title="Column A"]');
 
-  ok(title.dispatchEvent(event), "Click sort event 'ascending'");
+  ok(title.dispatchEvent(click), "Click sort event 'ascending'");
 
   menu.value = 2;
 
@@ -331,9 +299,7 @@ test('Select Menu Sort', function() {
 
   var result4 = 'callback2(rows=0)';
 
-  event.initEvent('change', false, true);
-
-  ok(menu.dispatchEvent(event), 'Trigger menu change event');
+  ok(menu.dispatchEvent(change), 'Trigger menu change event');
 
   equal(window.alert.message, result4, "Window alert message expected is '" + result4 + "'");
 
@@ -349,11 +315,11 @@ test('Select Menu Sort', function() {
 test('Post-processing', function() {
   next['event3'] = true;
 
-  var event = document.createEvent('Event');
+  var change = new Event('change'),
+      click  = new Event('click'),
+      hover  = new Event('hover');
 
-  event.initEvent('hover', false, true);
-
-  ok(document.querySelector(table).dispatchEvent(event), 'Trigger table hover event');
+  ok(document.querySelector(table).dispatchEvent(hover), 'Trigger table hover event');
 
   var result3 = 'post-process(table)';
 
@@ -367,11 +333,7 @@ test('Post-processing', function() {
   for (var i = 0; i < cols.length; i++) {
     var col = cols[i];
 
-    var event = document.createEvent('Event');
-
-    event.initEvent('click', false, true);
-
-    ok(col.dispatchEvent(event), "Trigger column '" + col.textContent + "' click event");
+    ok(col.dispatchEvent(click), "Trigger column '" + col.textContent + "' click event");
 
     var result4 = 'post-process(value=' + col.textContent + ')';
 
@@ -385,11 +347,7 @@ test('Post-processing', function() {
 
   menu.value = 1;
 
-  var event = document.createEvent('Event');
-
-  event.initEvent('change', false, true);
-
-  ok(menu.dispatchEvent(event), 'Trigger menu change event');
+  ok(menu.dispatchEvent(change), 'Trigger menu change event');
 
   var result5 = 'post-process(menu)';
 

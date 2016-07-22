@@ -1,10 +1,9 @@
 test('Sort Column A', function() {
   var col = 'th[title="Column A"]';
 
-  var event = document.createEvent('Event');
-  event.initEvent('click', true, true);
+  var click = new Event('click');
 
-  ok(document.querySelector(table).querySelector(col).dispatchEvent(event), "Click event 'descending'");
+  ok(document.querySelector(table).querySelector(col).dispatchEvent(click), "Click event 'descending'");
 
   ok(document.querySelector(table).querySelector(col).classList.contains('sort_desc'), "<th> contains required class 'sort_desc'");
 
@@ -13,7 +12,7 @@ test('Sort Column A', function() {
   equal(document.querySelector(table).querySelector('tr:nth-child(3) > td:nth-child(2)').textContent, 'Row 2A', "3rd column expected is 'Row 2A'");
   equal(document.querySelector(table).querySelector('tr:nth-child(4) > td:nth-child(2)').textContent, 'Row 1A', "4th column expected is 'Row 1A'");
 
-  ok(document.querySelector(table).querySelector(col).dispatchEvent(event), "Click event 'ascending'");
+  ok(document.querySelector(table).querySelector(col).dispatchEvent(click), "Click event 'ascending'");
 
   ok(document.querySelector(table).querySelector(col).classList.contains('sort_asc'), "<th> contains required class 'sort_asc'");
 
@@ -26,10 +25,9 @@ test('Sort Column A', function() {
 test('Sort Column B', function() {
   var col = 'th[title="Column B"]';
 
-  var event = document.createEvent('Event');
-  event.initEvent('click', true, true);
+  var click = new Event('click');
 
-  ok(document.querySelector(table).querySelector(col).dispatchEvent(event), "Click event 'descending'");
+  ok(document.querySelector(table).querySelector(col).dispatchEvent(click), "Click event 'descending'");
 
   ok(document.querySelector(table).querySelector(col).classList.contains('sort_desc'), "<th> contains required class 'sort_desc'");
 
@@ -38,7 +36,7 @@ test('Sort Column B', function() {
   equal(document.querySelector(table).querySelector('tr:nth-child(3) > td:nth-child(3)').textContent, 'Row 2B', "3rd column expected is 'Row 2B'");
   equal(document.querySelector(table).querySelector('tr:nth-child(4) > td:nth-child(3)').textContent, 'Row 1B', "4th column expected is 'Row 1B'");
 
-  ok(document.querySelector(table).querySelector(col).dispatchEvent(event), "Click event 'ascending'");
+  ok(document.querySelector(table).querySelector(col).dispatchEvent(click), "Click event 'ascending'");
 
   ok(document.querySelector(table).querySelector(col).classList.contains('sort_asc'), "<th> contains required class 'sort_asc'");
 
@@ -51,10 +49,9 @@ test('Sort Column B', function() {
 test('Sort Column C', function() {
   var col = 'th[title="Column C"]';
 
-  var event = document.createEvent('Event');
-  event.initEvent('click', true, true);
+  var click = new Event('click');
 
-  ok(document.querySelector(table).querySelector(col).dispatchEvent(event), "Click event 'descending'");
+  ok(document.querySelector(table).querySelector(col).dispatchEvent(click), "Click event 'descending'");
 
   ok(document.querySelector(table).querySelector(col).classList.contains('sort_desc'), "<th> contains required class 'sort_desc'");
 
@@ -63,7 +60,7 @@ test('Sort Column C', function() {
   equal(document.querySelector(table).querySelector('tr:nth-child(3) > td:nth-child(4)').textContent, 'Row 2C', "3rd column expected is 'Row 2C'");
   equal(document.querySelector(table).querySelector('tr:nth-child(4) > td:nth-child(4)').textContent, 'Row 1C', "4th column expected is 'Row 1C'");
 
-  ok(document.querySelector(table).querySelector(col).dispatchEvent(event), "Click event 'ascending'");
+  ok(document.querySelector(table).querySelector(col).dispatchEvent(click), "Click event 'ascending'");
 
   ok(document.querySelector(table).querySelector(col).classList.contains('sort_asc'), "<th> contains required class 'sort_asc'");
 
