@@ -28,20 +28,20 @@ module('Tidy-Table', {
 
     function doSomething1(rows) {
       if (next['event1']) {
-        alert('callback1(rows=' + rows.length + ')');
+        window.alert('callback1(rows=' + rows.length + ')');
       }
     }
 
     function doSomething2(rows) {
       if (next['event2']) {
-        alert('callback2(rows=' + rows.length + ')');
+        window.alert('callback2(rows=' + rows.length + ')');
       }
     }
 
     function doSomething3(table) {
       table.addEventListener('hover', function() {
         if (next['event3']) {
-          alert('post-process(table)');
+          window.alert('post-process(table)');
         }
       });
     }
@@ -49,7 +49,7 @@ module('Tidy-Table', {
     function doSomething4(col) {
       col.addEventListener('click', function() {
         if (next['event4']) {
-          alert('post-process(value=' + this.textContent + ')');
+          window.alert('post-process(value=' + this.textContent + ')');
         }
       });
     }
@@ -57,7 +57,7 @@ module('Tidy-Table', {
     function doSomething5(menu) {
       menu.addEventListener('change', function() {
         if (next['event5']) {
-          alert('post-process(menu)');
+          window.alert('post-process(menu)');
         }
       });
     }
