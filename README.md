@@ -1,4 +1,4 @@
-# Tidy Table [<img src="https://travis-ci.org/nuxy/Tidy-Table.svg?branch=master" alt="Build Status" />](https://travis-ci.org/nuxy/Tidy-Table)
+# Tidy Table [![Bower version](https://badge.fury.io/bo/tidy-table.svg)](https://badge.fury.io/bo/tidy-table) [![Build status](https://travis-ci.org/nuxy/Tidy-Table.svg?branch=master)](https://travis-ci.org/nuxy/Tidy-Table)
 
 Create a HTML table from JSON that can be sorted, selected, and post-processed using a simple callback.
 
