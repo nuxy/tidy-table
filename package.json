@@ -1,6 +1,6 @@
 {
   "name": "tidy-table",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "homepage": "https://github.com/nuxy/Tidy-Table",
   "description": "Create a HTML table from JSON that can be sorted, selected, and post-processed using a simple callback.",
   "main": "tidy-table.js",
@@ -19,15 +19,13 @@
   },
   "devDependencies": {
     "jshint": "^2.9.2",
-    "minifier": "^0.8.0",
-    "packer": "0.0.6",
+    "minify": "^3.0.5",
     "phantomjs-prebuilt": "^2.1.7",
     "qunitjs": "1.14.0"
   },
   "scripts": {
     "jshint": "jshint tidy-table.js",
-    "minify": "minify --output tidy-table.min.css tidy-table.css",
-    "packer": "packer -i tidy-table.js -o tidy-table.min.js -b",
+    "minify": "minify tidy-table.css > tidy-table.min.css ; minify tidy-table.js > tidy-table.min.js",
     "phantomjs": "phantomjs --ignore-ssl-errors=yes --local-to-remote-url-access=yes test/run-qunit.js test.html",
     "postinstall": "cp -r node_modules/qunitjs/qunit test/"
   }
