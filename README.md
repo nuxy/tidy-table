@@ -12,7 +12,7 @@ Create a HTML table from JSON that can be sorted, selected, and post-processed u
 - Easy to set-up and customize.
 - Customizable callback functions for post-processing selected results.
 - Post-process options for manipulating table/column/menu elements.
-- Fast and lightweight (JavaScript plug-in *only 3 kB)
+- Fast and lightweight (JavaScript plug-in *only 4 kB)
 
 ## Installation
 
@@ -30,9 +30,25 @@ Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ w
 
 Please refer to the [README](https://nuxy.github.io/Tidy-Table) for more information about this package.
 
+## Developers
+
+### CLI options
+
+Minify CSS/JavaScript sources (using [Minify](https://www.npmjs.com/package/minify)):
+
+    $ npm run minify
+
+Run [JSHint](https://www.npmjs.com/package/jshint) on the script itself:
+
+    $ npm run jshint
+
 ## See Also
 
 This package can be used in conjunction with [Poppy-Pagination](https://github.com/nuxy/Poppy-Pagination) to create a seamless per-page result experience.
+
+## Contributions
+
+If you fix a bug, or have a code you want to contribute, please send a pull-request with your changes. (Note: Before committing your code please ensure that you run `npm run jshint`)
 
 ## License and Warranty
 
