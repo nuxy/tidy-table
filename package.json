@@ -1,6 +1,6 @@
 {
   "name": "tidy-table",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "homepage": "https://github.com/nuxy/Tidy-Table",
   "description": "Create a HTML table from JSON that can be sorted, selected, and post-processed using a simple callback.",
   "main": "tidy-table.js",
@@ -18,7 +18,7 @@
     "url": "https://github.com/nuxy/Tidy-Table/issues"
   },
   "devDependencies": {
-    "jshint": "^2.9.2",
+    "jshint": "^2.10.2",
     "minify": "^3.0.5",
     "phantomjs-prebuilt": "^2.1.7",
     "qunitjs": "1.14.0"
