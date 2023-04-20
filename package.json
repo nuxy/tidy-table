@@ -26,7 +26,7 @@
   "scripts": {
     "jshint": "jshint tidy-table.js",
     "minify": "minify tidy-table.css > tidy-table.min.css ; minify tidy-table.js > tidy-table.min.js",
-    "phantomjs": "phantomjs --ignore-ssl-errors=yes --local-to-remote-url-access=yes test/run-qunit.js test.html",
-    "postinstall": "cp -r node_modules/qunitjs/qunit test/"
+    "phantomjs": "phantomjs --ignore-ssl-errors=yes --local-to-remote-url-access=yes test/run-qunit.js test/e2e.html",
+    "postinstall": "cp -r node_modules/qunitjs/qunit test"
   }
 }
