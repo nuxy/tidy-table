@@ -1,0 +1,134 @@
+/**
+ *  tidy-table
+ *  Create a HTML table from JSON that can be sorted, selected
+ *  and post-processed using a simple callback.
+ *
+ *  Copyright 2012-2023, Marc S. Brooks (https://mbrooks.info)
+ *  Licensed under the MIT license:
+ *  http://www.opensource.org/licenses/mit-license.php
+ */
+
+.tidy_table {
+  background-color: #FFFFFF;
+  border-collapse: collapse;
+  border: 1px solid #CCCCCC;
+  cursor: pointer;
+  white-space: nowrap;
+
+  input[type='checkbox'],
+  input[type='checkbox'] {
+    display: block;
+    margin: 0px auto;
+  }
+
+  td, th {
+    padding: 6px 20px;
+
+    &:nth-child(1) {
+      width: 10px;
+    }
+  }
+
+  td {
+    border-right: 1px solid #EEEEEE;
+    border-top: 1px solid #CCCCCC;
+    padding: 7px 20px;
+
+    .label {
+      display: none;
+    }
+
+    &:nth-child(1) {
+      border-right: 1px solid #EEEEEE;
+    }
+
+    &:nth-last-child(1) {
+      border-right: none;
+    }
+  }
+
+  th {
+    background-color: #DDDDDD;
+  }
+
+  thead {
+    border: none;
+  }
+
+  .check_on {
+    background-color: #F5F5F5;
+  }
+
+  .check_off {
+    background-color: #FFFFFF;
+  }
+
+  .sort_asc {
+    background: #EEEEEE url('images/arrow_asc.gif') no-repeat right center;
+  }
+
+  .sort_desc {
+    background: #EEEEEE url('images/arrow_desc.gif') no-repeat right center;
+  }
+
+  @media only screen and (min-device-width: 0px) and (max-device-width: 800px) {
+    &.tidy_media {
+      margin: 0px !important;
+      overflow: none;
+      width: auto !important;
+
+      select {
+        position: relative;
+        right: 30px;
+      }
+
+      table {
+        border: 0px;
+        border-top: 1px solid #DDDDDD;
+        width: 100%;
+
+        tbody {
+          td,
+          th {
+            border: 0px;
+            box-sizing: border-box;
+            clear: both;
+            float: left;
+            padding-left: 10px;
+
+            &:first-child {
+              background-color: transparent;
+              padding: 10px;
+              position: absolute;
+              right: 0px;
+              top: 2px;
+              width: auto;
+            }
+          }
+
+          td {
+            background-color: transparent;
+          }
+
+          tr {
+            border-bottom: 1px solid #CCCCCC;
+            position: relative;
+
+            &:last-child {
+              border: none;
+            }
+          }
+
+          th {
+            text-align: left;
+            width: 100%;
+
+            &:first-child {
+              top: -40px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
