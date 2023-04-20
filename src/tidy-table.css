@@ -3,7 +3,7 @@
  *  Create a HTML table from JSON that can be sorted, selected
  *  and post-processed using a simple callback.
  *
- *  Copyright 2012-2018, Marc S. Brooks (https://mbrooks.info)
+ *  Copyright 2012-2023, Marc S. Brooks (https://mbrooks.info)
  *  Licensed under the MIT license:
  *  http://www.opensource.org/licenses/mit-license.php
  */
