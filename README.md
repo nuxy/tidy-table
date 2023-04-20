@@ -1,8 +1,8 @@
-# Tidy Table [![Bower version](https://badge.fury.io/bo/tidy-table.svg)](https://badge.fury.io/bo/tidy-table) [![Build Status](https://api.travis-ci.com/nuxy/Tidy-Table.svg?branch=master)](https://app.travis-ci.com/github/nuxy/Tidy-Table)
+# tidy-table [![Bower version](https://badge.fury.io/bo/tidy-table.svg)](https://badge.fury.io/bo/tidy-table) [![Build Status](https://api.travis-ci.com/nuxy/tidy-table.svg?branch=master)](https://app.travis-ci.com/github/nuxy/tidy-table)
 
 Create a HTML table from JSON that can be sorted, selected, and post-processed using a simple callback.
 
-[<img src="https://nuxy.github.io/Tidy-Table/preview.gif" alt="Tidy-Table" />](https://nuxy.github.io/Tidy-Table)
+[<img src="https://nuxy.github.io/tidy-table/preview.gif" alt="tidy-table" />](https://nuxy.github.io/tidy-table)
 
 ## Features
 
@@ -28,7 +28,7 @@ Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ w
 
     $ bower install tidy-table#2
 
-Please refer to the [README](https://nuxy.github.io/Tidy-Table) for more information about this package.
+Please refer to the [README](https://nuxy.github.io/tidy-table) for more information about this package.
 
 ## Developers
 
@@ -54,7 +54,7 @@ If you fix a bug, or have a code you want to contribute, please send a pull-requ
 
 This package is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.
 
-_Tidy-Table_ is provided under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.php)
+_tidy-table_ is provided under the terms of the [MIT license](http://www.opensource.org/licenses/mit-license.php)
 
 ## Author
 

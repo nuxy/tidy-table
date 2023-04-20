@@ -1,5 +1,5 @@
 /**
- *  Tidy Table
+ *  tidy-table
  *  Create a HTML table from JSON that can be sorted, selected
  *  and post-processed using a simple callback.
  *

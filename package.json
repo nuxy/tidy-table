@@ -1,7 +1,7 @@
 {
   "name": "tidy-table",
   "version": "3.1.3",
-  "homepage": "https://github.com/nuxy/Tidy-Table",
+  "homepage": "https://github.com/nuxy/tidy-table",
   "description": "Create a HTML table from JSON that can be sorted, selected, and post-processed using a simple callback.",
   "main": "tidy-table.js",
   "keywords": [
@@ -10,12 +10,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/nuxy/Tidy-Table.git"
+    "url": "https://github.com/nuxy/tidy-table.git"
   },
   "author": "Marc S. Brooks",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nuxy/Tidy-Table/issues"
+    "url": "https://github.com/nuxy/tidy-table/issues"
   },
   "devDependencies": {
     "jshint": "^2.10.2",

@@ -1,4 +1,4 @@
-module('Tidy-Table', {
+module('tidy-table', {
   setup: function() {
     document.getElementById('qunit-fixture')
       .TidyTable({
