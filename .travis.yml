@@ -9,6 +9,6 @@ addons:
 install:
   - npm install
 script:
-  - npm run jshint
-  - npm run minify
+  - npm run build
+  - npm run lint
   - npm run phantomjs

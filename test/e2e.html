@@ -36,7 +36,7 @@
   }
   </script>
 
-  <script src="test/qunit/qunit.js"></script>
+  <script src="qunit/qunit.js"></script>
   <script>
   QUnit.config.scrolltop = true;
 
@@ -46,21 +46,21 @@
   var next = {};
   </script>
 
-  <script src="tidy-table.min.js"></script>
+  <script src="../dist/tidy-table.js"></script>
 
 
   <!-- QUnit tests begin (order is important) -->
 
-  <script src="test/plugin/stub.js"></script>
-  <script src="test/plugin/init.js"></script>
-  <script src="test/plugin/sort.js"></script>
-  <script src="test/plugin/callback.js"></script>
+  <script src="plugin/stub.js"></script>
+  <script src="plugin/init.js"></script>
+  <script src="plugin/sort.js"></script>
+  <script src="plugin/callback.js"></script>
 
   <!-- QUnit tests end -->
 
 
-  <link rel="stylesheet" type="text/css" href="test/qunit/qunit.css">
-  <link rel="stylesheet" type="text/css" href="tidy-table.min.css">
+  <link rel="stylesheet" type="text/css" href="qunit/qunit.css">
+  <link rel="stylesheet" type="text/css" href="../dist/tidy-table.css">
 
   <title>Tidy Table - Plugin tests</title>
 </head>
