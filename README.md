@@ -34,17 +34,13 @@ Please refer to the [README](https://nuxy.github.io/tidy-table) for more informa
 
 ### CLI options
 
-Minify CSS/JavaScript sources (using [Minify](https://www.npmjs.com/package/minify)):
+Run [ESLint](https://eslint.org) on project sources:
 
-    $ npm run minify
+    $ npm run lint
 
-Run [JSHint](https://www.npmjs.com/package/jshint) on the script itself:
+Transpile ES6 sources (using [Babel](https://babeljs.io)) and minify to a distribution:
 
-    $ npm run jshint
-
-## See Also
-
-This package can be used in conjunction with [Poppy-Pagination](https://github.com/nuxy/Poppy-Pagination) to create a seamless per-page result experience.
+    $ npm run build
 
 ## Contributions
 
