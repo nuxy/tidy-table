@@ -9,7 +9,7 @@
     "sass": "sass src/tidy-table.scss dist/tidy-table.css",
     "minify-css": "node-minify --compressor clean-css --input 'dist/tidy-table.css' --output 'dist/tidy-table.min.css'",
     "minify-js": "node-minify --compressor uglify-js --input 'dist/tidy-table.js' --output 'dist/tidy-table.min.js'",
-    "phantomjs": "phantomjs --ignore-ssl-errors=yes --local-to-remote-url-access=yes test/run-qunit.js test/e2e.html",
+    "test": "phantomjs --ignore-ssl-errors=yes --local-to-remote-url-access=yes test/run-qunit.js test/e2e.html",
     "postinstall": "cp -r node_modules/qunitjs/qunit test"
   },
   "repository": {
