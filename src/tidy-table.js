@@ -1,456 +1,385 @@
 /**
  *  tidy-table
- *  Create a HTML table from JSON that can be sorted, selected
- *  and post-processed using a simple callback.
+ *  Create a HTML table that can be sorted, selected and
+ *  post-processed using a simple callback.
  *
  *  Copyright 2012-2023, Marc S. Brooks (https://mbrooks.info)
  *  Licensed under the MIT license:
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
-(function() {
-  "use strict";
+'use strict';
 
-  var table = null;
+/**
+ * @param {Element} container
+ *   Containing HTML element.
+ *
+ * @param {Object} settings
+ *   Table settings.
+ *
+ * @param {Object} options
+ *   Configuration overrides (optional).
+ */
+function TidyTable(container, settings, options = {}) {
+  const self = this;
+
+  const defaults = {
+    enableCheckbox: false,
+    enableMenu:     false,
+    reverseSortDir: false,
+    responsive:     false
+  };
+
+  (function() {
+    self.options = Object.assign(defaults, options);
+
+    const {columnTitles, columnValues} = settings;
+
+    if (columnTitles.length && columnValues.length) {
+      renderTable();
+    } else {
+      throw new Error('Failed to initialize (missing settings)');
+    }
+  })();
 
   /**
-   * @namespace TidyTable
+   * Render a new table instance.
    */
-  var methods = {
+  function renderTable() {
+    const table = createTableElm();
 
-    /**
-     * Create new instance of Tidy-Table
-     *
-     * @memberof TidyTable
-     * @method init
-     *
-     * @example
-     * document.getElementById('container').TidyTable(settings, config);
-     *
-     * @param {Object} settings
-     * @param {Object} config
-     *
-     * @returns {Object} DOM element
-     */
-    "init": function(settings, config) {
-      var _self = this,
-          data  = _self.data;
+    // Post-process table results HTML object.
+    if (typeof settings.postProcess?.table === 'function') {
+      settings.postProcess.table(table);
+    }
 
-      // Default settings
-      var defaults = {
-        enableCheckbox: false,
-        enableMenu:     false,
-        reverseSortDir: false,
-        responsive:     false
-      };
+    // Replace the element, if already exists.
+    const block = container.querySelector('.tidy-table table');
 
-      if (arguments.length > 1) {
-        Object.assign(defaults, settings);
-      }
-      else {
-        config = settings;
+    if (block) {
+      block.parentNode.replaceChild(table, block);
+    } else {
+
+      // Generate select menu elements.
+      if (self.options.enableMenu) {
+        container.appendChild(createMenuElm('options'));
       }
 
-      // Config defaults
-      config = Object.assign({
-        sortByPattern: function(col_num, val) {
-          if (typeof col_num !== 'undefined' && typeof val !== 'undefined') {
-            return String(val).replace(/$|%|#/g, '');
-          }
+      container.classList.add('tidy-table');
+      container.appendChild(table);
+    }
+
+    // Enable/disable responsive layout support.
+    if (defaults.responsive) {
+      container.classList.add('responsive');
+    }
+  }
+
+  /**
+   * Create table elements.
+   *
+   * @return {Element}
+   */
+  function createTableElm() {
+    const table = document.createElement('table');
+    table.appendChild(createTableHeaderElm());
+    table.appendChild(createTableBodyElm());
+
+    // Append check boxes to beginning each row.
+    if (self.options.enableCheckbox) {
+      const rows = table.querySelectorAll('tr');
+
+      for (let i = 0; i < rows.length; i++) {
+        const input = createCheckboxElm();
+
+        let col;
+
+        // First row is always the header.
+        if (i === 0) {
+          col = document.createElement('th');
+
+          // Attach event to check all boxes.
+          input.addEventListener('click', function() {
+            toggleSelRows(rows);
+          });
         }
-      }, config);
-
-      if (typeof data === 'undefined') {
-        _self.data = {
-          settings: defaults,
-          config:   config
-        };
-      }
-
-      // Responsive layout?
-      if (defaults.responsive) {
-        _self.className = 'tidy_table media';
-      }
-
-      return _self.TidyTable('_createTable');
-    },
-
-    /**
-     * Perform cleanup
-     *
-     * @memberof TidyTable
-     * @method destroy
-     *
-     * @example
-     * document.getElementById('container').TidyTable('destroy');
-     */
-    "destroy": function() {
-      this.remove();
-    },
-
-    /**
-     * Create HTML table elements.
-     *
-     * @memberof TidyTable
-     * @method _createTable
-     * @private
-     *
-     * @param {String|undefined} num
-     * @param {String|undefined} order
-     *
-     * @returns {Object} DOM element
-     */
-    "_createTable": function(num, order) {
-      var _self = this,
-          data  = _self.data;
-
-      // Create reusable elements.
-      table = document.createElement('table');
-      table.className = 'tidy_table';
-
-      var thead  = document.createElement('thead'),
-          tbody  = document.createElement('tbody'),
-          titles = null;
-
-      // .. <THEAD>
-      (function() {
-        titles = data.config.columnTitles;
-
-        var row = document.createElement('tr');
-
-        for (var i = 0; i < titles.length; i++) {
-          var title = titles[i];
-
-          var col = document.createElement('th');
-          col.appendChild(document.createTextNode(title));
-          col.setAttribute('title', title);
-
-          row.appendChild(col);
-
-          var col_class;
-
-          // Determine column result order.
-          if (!data.settings.reverseSortDir) {
-            if (order == 'asc' || !order) {
-              col_class = 'sort_asc';
-              col.order = 'desc';
-            }
-            else {
-              col_class = 'sort_desc';
-              col.order = 'asc';
-            }
-          }
-          else {
-            if (order == 'desc' || !order) {
-              col_class = 'sort_asc';
-              col.order = 'asc';
-            }
-            else {
-              col_class = 'sort_desc';
-              col.order = 'desc';
-            }
-          }
-
-          // Highlight selected column.
-          if (num == i) {
-            col.className = col_class;
-          }
-
-          col.index = i;
-
-          // Attach sorting event to each column.
-          col.addEventListener('click', function() {
-            _self.TidyTable('_sortByColumn', this.index, ((num == this.index) ? this.order : 'asc'));
-          }, false);
-        }
-
-        thead.appendChild(row);
-      })();
-
-      // .. <TBODY>
-      (function() {
-        var vals = data.config.columnValues,
-            col  = null;
-
-        for (var j = 0; j < vals.length; j++) {
-
-          // Create the row.
-          var row = document.createElement('tr');
-
-          for (var k = 0; k < vals[j].length; k++) {
-            var val = vals[j][k];
-
-            // Create the column.
-            col = document.createElement('td');
-            col.appendChild(document.createTextNode(val));
-            col.setAttribute('title', val);
-
-            row.appendChild(col);
-
-            // Post-process table column HTML object.
-            if (data.config.postProcess && (typeof data.config.postProcess.column === "function")) {
-              data.config.postProcess.column(col);
-            }
-          }
-
-          tbody.appendChild(row);
-        }
-
-        table.appendChild(thead);
-        table.appendChild(tbody);
-
-        // Append check boxes to beginning each row.
-        if (data.settings && data.settings.enableCheckbox) {
-          var rows = table.querySelectorAll('tr');
-
-          for (var i = 0; i < rows.length; i++) {
-            var input = document.createElement('input');
-            input.setAttribute('type', 'checkbox');
-            input.index = i;
-
-            // First row is always the header.
-            if (i === 0) {
-              col = document.createElement('th');
-
-              // Attach event to check all boxes.
-              input.addEventListener('click', function() {
-                _self.TidyTable('_toggleSelRows', rows);
-              });
-            }
-            else {
-              col = document.createElement('td');
-
-              // Attach event to each checkbox.
-              input.addEventListener('click', function() {
-                _self.TidyTable('_toggleSelRows', rows, this.index);
-              });
-            }
-
-            col.appendChild(input);
-
-            // Insert before first cell.
-            rows[i].insertBefore(col, rows[i].firstChild);
-          }
-        }
-      })();
-
-      // Post-process table results HTML object.
-      if (data.config.postProcess && (typeof data.config.postProcess.table === "function")) {
-        data.config.postProcess.table(table);
-      }
-
-      var block = _self.querySelector('table.tidy_table');
-
-      // If table exists, perform an in-place update of the element.
-      if (block) {
-        block.parentNode.replaceChild(table, block);
-      }
-
-      // Generate table/menu elements.
-      else {
-        if (data.settings && data.settings.enableMenu) {
-          _self.appendChild( _self.TidyTable('_createMenu', 'options') );
-        }
-
-        _self.appendChild(table);
-      }
-
-      return table;
-    },
-
-    /**
-     * Create HTML select menu element
-     *
-     * @memberof TidyTable
-     * @method _createMenu
-     * @private
-     *
-     * @param {String} name
-     *
-     * @returns {Object} DOM element
-     */
-    "_createMenu": function(name) {
-      var _self = this,
-          data  = _self.data;
-
-      // Create reusable elements.
-      var select = document.createElement('select');
-      select.className = 'tidy_table ' + name;
-
-      // Listen for select menu events.
-      select.addEventListener('change', function() {
-        var elm = this;
-
-        // Execute callback.
-        var callback = data.config.menuOptions[elm.value][1].callback;
-
-        if (typeof callback === 'function') {
-          callback( _self.TidyTable('_getCheckedAsObj') );
-        }
-
-        elm.value = 0;
-      });
-
-      // .. Options
-      for (var i = 0; i < data.config.menuOptions.length; i++) {
-        var option = document.createElement('option');
-        option.text  = data.config.menuOptions[i][0];
-        option.value = i;
-
-        select.appendChild(option);
-      }
-
-      // Post-process select menu HTML object.
-      if (data.config.postProcess && (typeof data.config.postProcess.menu === 'function')) {
-        data.config.postProcess.menu(select);
-      }
-
-      return select;
-    },
-
-    /**
-     * Return selected row values as an array.
-     *
-     * @memberof TidyTable
-     * @method _getCheckedAsObj
-     * @private
-     *
-     * @returns {Array}
-     */
-    "_getCheckedAsObj": function() {
-      var _self = this,
-          rows  = _self.querySelectorAll('tbody > tr'),
-          objs  = [];
-
-      for (var i = 0; i < rows.length; i++) {
-        var cols = rows[i].childNodes;
-
-        // If the row checkbox is selected.
-        if (cols[0].firstChild.checked) {
-          var row = [];
-
-          // Simulate an associative array.
-          for (var j = 1; j < cols.length; j++) {
-            row[j - 1] = cols[j].textContent;
-          }
-
-          objs.push(row);
-        }
-      }
-
-      return objs;
-    },
-
-    /**
-     * Select/Deselect (input checkbox and row highlight).
-     *
-     * @memberof TidyTable
-     * @method _toggleSelRows
-     * @private
-     *
-     * @param {Object} rows DOM element
-     * @param {Number} num
-     */
-    "_toggleSelRows": function(rows, num) {
-      var checked = null;
-
-      for (var i = 0; i < rows.length; i++) {
-        var row   = rows[i],
-            input = row.querySelector('input[type=checkbox]');
-
-        // Update all rows.
-        if (!num) {
-          if (i === 0) {
-            checked = input.checked;
-            continue;
-          }
-
-          if (checked) {
-            row.className = (row.className) ? row.className.replace(/check_off/, 'check_on') : 'check_on';
-            input.checked = true;
-          }
-          else {
-            row.className = row.className.replace(/check_on/, 'check_off');
-            input.checked = false;
-          }
-        }
-
-        // Update selected row.
         else {
-          if (i === 0) {
-            continue;
-          }
+          col = document.createElement('td');
 
-          if (input.checked === true) {
-            row.className = (row.className) ? row.className.replace(/check_off/, 'check_on') : 'check_on';
-            input.checked = true;
-          }
-          else {
-            row.className = row.className.replace(/check_on/, 'check_off');
-            input.checked = false;
-          }
+          // Attach events to each checkbox.
+          input.addEventListener('click', function(index) {
+            toggleSelRows(rows, index);
+          }.bind(null, i), false);
+        }
+
+        col.appendChild(input);
+
+        // Insert before first cell.
+        rows[i].insertBefore(col, rows[i].firstChild);
+      }
+    }
+
+    return table;
+  }
+
+  /**
+   * Create table body elements.
+   *
+   * @return {Element}
+   */
+  function createTableBodyElm() {
+    const tbody = document.createElement('tbody');
+
+    const vals = settings.columnValues;
+
+    for (let i = 0; i < vals.length; i++) {
+      const row = document.createElement('tr');
+
+      for (let j = 0; j < vals[i].length; j++) {
+        const val = vals[i][j];
+
+        const col = document.createElement('td');
+        col.appendChild(document.createTextNode(val));
+        col.setAttribute('title', val);
+        row.appendChild(col);
+
+        // Post-process table column HTML object.
+        if (typeof settings.postProcess?.column === 'function') {
+          settings.postProcess.column(col);
         }
       }
-    },
 
-    /**
-     * Display results ordered by selected column.
-     *
-     * @memberof TidyTable
-     * @method _sortByColumn
-     * @private
-     *
-     * @param {Number} num
-     * @param {Number} order
-     */
-    "_sortByColumn": function(num, order) {
-      var _self = this,
-          data  = _self.data;
+      tbody.appendChild(row);
+    }
 
-      if (typeof data.config.sortByPattern === 'function') {
-        var reverse = (order == 'desc') ? -1 : 1;
+    return tbody;
+  }
 
-        // Sort JSON object by bucket number.
-        data.config.columnValues.sort(function(a, b) {
-          var str1 = data.config.sortByPattern(num, a[num]),
-              str2 = data.config.sortByPattern(num, b[num]);
+  /**
+   * Create table header elements.
+   *
+   * @return {Element}
+   */
+  function createTableHeaderElm() {
+    const thead = document.createElement('thead');
+    const row   = document.createElement('tr');
 
-          if (isNaN(str1)) {
-            return [reverse * cmpAny(str1, str2)] >
-                   [reverse * cmpAny(str2, str1)] ? -1 : 1;
+    const titles = settings.columnTitles;
+
+    let sortOrder = self.sortOrder;
+
+    for (let i = 0; i < titles.length; i++) {
+      const title = titles[i];
+
+      const col = document.createElement('th');
+      col.appendChild(document.createTextNode(title));
+      col.setAttribute('title', title);
+
+      row.appendChild(col);
+
+      if (self.selected === i) {
+        let className;
+
+        // Determine column result order.
+        if (!self.options.reverseSortDir) {
+          if (sortOrder === 'asc' || !sortOrder) {
+            className = 'sort-asc';
+            sortOrder = 'desc';
           }
           else {
-            return [reverse * cmpInt(str1, str2)];
+            className = 'sort-desc';
+            sortOrder = 'asc';
           }
-        });
+        }
+        else {
+          if (sortOrder === 'desc' || !sortOrder) {
+            className = 'sort-asc';
+            sortOrder = 'asc';
+          }
+          else {
+            className = 'sort-desc';
+            sortOrder = 'desc';
+          }
+        }
+
+        // Highlight selected column.
+        col.classList.add(className);
       }
 
-      _self.TidyTable('_createTable', num, order);
-    }
-  };
+      // Attach column sorting events.
+      col.addEventListener('click', function(index) {
+        self.sortOrder = (self.selected === i) ? sortOrder : 'asc';
 
-  Element.prototype.TidyTable = function(method) {
-    if (methods[method]) {
-      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+        sortByColumn(index, sortOrder);
+
+        self.selected = index;
+
+        renderTable();
+      }.bind(null, i), false);
     }
-    else
-    if (typeof method === 'object' || !method) {
-      return methods.init.apply(this, arguments);
+
+    thead.appendChild(row);
+
+    return thead;
+  }
+
+  /**
+   * Create checkbox element.
+   *
+   * @returns {Element}
+   */
+  function createCheckboxElm() {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'checkbox');
+
+    return input;
+  }
+
+  /**
+   * Create select menu element.
+   *
+   * @returns {Element}
+   */
+  function createMenuElm(name) {
+
+    // Create reusable elements.
+    const select = document.createElement('select');
+    select.classList.add(name);
+
+    // Listen for select menu events.
+    select.addEventListener('change', function() {
+
+      // Execute callback.
+      const callback = settings.menuOptions[this.value][1].callback;
+
+      if (typeof callback === 'function') {
+        callback(getCheckedAsObj());
+      }
+
+      this.value = 0;
+    });
+
+    // .. Options
+    for (let i = 0; i < settings.menuOptions.length; i++) {
+      const option = document.createElement('option');
+      option.text  = settings.menuOptions[i][0];
+      option.value = i;
+
+      select.appendChild(option);
     }
-    else {
-      throw new Error('Method ' +  method + ' does not exist in TidyTable');
+
+    // Post-process select menu HTML object.
+    if (typeof settings.postProcess?.menu === 'function') {
+      settings.postProcess.menu(select);
     }
-  };
+
+    return select;
+  }
+
+  /**
+   * Return selected row values as array of objects.
+   *
+   * @returns {Array<Object>}
+   */
+  function getCheckedAsObj() {
+    const rows = container.querySelectorAll('tbody > tr');
+    const objs = [];
+
+    for (let i = 0; i < rows.length; i++) {
+      const cols = rows[i].childNodes;
+
+      // If the row checkbox is selected.
+      if (cols[0].firstChild.checked) {
+        const row = [];
+
+        // Simulate an associative array.
+        for (let j = 1; j < cols.length; j++) {
+          row[j - 1] = cols[j].textContent;
+        }
+
+        objs.push(row);
+      }
+    }
+
+    return objs;
+  }
+
+  /**
+   * Select/Deselect (input checkbox and row highlight).
+   */
+  function toggleSelRows(rows, num) {
+    let checked;
+
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+
+      const input = row.querySelector('input[type=checkbox]');
+
+      // Update all rows.
+      if (!num) {
+        if (i === 0) {
+          checked = input.checked;
+          continue;
+        }
+
+        if (checked) {
+          row.classList.replace('check-off', 'check-on') || row.classList.add('check-on');
+          input.checked = true;
+        }
+        else {
+          row.classList.replace('check-on', 'check-off');
+          input.checked = false;
+        }
+      }
+
+      // Update selected row.
+      else {
+        if (i === 0) {
+          continue;
+        }
+
+        if (input.checked === true) {
+          row.classList.replace('check-off', 'check-on') || row.classList.add('check-on');
+          input.checked = true;
+        }
+        else {
+          row.classList.replace('check-on', 'check-off');
+          input.checked = false;
+        }
+      }
+    }
+  }
+
+  /**
+   * Display results ordered by selected column.
+   */
+  function sortByColumn(num, order) {
+    let sortByPattern = settings.sortByPattern;
+
+    if (typeof sortByPattern !== 'function') {
+      sortByPattern = function(val) {
+        return val?.replace(/\$|%|#/g, '');
+      };
+    }
+
+    const reverse = (order === 'desc') ? -1 : 1;
+
+    // Sort object by array index.
+    settings.columnValues.sort(function(a, b) {
+      const str1 = sortByPattern(a[num]);
+      const str2 = sortByPattern(b[num]);
+
+      if (isNaN(str1)) {
+        return [reverse * cmpAny(str1, str2)] >
+               [reverse * cmpAny(str2, str1)] ? -1 : 1;
+      }
+
+      return [reverse * cmpInt(str1, str2)];
+    });
+  }
 
   /**
    * Generic string comparison functions.
-   *
-   * @protected
-   *
-   * @param {String} a
-   * @param {String} b
-   *
-   * @returns {Number}
    */
   function cmpAny(a, b) {
     return (a > b) ? 1 : (a < b) ? -1 : 0;
@@ -459,4 +388,15 @@
   function cmpInt(a, b) {
     return b - a;
   }
-})();
+}
+
+/**
+ * Set global/exportable instance, where supported.
+ */
+window.tidyTable = function(container, settings, options) {
+  return new TidyTable(container, settings, options);
+};
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = TidyTable;
+}

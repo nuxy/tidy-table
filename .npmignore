@@ -1,6 +1,7 @@
 .babelrc
 .eslintrc
 .vscode
+demo
 package.*
 node_modules
 test
