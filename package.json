@@ -41,12 +41,10 @@
     "@node-minify/clean-css": "^4.0.5",
     "@node-minify/cli": "^6.2.0",
     "@node-minify/uglify-js": "^4.0.5",
-    "babel-loader": "^8.2.5",
     "eslint": "^8.18.0",
     "phantomjs-prebuilt": "^2.1.7",
     "qunitjs": "1.14.0",
-    "sass": "^1.53.0",
-    "sass-loader": "^13.0.0"
+    "sass": "^1.53.0"
   },
   "overrides": {
     "braces": "3.0.0",
