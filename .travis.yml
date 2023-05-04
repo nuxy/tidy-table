@@ -1,11 +1,11 @@
 language: node_js
 node_js:
-  - "14"
+  - "16"
 sudo: required
 services:
   - xvfb
 addons:
-    chrome: stable
+    firefox: stable
 install:
   - npm install
 script:

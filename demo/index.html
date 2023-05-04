@@ -7,6 +7,8 @@
 
     <script type="text/javascript" src="../dist/tidy-table.min.js"></script>
     <script>
+      var output;
+
       window.onload = function() {
         var options = {
           enableCheckbox: true,
@@ -26,8 +28,8 @@
           ],
           menuOptions: [
             ['- Action -', null],
-            ['Callback 1', { callback: doSomething1 }],
-            ['Callback 2', { callback: doSomething2 }]
+            ['Callback 1', {callback: doSomething1}],
+            ['Callback 2', {callback: doSomething2}]
           ],
           postProcess: {
             table:  doSomething3,
@@ -39,34 +41,36 @@
         var container = document.getElementById('tidy-table');
 
         tidyTable(container, settings, options);
+
+        output = document.getElementById('output');
       };
 
       // Do something with selected results.
       function doSomething1(rows) {
-        alert('callback1(rows=' + rows.length + ')');
+        output.innerText = 'MENU: callback1(rows=' + rows.length + ')';
       }
 
       function doSomething2(rows) {
-        alert('callback2(rows=' + rows.length + ')');
+        output.innerText = 'MENU: callback2(rows=' + rows.length + ')';
       }
 
       // Post-process DOM elements.
       function doSomething3(table) {
-        table.addEventListener('hover', function() {
-          alert('post-process(table)');
+        table.addEventListener('click', function() {
+          output.innerText = 'TABLE: post-process(table)';
         });
       }
 
       function doSomething4(col) {
-        col.addEventListener('click', function() {
-          alert('post-process(value=' + this.textContent + ')');
+        col.addEventListener('dblclick', function() {
+          output.innerText = 'COL: post-process(text="' + this.textContent + '")';
         });
       }
 
       function doSomething5(menu) {
-        menu.addEventListener('change', function() {
-          alert('post-process(menu)');
-        });
+
+        // Rename default option.
+        menu.children[0].innerText = 'Test';
       }
     </script>
 
@@ -74,5 +78,6 @@
   </head>
   <body>
     <div id="tidy-table"></div>
+    <div id="output"></div>
   </body>
 </html>
