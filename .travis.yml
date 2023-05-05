@@ -5,7 +5,7 @@ sudo: required
 services:
   - xvfb
 addons:
-    firefox: stable
+    firefox: latest
 install:
   - npm install
 script:
