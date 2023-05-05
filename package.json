@@ -1,7 +1,7 @@
 {
   "name": "tidy-table",
   "version": "4.0.0",
-  "description": "Create a HTML table from JSON that can be sorted, selected, and post-processed using a simple callback.",
+  "description": "Create a HTML table that can be sorted, selected, and post-processed using a simple callback.",
   "main": "src/tidy-table.js",
   "scripts": {
     "build": "babel src -s -D -d dist && npm run sass && npm run minify-css && npm run minify-js",
