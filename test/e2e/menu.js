@@ -130,7 +130,7 @@ describe('Menu element', function() {
 
     describe('Post-process', function() {
       it('should handle event', async function() {
-        const option = await menu.selectByVisibleText('Test');
+        const option = await menu.selectByVisibleText('- Select -');
 
         expect(option).toBeDisplayed();
       });
