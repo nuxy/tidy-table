@@ -4,6 +4,8 @@ Create a HTML table that can be sorted, selected, and post-processed using a sim
 
 ![Preview](https://raw.githubusercontent.com/nuxy/tidy-table/master/package.gif)
 
+Checkout the [demo](https://nuxy.github.io/tidy-table) for examples of use.
+
 ## Features
 
 - Extensible HTML/CSS interface.
@@ -51,6 +53,64 @@ import 'tidy-table/dist/tidy-table.css';
 
 const tidyTable = new TidyTable(container, settings, options);
 ```
+
+## HTML markup
+
+```javascript
+const options = {
+  enableCheckbox: true,
+  enableMenu:     true,
+  reverseSortDir: true,
+  responsive:     true
+};
+
+const settings = {
+  columnTitles: ['Rank', 'Programming Language', 'Ratings Jan 2012', 'Delta Jan 2012', 'Status'],
+  columnValues: [
+    ['1', 'Java', '17.479%', '-0.29%', 'A'],
+    ['2', 'C', '16.976%', '+1.15%', 'A'],
+    ['3', 'C#', '8.781%', '+2.55%', 'A'],
+    ['4', 'C++', '8.063%', '-0.72%', 'A'],
+    ['5', 'Objective-C', '6.919%', '+3.91%','A']
+  ],
+
+  // Add menu options to bind result events.
+  menuOptions: [
+    ['- Action -', null],
+    ['Callback 1', {callback: (rows) => {}}],
+    ['Callback 2', {callback: (rows) => {}}]
+  ],
+
+  // Post-process rendered HTML output.
+  postProcess: {
+    table:  (HTMLTableElement)     => {},
+    column: (HTMLTableCellElement) => {},
+    menu:   (HTMLTableElement)     => {}
+  },
+
+  // Pre-process column values before sort.
+  sortByPattern: function(colNum, val) {
+    if (colNum !== 1) return val;
+
+    return val?.replace(/\$|%|#/g, '');
+  }
+};
+```
+
+## Table options
+
+Overriding defaults can be done using the following options:
+
+| Option         | Description                                    | Default |
+|----------------|------------------------------------------------|---------|
+| enableCheckbox | Add checkbox functionality to table output.    | false   |
+| enableMenu     | Add select menu options to alter table output. | false   |
+| reverseSortDir | Change the sorting arrow image direction.      | false   |
+| responsive     | Enable/disable responsive layout support.      | false   |
+
+## Design template
+
+The Illustrator [template](https://github.com/nuxy/tidy-table/blob/develop/images/arrow.ai) used to create the sort arrows has been provided with this package for reference.
 
 ## Developers
 
