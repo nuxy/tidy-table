@@ -1,296 +1,83 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="https://mbrooks.info/css/alias/readme.css">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="tidy-table.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
 
-  <title>Tidy Table - README</title>
-</head>
-<body>
+    <script type="text/javascript" src="tidy-table.min.js"></script>
+    <script>
+      var output;
 
-<a href="https://github.com/nuxy/Tidy-Table"><img class="forkme_ribbon" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
+      window.onload = function() {
+        var options = {
+          enableCheckbox: true,
+          enableMenu:     true,
+          reverseSortDir: true,
+          responsive:     false
+        };
 
-<h1>Tidy Table <a href="https://travis-ci.org/nuxy/Tidy-Table"><img class="build_status" src="https://travis-ci.org/nuxy/Tidy-Table.svg?branch=master" alt="Build Status"></a></h1>
+        var settings = {
+          columnTitles: ['Rank', 'Programming Language', 'Ratings Jan 2012', 'Delta Jan 2012', 'Status'],
+          columnValues: [
+            ['1', 'Java', '17.479%', '-0.29%', 'A'],
+            ['2', 'C', '16.976%', '+1.15%', 'A'],
+            ['3', 'C#', '8.781%', '+2.55%', 'A'],
+            ['4', 'C++', '8.063%', '-0.72%', 'A'],
+            ['5', 'Objective-C', '6.919%', '+3.91%','A']
+          ],
+          menuOptions: [
+            ['- Action -', null],
+            ['Callback 1', {callback: doSomething1}],
+            ['Callback 2', {callback: doSomething2}]
+          ],
+          postProcess: {
+            table:  doSomething3,
+            column: doSomething4,
+            menu:   doSomething5
+          }
+        };
 
-<p>Create a HTML table from JSON that can be sorted, selected, and post-processed using a simple callback.</p>
+        var container = document.getElementById('tidy-table');
 
-<img class="preview" src="preview.gif">
+        tidyTable(container, settings, options);
 
-<h2>Features</h2>
+        output = document.getElementById('output');
+      };
 
-<ul>
-  <li>Extensible HTML/CSS interface.</li>
-  <li>Compatible with all modern desktop and mobile web browsers.</li>
-  <li>Fully responsive layout with touch event support.</li>
-  <li>Easy to set-up and customize.</li>
-  <li>Customizable callback functions for post-processing selected results.</li>
-  <li>Post-process options for manipulating table/column/menu elements.</li>
-  <li>Fast and lightweight (JavaScript plug-in *only 4 kB)</li>
-</ul>
-
-<p>Check out the <a href="demo.html">demo</a> provided with this package.</p>
-
-<a name="install"></a>
-
-<h2>Installation</h2>
-
-<p>This package can be easily installed using <a href="http://bower.io">Bower</a>.</p>
-
-<h4>Modern v3 (no dependencies)</h4>
-
-<pre>$ bower install tidy-table#3</pre>
-
-<h4>Legacy v2 (requires <a href="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">jQuery 1.8.3</a>)</h4>
-
-<p>Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.</p>
-
-<pre>$ bower install tidy-table#2</pre>
-
-<p>Manual install:</p>
-
-<ol>
-  <li>Download the latest <a href="https://github.com/nuxy/Tidy-Table/tags">sources</a> to your computer using a web browser.</li>
-  <li>Extract the contents of the <em>.zip</em> into a folder on your local computer.</li>
-  <li>Upload the folder with the <strong>following files</strong> to your web site.</li>
-</ol>
-
-<table border="1">
-  <tr>
-    <th>Filename</th>
-    <th>Role</th>
-  </tr>
-  <tr>
-    <td>tidy-table.min.js</td>
-    <td>The main script to be included from within your HTML document.</td>
-  </tr>
-  <tr>
-    <td>tidy-table.min.css</td>
-    <td>This style sheet that defines the "look & feel" of the HTML table.</td>
-  </tr>
-</table>
-
-<h2>Set-up</h2>
-
-<p>It's as simple as defining a node <code>container</code> using a JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById">selector</a> and passing tabular data as JSON.  There are options available for post-processing table/column/menu elements, if needed.</p>
-
-<pre>document.getElementById('container').TidyTable(
-  <a href="#settings"><em>settings</em></a>, <em>data [columnTitles, columnValues, menuOptions, postProcess]</em>
-);</pre>
-
-<h2>Source Code</h2>
-
-<p>Add the following JavaScript/CSS between the <code>&lt;head&gt;&lt;/head&gt;</code> tags of your HTML document.</p>
-
-<a name="examples"></a>
-
-<h4>Use Example 1 - Options defined</h4>
-
-<pre>&lt;script src="/path/to/tidy-table.min.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-window.addEventListener('load', function() {
-  var block = document.getElementById('container')
-    .TidyTable({
-      enableCheckbox: true,
-      enableMenu:     true
-    },
-    {
-      columnTitles: ['Column A', 'Column B', 'Column C', 'Column D', 'Column E'],
-      columnValues: [
-        ['1', '1A', '1B', '1C', '1D', '1E'],
-        ['2', '2A', '2B', '2C', '2D', '2E'],
-        ['3', '3A', '3B', '3C', '3D', '3E'],
-        ['4', '4A', '4B', '4C', '4D', '4E'],
-        ['5', '5A', '5B', '5C', '5D', '5E']
-      ],
-
-      // do something with selected results
-      menuOptions : [
-        ['Option 1', { callback: doSomething1 }],
-        ['Option 2', { callback: doSomething2 }]
-      ],
-
-      // post-process DOM elements
-      postProcess: {
-        table:  doSomething3,
-        column: doSomething4,
-        menu:   doSomething5
-      },
-
-      // pre-process column values before sort (optional)
-      sortByPattern: function(col_num, val) {
-        if (col_num != 1) return val;
-
-        return String(val).replace(/$|%|#/g, '');
+      // Do something with selected results.
+      function doSomething1(rows) {
+        output.innerText = 'MENU: callback1(rows=' + rows.length + ')';
       }
-    });
 
-  // copy the table options menu
-  var menu = block.querySelector('select.tidy_table').cloneNode(true);
-  block.appendChild(menu);
+      function doSomething2(rows) {
+        output.innerText = 'MENU: callback2(rows=' + rows.length + ')';
+      }
 
-  // remove stored data
-  block.TidyTable('destroy');
-&lt;/script&gt;
+      // Post-process DOM elements.
+      function doSomething3(table) {
+        table.addEventListener('dblclick', function() {
+          output.innerText = 'TABLE: post-process(table)';
+        });
+      }
 
-&lt;link rel="stylesheet" type="text/css" href="/path/to/tidy-table.min.css"&gt;</pre>
+      function doSomething4(col) {
+        col.addEventListener('click', function() {
+          output.innerText = 'COL: post-process(text="' + this.textContent + '")';
+        });
+      }
 
-<h4>Use Example 2 - Quick and dirty</h4>
+      function doSomething5(menu) {
 
-<pre>&lt;script src="/path/to/tidy-table.min.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-window.addEventListener('load', function() {
-  document.getElementById('container')
-    .TidyTable({
-      columnTitles: ['Column A', 'Column B', 'Column C', 'Column D', 'Column E'],
-      columnValues: [
-        ['1', '1A', '1B', '1C', '1D', '1E'],
-        ['2', '2A', '2B', '2C', '2D', '2E'],
-        ['3', '3A', '3B', '3C', '3D', '3E'],
-        ['4', '4A', '4B', '4C', '4D', '4E'],
-        ['5', '5A', '5B', '5C', '5D', '5E']
-      ]
-    });
-});
-&lt;/script&gt;
+        // Rename default option.
+        menu.children[0].innerText = '- Select -';
+      }
+    </script>
 
-&lt;link rel="stylesheet" type="text/css" href="/path/to/tidy-table.min.css"&gt;</pre>
-
-<a name="settings"></a>
-
-<h2>Plug-in Settings</h2>
-
-<p>The following options can be passed to the plug-in main function as JSON</p>
-
-<table border="1">
-  <tr>
-    <th>Option</th>
-    <th>Description</th>
-    <th>Default Value</th>
-  </tr>
-  <tr>
-    <td>enableCheckbox</td>
-    <td>add checkbox functionality to table output</td>
-    <td>false</td>
-  </tr>
-  <tr>
-    <td>enableMenu</td>
-    <td>add select menu functionality to manipulate table output</td>
-    <td>false</td>
-  </tr>
-  <tr>
-    <td>reverseSortDir</td>
-    <td>change the sorting arrow image direction</td>
-    <td>false</td>
-  </tr>
-  <tr>
-    <td>responsive</td>
-    <td>enabled responsive layout on supported mobile devices</td>
-    <td>false</td>
-  </tr>
-</table>
-
-<a name="callback"></a>
-
-<h2>Select Menu Events</h2>
-
-<p>When a callback function is defined a response is returned.  The following functions correspond to the <a href="#examples">examples</a> provided above.</p>
-
-<pre>function doSomething1(rows) {
-  alert('callback1(rows=' + rows.length + ')');
-}
-
-function doSomething2(rows) {
-  alert('callback2(rows=' + rows.length + ')');
-}</pre>
-
-<a name="post-process"></a>
-
-<h2>Post-processing Elements</h2>
-
-<p>There are times where you may need to customize the table result behavior.  This can be easily achieved using optional <em>postProcess</em> hooks.  The following functions correspond to the <a href="#examples">examples</a> provided above.</p>
-
-<h4>Hide the second column of results</h4>
-
-<pre>function doSomething3(table) {
-  var cols = table.querySelectorAll('th:nth-child(2), td:nth-child(2)');
-
-  for (var i = 0; i &lt; cols.length; i++) {
-    cols[i].style.display = 'none';
-  }
-}</pre>
-
-<h4>Create form element (for inline editing) on mouse event</h4>
-
-<pre>function doSomething4(col) {
-  col.addEventListener('click', function() {
-    if (this.querySelector('form')) return;
-
-    var form = document.createElement('form');
-
-    form.addEventListener('submit', function() {
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'http://domain.com/path/to/script');
-      xhr.send(null);
-    });
-
-    var field = document.createElement('input');
-    field.setAttribute('type', 'text');
-    field.setAttribute('value', this.textContent);
-
-    var button = document.createElement('input');
-    button.setAttribute('type', 'submit');
-
-    form.appendChild(field).appendChild(button);
-
-    this.removeChild(this.firstChild);
-    this.appendChild(form);
-  });
-}</pre>
-
-<h4>Hide menus when a session cookie doesn't exist</h4>
-
-<pre>function doSomething5(menu) {
-  if (!getCookie('session')) {
-    menu.style.display = 'none';
-  }
-}</pre>
-
-<h2>v2 Support</h2>
-
-<p>There will be limited support for this version going forward.  It's recommended that you upgrade to the <a href="https://github.com/nuxy/Tidy-Table/releases">latest release</a> to take advantage of the new features and bug fixes.</p>
-
-<h2>Functional Testing</h2>
-
-<p>This package has been preconfigured to support <a href="http://qunitjs.com">QUnit</a> headless testing using <a href="http://www.travis-ci.org">Travis-CI</a>.  If you plan on using another integration tool you will have to create a custom project that combines the use of <em>QUnit</em> and <a href="http://www.phantomjs.org">PhantomJS</a> plugins.  If headless testing in not available you can manually run <code>test.html</code> in your web browser.</p>
-
-<h2>Design Template</h2>
-
-<p>I have provided with this package the Photoshop <a href="templates/arrows.psd">template</a> used to create the sort arrows shown in the Tidy Table results.  If you only need to support modern web browsers these items can be replaced with CSS3 <code>transform</code> and HTML5 SVG images.</p>
-
-<h2>Releases</h2>
-
-<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.8 kB) and developers version (unpacked  14.5 kB)</p>
-
-<p>You can always find the latest updates within this projects repository.</p>
-
-<h2>Code Repository</h2>
-
-<p>This projects repository is currently hosted on <a href="https://github.com">Github</a></p>
-
-<pre>https://github.com/nuxy/Tidy-Table</pre>
-
-<h2>Maintainer</h2>
-
-<p>For feedback, bug reports, or other comments, feel free to contact me at: <strong>devel</strong> <em>at</em> <strong>mbrooks</strong> <em>dot</em> <strong>info</strong></p>
-
-<h2>License and Warranty</h2>
-
-<p>This package is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</p>
-
-<p>Tidy Table is provided under the terms of the <a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>.</p>
-
-<p>Tidy Table &#169;2012-2018 <a href="https://mbrooks.info">Marc S. Brooks</a></p>
-
-</body>
+    <title>Create a HTML table that can be sorted, selected, and post-processed using a simple callback | Tidy Table</title>
+  </head>
+  <body>
+    <div id="tidy-table"></div>
+    <div id="output"></div>
+  </body>
 </html>

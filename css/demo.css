@@ -1,0 +1,16 @@
+#tidy-table {
+  font-family: sans-serif;
+  margin: 10% auto;
+  width: 935px;
+}
+
+.tidy-table select.options {
+  float: right;
+  margin: 10px;
+  padding: 3px;
+}
+
+#output {
+  text-align: center;
+  width: 100%;
+}
