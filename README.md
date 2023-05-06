@@ -2,7 +2,7 @@
 
 Create a HTML table that can be sorted, selected, and post-processed using a simple callback.
 
-[<img src="https://nuxy.github.io/tidy-table/preview.gif" alt="tidy-table" />](https://nuxy.github.io/tidy-table)
+![Preview](https://raw.githubusercontent.com/nuxy/tidy-table/master/package.gif)
 
 ## Features
 
