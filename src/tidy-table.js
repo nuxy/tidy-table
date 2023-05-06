@@ -183,21 +183,21 @@ function TidyTable(container, settings, options = {}) {
         // Determine column result order.
         if (!self.options.reverseSortDir) {
           if (sortOrder === 'asc' || !sortOrder) {
-            className = 'sort-asc';
+            className = 'arrow-up';
             sortOrder = 'desc';
           }
           else {
-            className = 'sort-desc';
+            className = 'arrow-up';
             sortOrder = 'asc';
           }
         }
         else {
           if (sortOrder === 'desc' || !sortOrder) {
-            className = 'sort-asc';
+            className = 'arrow-down';
             sortOrder = 'asc';
           }
           else {
-            className = 'sort-desc';
+            className = 'arrow-up';
             sortOrder = 'desc';
           }
         }

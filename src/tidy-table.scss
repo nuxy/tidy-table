@@ -37,12 +37,12 @@
       th {
         background-color: #DDDDDD;
 
-        &.sort-asc {
-          background: #EEEEEE url('../images/arrow_asc.gif') no-repeat right center;
+        &.arrow-down {
+          background: #EEEEEE url('../images/arrow-down.svg') no-repeat right center;
         }
 
-        &.sort-desc {
-          background: #EEEEEE url('../images/arrow_desc.gif') no-repeat right center;
+        &.arrow-up {
+          background: #EEEEEE url('../images/arrow-up.svg') no-repeat right center;
         }
       }
     }

@@ -20,22 +20,22 @@ describe('Sort', function() {
       // Select pre-ordered "Rank" column.
       colHead = row.$('th[title="Rank"]');
 
-      await expect(colHead).not.toHaveElementClass('sort-asc', {
-        message: `<tr> class 'sort-asc' is not defined`
+      await expect(colHead).not.toHaveElementClass('arrow-down', {
+        message: `<tr> class 'arrow-down' is not defined`
       });
 
-      await expect(colHead).not.toHaveElementClass('sort-desc', {
-        message: `<tr> class 'sort-desc' is not defined`
+      await expect(colHead).not.toHaveElementClass('arrow-up', {
+        message: `<tr> class 'arrow-up' is not defined`
       });
 
       await colHead.click(); // descending
 
-      await expect(colHead).not.toHaveElementClass('sort-asc', {
-        message: `<tr> class 'sort-asc' is not defined`
+      await expect(colHead).not.toHaveElementClass('arrow-down', {
+        message: `<tr> class 'arrow-down' is not defined`
       });
 
-      await expect(colHead).toHaveElementClass('sort-desc', {
-        message: `<tr> class 'sort-desc' is defined`
+      await expect(colHead).toHaveElementClass('arrow-up', {
+        message: `<tr> class 'arrow-up' is defined`
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -77,12 +77,12 @@ describe('Sort', function() {
 
       await colHead.click(); // ascending
 
-      await expect(colHead).toHaveElementClass('sort-asc', {
-        message: `<tr> class 'sort-asc' is defined`
+      await expect(colHead).toHaveElementClass('arrow-down', {
+        message: `<tr> class 'arrow-down' is defined`
       });
 
-      await expect(colHead).not.toHaveElementClass('sort-desc', {
-        message: `<tr> class 'sort-desc' is not defined`
+      await expect(colHead).not.toHaveElementClass('arrow-up', {
+        message: `<tr> class 'arrow-up' is not defined`
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -127,12 +127,12 @@ describe('Sort', function() {
 
       await colHead.click(); // descending
 
-      await expect(colHead).not.toHaveElementClass('sort-asc', {
-        message: `<tr> class 'sort-asc' is not defined`
+      await expect(colHead).not.toHaveElementClass('arrow-down', {
+        message: `<tr> class 'arrow-down' is not defined`
       });
 
-      await expect(colHead).toHaveElementClass('sort-desc', {
-        message: `<tr> class 'sort-desc' is defined`
+      await expect(colHead).toHaveElementClass('arrow-up', {
+        message: `<tr> class 'arrow-up' is defined`
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -174,12 +174,12 @@ describe('Sort', function() {
 
       await colHead.click(); // ascending
 
-      await expect(colHead).toHaveElementClass('sort-asc', {
-        message: `<tr> class 'sort-asc' is defined`
+      await expect(colHead).toHaveElementClass('arrow-down', {
+        message: `<tr> class 'arrow-down' is defined`
       });
 
-      await expect(colHead).not.toHaveElementClass('sort-desc', {
-        message: `<tr> class 'sort-desc' is not defined`
+      await expect(colHead).not.toHaveElementClass('arrow-up', {
+        message: `<tr> class 'arrow-up' is not defined`
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -224,12 +224,12 @@ describe('Sort', function() {
 
       await colHead.click(); // descending
 
-      await expect(colHead).not.toHaveElementClass('sort-asc', {
-        message: `<tr> class 'sort-asc' is not defined`
+      await expect(colHead).not.toHaveElementClass('arrow-down', {
+        message: `<tr> class 'arrow-down' is not defined`
       });
 
-      await expect(colHead).toHaveElementClass('sort-desc', {
-        message: `<tr> class 'sort-desc' is defined`
+      await expect(colHead).toHaveElementClass('arrow-up', {
+        message: `<tr> class 'arrow-up' is defined`
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -271,12 +271,12 @@ describe('Sort', function() {
 
       await colHead.click(); // ascending
 
-      await expect(colHead).toHaveElementClass('sort-asc', {
-        message: `<tr> class 'sort-asc' is defined`
+      await expect(colHead).toHaveElementClass('arrow-down', {
+        message: `<tr> class 'arrow-down' is defined`
       });
 
-      await expect(colHead).not.toHaveElementClass('sort-desc', {
-        message: `<tr> class 'sort-desc' is not defined`
+      await expect(colHead).not.toHaveElementClass('arrow-up', {
+        message: `<tr> class 'arrow-up' is not defined`
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -321,12 +321,12 @@ describe('Sort', function() {
 
       await colHead.click(); // descending
 
-      await expect(colHead).not.toHaveElementClass('sort-asc', {
-        message: `<tr> class 'sort-asc' is not defined`
+      await expect(colHead).not.toHaveElementClass('arrow-down', {
+        message: `<tr> class 'arrow-down' is not defined`
       });
 
-      await expect(colHead).toHaveElementClass('sort-desc', {
-        message: `<tr> class 'sort-desc' is defined`
+      await expect(colHead).toHaveElementClass('arrow-up', {
+        message: `<tr> class 'arrow-up' is defined`
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -368,12 +368,12 @@ describe('Sort', function() {
 
       await colHead.click(); // ascending
 
-      await expect(colHead).toHaveElementClass('sort-asc', {
-        message: `<tr> class 'sort-asc' is defined`
+      await expect(colHead).toHaveElementClass('arrow-down', {
+        message: `<tr> class 'arrow-down' is defined`
       });
 
-      await expect(colHead).not.toHaveElementClass('sort-desc', {
-        message: `<tr> class 'sort-desc' is not defined`
+      await expect(colHead).not.toHaveElementClass('arrow-up', {
+        message: `<tr> class 'arrow-up' is not defined`
       });
 
       rows = await table.$('tbody').$$('tr');
