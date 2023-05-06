@@ -56,13 +56,13 @@
 
       // Post-process DOM elements.
       function doSomething3(table) {
-        table.addEventListener('click', function() {
+        table.addEventListener('dblclick', function() {
           output.innerText = 'TABLE: post-process(table)';
         });
       }
 
       function doSomething4(col) {
-        col.addEventListener('dblclick', function() {
+        col.addEventListener('click', function() {
           output.innerText = 'COL: post-process(text="' + this.textContent + '")';
         });
       }

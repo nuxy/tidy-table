@@ -16,7 +16,7 @@ describe('Table results', function() {
     describe('Post-process', function() {
       describe('table', function() {
         it('should handle event', async function() {
-          await table.click();
+          await table.doubleClick();
 
           const result = 'TABLE: post-process(table)';
 
@@ -29,7 +29,7 @@ describe('Table results', function() {
       describe('column', function() {
         it('should handle event', async function() {
           const col = await table.$('tbody').$$('tr')[0].$$('td')[1];
-          await col.doubleClick();
+          await col.click();
 
           const text = await col.getHTML(false);
 
