@@ -24,20 +24,6 @@ Install the package into your project using [NPM](https://npmjs.com), or downloa
 
     $ npm install tidy-table
 
-### Unsupported releases
-
-To install deprecated versions use [Bower](http://bower.io).
-
-### v3 (no dependencies)
-
-    $ bower install tidy-table#3
-
-### v2 (requires [jQuery 1.8.3](http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js))
-
-Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.
-
-    $ bower install tidy-table#2
-
 ## Usage
 
 There are two ways you can use this package.  One is by including the JavaScript/CSS sources directly.  The other is by importing the module into your component.
@@ -81,6 +67,20 @@ Transpile ES6 sources (using [Babel](https://babeljs.io)) and minify to a distri
 Run [WebdriverIO](https://webdriver.io) E2E tests:
 
     $ npm run test
+
+## Unsupported releases
+
+To install deprecated versions use [Bower](http://bower.io) or download the package [by tag](https://github.com/nuxy/tidy-table/tags).
+
+### v3 (no dependencies)
+
+    $ bower install tidy-table#3
+
+### v2 (requires [jQuery 1.8.3](http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js))
+
+Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.
+
+    $ bower install tidy-table#2
 
 ## Contributions
 
