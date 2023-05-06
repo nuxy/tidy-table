@@ -10,9 +10,9 @@
 
 .tidy-table {
   table {
-    background-color: #FFFFFF;
+    background-color: #fff;
     border-collapse: collapse;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #ccc;
     cursor: pointer;
     white-space: nowrap;
 
@@ -35,14 +35,14 @@
       border: none;
 
       th {
-        background-color: #DDDDDD;
+        background-color: #ddd;
 
         &.arrow-down {
-          background: #EEEEEE url('../images/arrow-down.svg') no-repeat right center;
+          background: #eee url('../images/arrow-down.svg') no-repeat right center;
         }
 
         &.arrow-up {
-          background: #EEEEEE url('../images/arrow-up.svg') no-repeat right center;
+          background: #eee url('../images/arrow-up.svg') no-repeat right center;
         }
       }
     }
@@ -50,16 +50,16 @@
     tbody {
       tr {
         &.check-on {
-          background-color: #F5F5F5;
+          background-color: #f5f5f5;
         }
 
         &.check-off {
-          background-color: #FFFFFF;
+          background-color: #fff;
         }
 
         td {
-          border-right: 1px solid #EEEEEE;
-          border-top: 1px solid #CCCCCC;
+          border-right: 1px solid #eee;
+          border-top: 1px solid #ccc;
           padding: 7px 20px;
 
           .label {
@@ -67,7 +67,7 @@
           }
 
           &:nth-child(1) {
-            border-right: 1px solid #EEEEEE;
+            border-right: 1px solid #eee;
           }
 
           &:nth-last-child(1) {
@@ -86,7 +86,7 @@
 
       table {
         border: 0px;
-        border-top: 1px solid #DDDDDD;
+        border-top: 1px solid #ddd;
         width: 100%;
 
         thead, tbody {
@@ -121,7 +121,7 @@
 
         tbody {
           tr {
-            border-bottom: 1px solid #CCCCCC;
+            border-bottom: 1px solid #ccc;
             position: relative;
 
             &:last-child {
