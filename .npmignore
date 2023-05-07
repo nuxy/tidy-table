@@ -1,7 +1,10 @@
 .babelrc
 .eslintrc
+.travis.yml
 .vscode
 demo
+images/arrow.ai
 package.*
 node_modules
 test
+wdio.conf.js
