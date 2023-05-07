@@ -9,6 +9,7 @@
     "sass": "sass src/tidy-table.scss dist/tidy-table.css",
     "minify-css": "node-minify --compressor clean-css --input 'dist/tidy-table.css' --output 'dist/tidy-table.min.css'",
     "minify-js": "node-minify --compressor uglify-js --input 'dist/tidy-table.js' --output 'dist/tidy-table.min.js'",
+    "prepack": "npm run build",
     "test": "wdio wdio.conf.js"
   },
   "repository": {
