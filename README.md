@@ -108,6 +108,61 @@ Overriding defaults can be done using the following options:
 | reverseSortDir | Change the sorting arrow image direction.      | false   |
 | responsive     | Enable/disable responsive layout support.      | false   |
 
+## Post-processing examples
+
+There are times where you may need to customize the table result behavior. This can be achieved using `postProcess` hooks.
+
+### Hide the second column of table results
+
+```javascript
+function callback(table) {
+  const cols = table.querySelectorAll('th:nth-child(2), td:nth-child(2)');
+
+  for (let i = 0; i < cols.length; i++) {
+    cols[i].style.display = 'none';
+  }
+}
+```
+
+### Create text field on column click event
+
+```javascript
+function callback(col) {
+  col.addEventListener('click', function() {
+    if (!this.querySelector('form')) {
+      const form = document.createElement('form');
+      form.addEventListener('submit', function() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/path/to/script');
+        xhr.send(null);
+      });
+
+      const field = document.createElement('input');
+      field.setAttribute('type', 'text');
+      field.setAttribute('value', this.textContent);
+
+      const button = document.createElement('input');
+      button.setAttribute('type', 'submit');
+
+      form.appendChild(field).appendChild(button);
+
+      this.removeChild(this.firstChild);
+      this.appendChild(form);
+    });
+  }
+}
+```
+
+### Hide select menu when cookie doesn't exist
+
+```javascript
+function callback(menu) {
+  if (!getCookie('session')) {
+    menu.style.display = 'none';
+  }
+}
+```
+
 ## Design template
 
 The Illustrator [template](https://github.com/nuxy/tidy-table/blob/develop/images/arrow.ai) used to create the sort arrows has been provided with this package for reference.
