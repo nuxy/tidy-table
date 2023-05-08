@@ -39,7 +39,7 @@ After you [build the distribution sources](#cli-options) the set-up is fairly si
 <link rel="stylesheet" href="path/to/tidy-table.min.css" media="all" />
 
 <script type="text/javascript">
-  var tidyTable = tidyTable(container, settings, options);
+  tidyTable(container, settings, options);
 </script>
 ```
 
@@ -54,7 +54,13 @@ import 'tidy-table/dist/tidy-table.css';
 const tidyTable = new TidyTable(container, settings, options);
 ```
 
-## HTML markup
+### HTML markup
+
+```html
+<div id="tidy-table"></div>
+```
+
+### Example
 
 ```javascript
 const options = {
@@ -95,6 +101,10 @@ const settings = {
     return val?.replace(/\$|%|#/g, '');
   }
 };
+
+const container = document.getElementById('tidy-table');
+
+const tidyTable = new TidyTable(container, settings, options);
 ```
 
 ## Table options
