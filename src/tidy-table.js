@@ -388,6 +388,8 @@ function TidyTable(container, settings, options = {}) {
   function cmpInt(a, b) {
     return b - a;
   }
+
+  return self;
 }
 
 /**
