@@ -5,7 +5,11 @@
   width: 780px;
 }
 
-.tidy-table select.options {
+#tidy-table table {
+  width: 100%;
+}
+
+#tidy-table select.options {
   float: right;
   margin: 10px 0;
   padding: 3px;
