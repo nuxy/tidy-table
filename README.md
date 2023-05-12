@@ -26,6 +26,18 @@ Install the package into your project using [NPM](https://npmjs.com), or downloa
 
     $ npm install tidy-table
 
+### Alternative
+
+To add to an existing [React](https://reactjs.org) or [Vue](https://vuejs.org) project you can install this package using [YARN](https://yarnpkg.com).
+
+#### React
+
+    $ yarn add react-tidy-table
+
+#### Vue
+
+    $ yarn add vue-tidy-table
+
 ## Usage
 
 There are two ways you can use this package.  One is by including the JavaScript/CSS sources directly.  The other is by importing the module into your component.
