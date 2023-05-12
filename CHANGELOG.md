@@ -16,3 +16,16 @@ The following items are **breaking changes** and not supported in prior releases
 - Replaced GIF images with SVG equivalent (renamed) `arrow-up.svg`, `arrow-down.svg`
 - Replaced [QUnit](https://qunitjs.com) testing with [WebdriverIO](https://webdriver.io) framework.
 - Integrated [Babel](https://babeljs.io) transpilation build process.
+
+## [4.0.4] - 2023-05-12
+
+### Changed
+
+### Demo
+
+- Fixed menu alignment in Chrome.
+- Expand table to 100% width.
+
+### Documentation
+
+- Added [React](https://github.com/nuxy/react-tidy-table)/[Vue](https://github.com/nuxy/vue-tidy-table) install examples.
