@@ -4,6 +4,7 @@
 .vscode
 demo
 images/arrow.ai
+ISSUE_TEMPLATE.md
 package.*
 node_modules
 test
