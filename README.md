@@ -14,7 +14,6 @@ Checkout the [demo](https://nuxy.github.io/tidy-table) for examples of use.
 - Easy to set-up and customize.
 - Customizable callback functions for post-processing selected results.
 - Post-process options for manipulating table/column/menu elements.
-- Fast and lightweight (JavaScript plug-in *only 4 kB)
 
 ## Dependencies
 
