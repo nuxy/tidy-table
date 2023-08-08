@@ -1,6 +1,6 @@
 # Tidy Table [![npm version](https://badge.fury.io/js/tidy-table.svg)](https://badge.fury.io/js/tidy-table) [![](https://img.shields.io/npm/dm/tidy-table)](https://www.npmjs.com/package/tidy-table) [![Build Status](https://api.travis-ci.com/nuxy/tidy-table.svg?branch=master)](https://app.travis-ci.com/github/nuxy/tidy-table) [![Install size](https://packagephobia.com/badge?p=tidy-table)](https://packagephobia.com/result?p=tidy-table)
 
-Create a HTML table that can be sorted, selected, and post-processed using a simple callback.
+Create a HTML table that can be sorted, selected, and post-processed.
 
 ![Preview](https://raw.githubusercontent.com/nuxy/tidy-table/master/package.gif)
 

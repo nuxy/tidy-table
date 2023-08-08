@@ -1,7 +1,7 @@
 /**
  *  tidy-table
  *  Create a HTML table that can be sorted, selected and
- *  post-processed using a simple callback.
+ *  post-processed.
  *
  *  Copyright 2012-2023, Marc S. Brooks (https://mbrooks.info)
  *  Licensed under the MIT license:
