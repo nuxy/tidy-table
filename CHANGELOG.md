@@ -26,6 +26,10 @@ The following items are **breaking changes** and not supported in prior releases
 - Fixed menu alignment in Chrome.
 - Expand table to 100% width.
 
+## [4.0.5] - 2023-08-07
+
+NPM dependency security updates.
+
 ### Documentation
 
 - Added [React](https://github.com/nuxy/react-tidy-table)/[Vue](https://github.com/nuxy/vue-tidy-table) install examples.
