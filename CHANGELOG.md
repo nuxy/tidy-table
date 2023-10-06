@@ -33,3 +33,9 @@ NPM dependency security updates.
 ### Documentation
 
 - Added [React](https://github.com/nuxy/react-tidy-table)/[Vue](https://github.com/nuxy/vue-tidy-table) install examples.
+
+## [4.0.6] - 2023-10-06
+
+### Changed
+
+- Replaced/removed deprecated dependencies
