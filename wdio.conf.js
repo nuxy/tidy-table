@@ -7,7 +7,10 @@ exports.config = {
   capabilities: [{
     maxInstances: 1,
     browserName: 'firefox',
-    acceptInsecureCerts: true
+    acceptInsecureCerts: true,
+    'moz:firefoxOptions': {
+      args: ['-headless']
+    },
   }],
   logLevel: 'info',
   bail: 0,
