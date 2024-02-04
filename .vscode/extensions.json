@@ -5,7 +5,6 @@
     "dbaeumer.vscode-eslint",
     "donjayamanne.githistory",
     "liamhammett.inline-parameters",
-    "steoates.autoimport",
-    "searKing.preview-vscode"
+    "steoates.autoimport"
   ]
 }
