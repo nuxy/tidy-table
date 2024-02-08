@@ -39,3 +39,7 @@ NPM dependency security updates.
 ### Changed
 
 - Replaced/removed deprecated dependencies
+
+## [4.0.7] - 2024-02-08
+
+- Added third-party (got) audit override
