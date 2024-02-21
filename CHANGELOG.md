@@ -43,3 +43,8 @@ NPM dependency security updates.
 ## [4.0.7] - 2024-02-08
 
 - Added third-party (got) audit override
+
+## [4.0.8] - 2024-02-21
+
+- Removed Unsupported releases section
+- Deleted legacy branch

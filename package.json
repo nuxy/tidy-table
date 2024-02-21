@@ -1,6 +1,6 @@
 {
   "name": "tidy-table",
-  "version": "4.0.7",
+  "version": "4.0.8",
   "description": "Create a HTML table that can be sorted, selected, and post-processed.",
   "main": "src/tidy-table.js",
   "scripts": {
