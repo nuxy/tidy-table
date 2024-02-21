@@ -206,20 +206,6 @@ Run [WebdriverIO](https://webdriver.io) E2E tests:
 
     $ npm run test
 
-## Unsupported releases
-
-To install deprecated versions use [Bower](http://bower.io) or download the package [by tag](https://github.com/nuxy/tidy-table/tags).
-
-### v3 (no dependencies)
-
-    $ bower install tidy-table#3
-
-### v2 (requires [jQuery 1.8.3](http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js))
-
-Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.
-
-    $ bower install tidy-table#2
-
 ## Contributions
 
 If you fix a bug, or have a code you want to contribute, please send a pull-request with your changes. (Note: Before committing your code please ensure that you are following the [Node.js style guide](https://github.com/felixge/node-style-guide))
