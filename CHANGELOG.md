@@ -48,3 +48,11 @@ NPM dependency security updates.
 
 - Removed Unsupported releases section
 - Deleted legacy branch
+
+## [4.0.9] - 2024-02-29
+
+NPM security update ([CVE-2023-42282](https://github.com/advisories/GHSA-78xj-cgh5-2h22))
+
+## Updated
+
+- Replaced Travis-CI with Github workflow
