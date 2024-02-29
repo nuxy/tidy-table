@@ -11,7 +11,7 @@ Create a HTML table that can be sorted, selected, and post-processed.
 - Extensible HTML/CSS interface.
 - Compatible with all modern desktop and mobile web browsers.
 - Fully responsive layout with touch event support.
-- Easy to set-up and customize.
+- Easy to set-up and customize. **No dependencies**.
 - Customizable callback functions for post-processing selected results.
 - Post-process options for manipulating table/column/menu elements.
 
