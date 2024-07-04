@@ -56,3 +56,8 @@ NPM security update ([CVE-2023-42282](https://github.com/advisories/GHSA-78xj-cg
 ## Updated
 
 - Replaced Travis-CI with Github workflow
+
+## [4.0.10] - 2024-07-04
+
+- Upgraded `@wdio` CLI local-runner, outdated NPM packages
+- NPM security updates ([ws override](https://github.com/advisories/GHSA-3h5v-q93c-6h6q))
