@@ -1,12 +1,28 @@
-#tidy-table {
-  font-family: sans-serif;
+body {
+  color: #24292f;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
   font-size: 14px;
+}
+
+#tidy-table {
   margin: 10% auto;
   width: 780px;
 }
 
 #tidy-table table {
   width: 100%;
+}
+
+/**
+ * Fix text diacritic alignment
+ */
+#tidy-table table th::after,
+#tidy-table table td::after {
+  content: '';
+  display: block;
+  height: 0;
+  margin-bottom: -4px;
+  width: 0;
 }
 
 #tidy-table select.options {
