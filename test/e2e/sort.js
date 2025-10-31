@@ -21,21 +21,21 @@ describe('Sort', function() {
       colHead = row.$('th[title="Rank"]');
 
       await expect(colHead).not.toHaveElementClass('arrow-down', {
-        message: `<tr> class 'arrow-down' is not defined`
+        message: '<tr> class "arrow-down" is not defined'
       });
 
       await expect(colHead).not.toHaveElementClass('arrow-up', {
-        message: `<tr> class 'arrow-up' is not defined`
+        message: '<tr> class "arrow-up" is not defined'
       });
 
       await colHead.click(); // descending
 
       await expect(colHead).not.toHaveElementClass('arrow-down', {
-        message: `<tr> class 'arrow-down' is not defined`
+        message: '<tr> class "arrow-down" is not defined'
       });
 
       await expect(colHead).toHaveElementClass('arrow-up', {
-        message: `<tr> class 'arrow-up' is defined`
+        message: '<tr> class "arrow-up" is defined'
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -44,82 +44,82 @@ describe('Sort', function() {
       result  = '5';
 
       await expect(colBody).toHaveText(result, {
-        message: `Output expected is '${result}'`
+        message: `Output expected is "${result}"`
       });
 
       colBody = rows[1].$('td:nth-child(2)');
       result  = '4';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
-      });
-
-      colBody = rows[2].$('td:nth-child(2)');
-      result  = '3'
-
-      await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
-      });
-
-      colBody = rows[3].$('td:nth-child(2)');
-      result  = '2';
-
-      await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
-      });
-
-      colBody = rows[4].$('td:nth-child(2)');
-      result  = '1';
-
-      await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
-      });
-
-      await colHead.click(); // ascending
-
-      await expect(colHead).toHaveElementClass('arrow-down', {
-        message: `<tr> class 'arrow-down' is defined`
-      });
-
-      await expect(colHead).not.toHaveElementClass('arrow-up', {
-        message: `<tr> class 'arrow-up' is not defined`
-      });
-
-      rows = await table.$('tbody').$$('tr');
-
-      colBody = rows[0].$('td:nth-child(2)');
-      result  = '1';
-
-      await expect(colBody).toHaveText(result, {
-        message: `Output expected is '${result}'`
-      });
-
-      colBody = rows[1].$('td:nth-child(2)');
-      result  = '2';
-
-      await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[2].$('td:nth-child(2)');
       result  = '3';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
+      });
+
+      colBody = rows[3].$('td:nth-child(2)');
+      result  = '2';
+
+      await expect(colBody).toHaveText(result, {
+         message: `Output expected is "${result}"`
+      });
+
+      colBody = rows[4].$('td:nth-child(2)');
+      result  = '1';
+
+      await expect(colBody).toHaveText(result, {
+         message: `Output expected is "${result}"`
+      });
+
+      await colHead.click(); // ascending
+
+      await expect(colHead).toHaveElementClass('arrow-down', {
+        message: '<tr> class "arrow-down" is defined'
+      });
+
+      await expect(colHead).not.toHaveElementClass('arrow-up', {
+        message: '<tr> class "arrow-up" is not defined'
+      });
+
+      rows = await table.$('tbody').$$('tr');
+
+      colBody = rows[0].$('td:nth-child(2)');
+      result  = '1';
+
+      await expect(colBody).toHaveText(result, {
+        message: `Output expected is "${result}"`
+      });
+
+      colBody = rows[1].$('td:nth-child(2)');
+      result  = '2';
+
+      await expect(colBody).toHaveText(result, {
+         message: `Output expected is "${result}"`
+      });
+
+      colBody = rows[2].$('td:nth-child(2)');
+      result  = '3';
+
+      await expect(colBody).toHaveText(result, {
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[3].$('td:nth-child(2)');
       result  = '4';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[4].$('td:nth-child(2)');
       result  = '5';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       // Select "Programming Language" column.
@@ -128,11 +128,11 @@ describe('Sort', function() {
       await colHead.click(); // descending
 
       await expect(colHead).not.toHaveElementClass('arrow-down', {
-        message: `<tr> class 'arrow-down' is not defined`
+        message: '<tr> class "arrow-down" is not defined'
       });
 
       await expect(colHead).toHaveElementClass('arrow-up', {
-        message: `<tr> class 'arrow-up' is defined`
+        message: '<tr> class "arrow-up" is defined'
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -141,45 +141,45 @@ describe('Sort', function() {
       result  = 'Objective-C';
 
       await expect(colBody).toHaveText(result, {
-        message: `Output expected is '${result}'`
+        message: `Output expected is "${result}"`
       });
 
       colBody = rows[1].$('td:nth-child(3)');
       result  = 'Java';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[2].$('td:nth-child(3)');
       result  = 'C++';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[3].$('td:nth-child(3)');
       result  = 'C#';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[4].$('td:nth-child(3)');
       result  = 'C';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       await colHead.click(); // ascending
 
       await expect(colHead).toHaveElementClass('arrow-down', {
-        message: `<tr> class 'arrow-down' is defined`
+        message: '<tr> class "arrow-down" is defined'
       });
 
       await expect(colHead).not.toHaveElementClass('arrow-up', {
-        message: `<tr> class 'arrow-up' is not defined`
+        message: '<tr> class "arrow-up" is not defined'
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -188,35 +188,35 @@ describe('Sort', function() {
       result  = 'C';
 
       await expect(colBody).toHaveText(result, {
-        message: `Output expected is '${result}'`
+        message: `Output expected is "${result}"`
       });
 
       colBody = rows[1].$('td:nth-child(3)');
       result  = 'C#';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[2].$('td:nth-child(3)');
       result  = 'C++';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[3].$('td:nth-child(3)');
       result  = 'Java';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[4].$('td:nth-child(3)');
       result  = 'Objective-C';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       // Select "Ratings Jan 2012" column.
@@ -225,11 +225,11 @@ describe('Sort', function() {
       await colHead.click(); // descending
 
       await expect(colHead).not.toHaveElementClass('arrow-down', {
-        message: `<tr> class 'arrow-down' is not defined`
+        message: '<tr> class "arrow-down" is not defined'
       });
 
       await expect(colHead).toHaveElementClass('arrow-up', {
-        message: `<tr> class 'arrow-up' is defined`
+        message: '<tr> class "arrow-up" is defined'
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -238,45 +238,45 @@ describe('Sort', function() {
       result  = '17.479%';
 
       await expect(colBody).toHaveText(result, {
-        message: `Output expected is '${result}'`
+        message: `Output expected is "${result}"`
       });
 
       colBody = rows[1].$('td:nth-child(4)');
       result  = '16.976%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[2].$('td:nth-child(4)');
       result  = '8.781%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[3].$('td:nth-child(4)');
       result  = '8.063%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[4].$('td:nth-child(4)');
       result  = '6.919%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       await colHead.click(); // ascending
 
       await expect(colHead).toHaveElementClass('arrow-down', {
-        message: `<tr> class 'arrow-down' is defined`
+        message: '<tr> class "arrow-down" is defined'
       });
 
       await expect(colHead).not.toHaveElementClass('arrow-up', {
-        message: `<tr> class 'arrow-up' is not defined`
+        message: '<tr> class "arrow-up" is not defined'
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -285,35 +285,35 @@ describe('Sort', function() {
       result  = '6.919%';
 
       await expect(colBody).toHaveText(result, {
-        message: `Output expected is '${result}'`
+        message: `Output expected is "${result}"`
       });
 
       colBody = rows[1].$('td:nth-child(4)');
       result  = '8.063%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[2].$('td:nth-child(4)');
       result  = '8.781%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[3].$('td:nth-child(4)');
       result  = '16.976%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[4].$('td:nth-child(4)');
       result  = '17.479%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       // Select "Delta Jan 2012" column.
@@ -322,11 +322,11 @@ describe('Sort', function() {
       await colHead.click(); // descending
 
       await expect(colHead).not.toHaveElementClass('arrow-down', {
-        message: `<tr> class 'arrow-down' is not defined`
+        message: '<tr> class "arrow-down" is not defined'
       });
 
       await expect(colHead).toHaveElementClass('arrow-up', {
-        message: `<tr> class 'arrow-up' is defined`
+        message: '<tr> class "arrow-up" is defined'
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -335,45 +335,45 @@ describe('Sort', function() {
       result  = '+3.91%';
 
       await expect(colBody).toHaveText(result, {
-        message: `Output expected is '${result}'`
+        message: `Output expected is "${result}"`
       });
 
       colBody = rows[1].$('td:nth-child(5)');
       result  = '+2.55%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[2].$('td:nth-child(5)');
       result  = '+1.15%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[3].$('td:nth-child(5)');
       result  = '-0.29%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[4].$('td:nth-child(5)');
       result  = '-0.72%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       await colHead.click(); // ascending
 
       await expect(colHead).toHaveElementClass('arrow-down', {
-        message: `<tr> class 'arrow-down' is defined`
+        message: '<tr> class "arrow-down" is defined'
       });
 
       await expect(colHead).not.toHaveElementClass('arrow-up', {
-        message: `<tr> class 'arrow-up' is not defined`
+        message: '<tr> class "arrow-up" is not defined'
       });
 
       rows = await table.$('tbody').$$('tr');
@@ -382,35 +382,35 @@ describe('Sort', function() {
       result  = '-0.72%';
 
       await expect(colBody).toHaveText(result, {
-        message: `Output expected is '${result}'`
+        message: `Output expected is "${result}"`
       });
 
       colBody = rows[1].$('td:nth-child(5)');
       result  = '-0.29%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[2].$('td:nth-child(5)');
       result  = '+1.15%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[3].$('td:nth-child(5)');
       result  = '+2.55%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
 
       colBody = rows[4].$('td:nth-child(5)');
       result  = '+3.91%';
 
       await expect(colBody).toHaveText(result, {
-         message: `Output expected is '${result}'`
+         message: `Output expected is "${result}"`
       });
     });
   });
