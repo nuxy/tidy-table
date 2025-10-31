@@ -3,6 +3,7 @@
 .github
 .vscode
 demo
+eslint.config.js
 images/arrow.ai
 ISSUE_TEMPLATE.md
 package.*
