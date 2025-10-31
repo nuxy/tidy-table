@@ -30,14 +30,14 @@
   "author": "Marc S. Brooks <devel@mbrooks.info> (https://mbrooks.info)",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.24.7",
-    "@babel/core": "^7.24.7",
-    "@babel/eslint-parser": "^7.24.7",
-    "@babel/plugin-proposal-decorators": "^7.24.7",
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.5",
+    "@babel/eslint-parser": "^7.28.5",
+    "@babel/plugin-proposal-decorators": "^7.28.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-class-properties": "^7.24.7",
-    "@babel/preset-env": "^7.24.7",
-    "@babel/register": "^7.24.6",
+    "@babel/plugin-transform-class-properties": "^7.27.1",
+    "@babel/preset-env": "^7.28.5",
+    "@babel/register": "^7.28.3",
     "@node-minify/clean-css": "^4.0.5",
     "@node-minify/cli": "^6.2.0",
     "@node-minify/uglify-js": "^4.0.5",
@@ -45,8 +45,8 @@
     "@wdio/local-runner": "^9.20.0",
     "@wdio/mocha-framework": "^9.20.0",
     "@wdio/spec-reporter": "^9.20.0",
-    "eslint": "^8.57.0",
-    "sass": "^1.77.6"
+    "eslint": "^8.57.1",
+    "sass": "^1.93.2"
   },
   "overrides": {
     "got": "^12.0.0",
