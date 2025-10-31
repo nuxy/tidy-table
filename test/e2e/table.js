@@ -31,7 +31,7 @@ describe('Table results', function() {
           const col = await table.$('tbody').$$('tr')[0].$$('td')[1];
           await col.click();
 
-          const text = await col.getHTML(false);
+          const text = await col.getText();
 
           const result = `COL: post-process(text="${text}")`;
 
