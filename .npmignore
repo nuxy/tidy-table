@@ -1,7 +1,6 @@
-.babelrc
-.eslintrc
 .github
 .vscode
+babel.config.json
 demo
 eslint.config.js
 images/arrow.ai
