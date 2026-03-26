@@ -50,6 +50,8 @@
   },
   "overrides": {
     "got": "^12.0.0",
-    "ws": "^7.0.0"
+    "mocha": {
+      "serialize-javascript": "7.0.4"
+    }
   }
 }
