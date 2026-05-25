@@ -73,3 +73,8 @@ NPM security update ([CVE-2023-42282](https://github.com/advisories/GHSA-78xj-cg
 
 - Override serialize-javascript (see mochajs/mocha#5781)
 - Upgraded outdated NPM dependencies
+
+## [4.0.13] - 2026-05-24
+
+- Upgraded outdated NPM dependencies
+- NPM security updates
