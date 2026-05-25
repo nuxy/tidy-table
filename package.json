@@ -36,8 +36,8 @@
     "@babel/plugin-proposal-decorators": "^7.29.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/plugin-transform-class-properties": "^7.28.6",
-    "@babel/preset-env": "^7.29.2",
-    "@babel/register": "^7.28.6",
+    "@babel/preset-env": "^7.29.5",
+    "@babel/register": "^7.29.3",
     "@node-minify/clean-css": "^4.0.5",
     "@node-minify/cli": "^6.2.0",
     "@node-minify/uglify-js": "^4.0.5",
@@ -46,7 +46,7 @@
     "@wdio/mocha-framework": "^9.27.0",
     "@wdio/spec-reporter": "^9.27.0",
     "eslint": "^9.39.4",
-    "sass": "^1.98.0"
+    "sass": "^1.100.0"
   },
   "overrides": {
     "got": "^12.0.0",
