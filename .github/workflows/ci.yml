@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         firefox-version: ['latest']
-        node-version: ['20.x', '21.x']
+        node-version: ['20.x', '22.x']
     steps:
       - uses: actions/checkout@v4
 
@@ -29,7 +29,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install NPM dependencies
         run: npm ci
-      - name: Run Webpack
+      - name: Run build
         run: npm run build
       - name: Run ESLint
         run: npm run lint
